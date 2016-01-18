@@ -8,20 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		7A1D7B881C4593E100959E94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1D7B871C4593E100959E94 /* AppDelegate.swift */; };
-		7A1D7B8A1C4593E100959E94 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1D7B891C4593E100959E94 /* ViewController.swift */; };
 		7A1D7B8D1C4593E100959E94 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A1D7B8B1C4593E100959E94 /* Main.storyboard */; };
 		7A1D7B8F1C4593E100959E94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A1D7B8E1C4593E100959E94 /* Assets.xcassets */; };
 		7A1D7B921C4593E100959E94 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A1D7B901C4593E100959E94 /* LaunchScreen.storyboard */; };
+		7A1D7B9C1C4CADA200959E94 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1D7B9B1C4CADA200959E94 /* MoviesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7A1D7B841C4593E100959E94 /* ECFlicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ECFlicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A1D7B871C4593E100959E94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7A1D7B891C4593E100959E94 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7A1D7B8C1C4593E100959E94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7A1D7B8E1C4593E100959E94 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A1D7B911C4593E100959E94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7A1D7B931C4593E100959E94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7A1D7B9B1C4CADA200959E94 /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +55,11 @@
 			isa = PBXGroup;
 			children = (
 				7A1D7B871C4593E100959E94 /* AppDelegate.swift */,
-				7A1D7B891C4593E100959E94 /* ViewController.swift */,
 				7A1D7B8B1C4593E100959E94 /* Main.storyboard */,
 				7A1D7B8E1C4593E100959E94 /* Assets.xcassets */,
 				7A1D7B901C4593E100959E94 /* LaunchScreen.storyboard */,
 				7A1D7B931C4593E100959E94 /* Info.plist */,
+				7A1D7B9B1C4CADA200959E94 /* MoviesViewController.swift */,
 			);
 			path = ECFlicks;
 			sourceTree = "<group>";
@@ -96,6 +96,7 @@
 				TargetAttributes = {
 					7A1D7B831C4593E100959E94 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 77S94498YM;
 					};
 				};
 			};
@@ -135,8 +136,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A1D7B8A1C4593E100959E94 /* ViewController.swift in Sources */,
 				7A1D7B881C4593E100959E94 /* AppDelegate.swift in Sources */,
+				7A1D7B9C1C4CADA200959E94 /* MoviesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,10 +248,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ECFlicks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CCSF.ECFlicks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -258,10 +262,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ECFlicks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CCSF.ECFlicks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
