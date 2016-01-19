@@ -62,7 +62,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     */
     @available(iOS 2.0, *)
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    internal func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
         if let movies = movies {
             return movies.count
@@ -76,7 +76,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
     
     @available(iOS 2.0, *)
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    internal func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
         
         let movie = movies![indexPath.row]
