@@ -11,6 +11,7 @@ import AFNetworking
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
+
     var movies: [NSDictionary]?
 
     override func viewDidLoad() {
@@ -27,7 +28,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             delegate:nil,
             delegateQueue:NSOperationQueue.mainQueue()
         )
-        
+
         let task : NSURLSessionDataTask = session.dataTaskWithRequest(request,
             completionHandler: { (dataOrNil, response, error) in
                 if let data = dataOrNil {
@@ -41,6 +42,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         });
         task.resume()
 
+        self.tableView.addSubview(self.refreshControl)
         // Do any additional setup after loading the view.
     }
 
@@ -91,5 +93,23 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         print("row \(indexPath.row)")
         return cell
         
+    }
+    
+    //attempt at implementing refresh
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        return refreshControl
+    }()
+
+
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        // Do some reloading of data and update the table view's data source
+        // Fetch more objects from a web service, for example...
+
+        
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
     }
 }
