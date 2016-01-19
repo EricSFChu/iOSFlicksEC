@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AFNetworking
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
@@ -61,7 +62,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @available(iOS 2.0, *)
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
-        if let movies = movies { //if movies is not nil assign it to a constant called movies
+        if let movies = movies {
             return movies.count
         } else {
             return 0
@@ -82,6 +83,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
         
+        let baseUrl = "http://image.tmdb.org/t/p/w500"
+        let filePath = movie["poster_path"] as! String
+        let imageUrl = NSURL(string: baseUrl + filePath)
+        cell.posterView.setImageWithURL(imageUrl!)
         
         print("row \(indexPath.row)")
         return cell
