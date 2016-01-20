@@ -8,6 +8,7 @@
 
 import UIKit
 import AFNetworking
+import MBProgressHUD
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
@@ -16,6 +17,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Display HUD right before next request is made
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -39,9 +42,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                             self.tableView.reloadData()
                     }
                 }
+                // Hide HUD once network request comes back (must be done on main UI thread)
+                MBProgressHUD.hideHUDForView(self.view, animated: true)
+                
         });
         task.resume()
-
+        //The subview shows the loading
         self.tableView.addSubview(self.refreshControl)
         // Do any additional setup after loading the view.
     }
@@ -94,7 +100,27 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
         
     }
-    
+/*
+    func loadDataFromNetwork() {
+        
+        // Display HUD right before next request is made
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        
+        // ...
+        
+        let task : NSURLSessionDataTask = mySession.dataTaskWithRequest(request,
+            completionHandler: { (data, response, error) in
+                
+                // Hide HUD once network request comes back (must be done on main UI thread)
+                MBProgressHUD.hideHUDForView(self.view, animated: true)
+                
+                // ...
+                
+        });
+        task.resume()
+*/
+
+
     //attempt at implementing refresh
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
