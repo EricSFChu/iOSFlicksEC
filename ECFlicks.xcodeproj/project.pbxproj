@@ -14,6 +14,7 @@
 		7A1D7B921C4593E100959E94 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A1D7B901C4593E100959E94 /* LaunchScreen.storyboard */; };
 		7A1D7B9C1C4CADA200959E94 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1D7B9B1C4CADA200959E94 /* MoviesViewController.swift */; };
 		7A1D7B9F1C4DBF6200959E94 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1D7B9E1C4DBF6200959E94 /* MovieCell.swift */; };
+		7A5A33F71C4F67B100D77879 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A5A33F61C4F67B100D77879 /* Icons.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		7A1D7B931C4593E100959E94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A1D7B9B1C4CADA200959E94 /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		7A1D7B9E1C4DBF6200959E94 /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		7A5A33F61C4F67B100D77879 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
 		89E3C2C6F857D329EC2C5EDA /* Pods-ECFlicks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ECFlicks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ECFlicks/Pods-ECFlicks.debug.xcconfig"; sourceTree = "<group>"; };
 		B3B118CAD818EDFC7958EDC2 /* Pods_ECFlicks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ECFlicks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -53,6 +55,7 @@
 		7A1D7B7B1C4593E100959E94 = {
 			isa = PBXGroup;
 			children = (
+				7A5A33F61C4F67B100D77879 /* Icons.xcassets */,
 				7A1D7B861C4593E100959E94 /* ECFlicks */,
 				7A1D7B851C4593E100959E94 /* Products */,
 				82BBFCAA56AEAD885C75C389 /* Pods */,
@@ -171,6 +174,7 @@
 			files = (
 				7A1D7B921C4593E100959E94 /* LaunchScreen.storyboard in Resources */,
 				7A1D7B8F1C4593E100959E94 /* Assets.xcassets in Resources */,
+				7A5A33F71C4F67B100D77879 /* Icons.xcassets in Resources */,
 				7A1D7B8D1C4593E100959E94 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

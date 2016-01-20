@@ -8,18 +8,36 @@
 
 import UIKit
 import AFNetworking
+import MBProgressHUD
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
-
+    
     var movies: [NSDictionary]?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Display HUD right before next request is made
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         
         tableView.dataSource = self
         tableView.delegate = self
         
+        loadFromSource()
+
+        //The subview shows the loading
+        self.tableView.addSubview(self.refreshControl)
+        // Do any additional setup after loading the view.
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    
+    func loadFromSource(){
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         let url = NSURL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
         let request = NSURLRequest(URL: url!)
@@ -28,7 +46,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             delegate:nil,
             delegateQueue:NSOperationQueue.mainQueue()
         )
-
+        
         let task : NSURLSessionDataTask = session.dataTaskWithRequest(request,
             completionHandler: { (dataOrNil, response, error) in
                 if let data = dataOrNil {
@@ -39,31 +57,24 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                             self.tableView.reloadData()
                     }
                 }
+                // Hide HUD once network request comes back (must be done on main UI thread)
+                MBProgressHUD.hideHUDForView(self.view, animated: true)
+                
         });
         task.resume()
-
-        self.tableView.addSubview(self.refreshControl)
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
     @available(iOS 2.0, *)
     internal func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
+        
         if let movies = movies {
             return movies.count
         } else {
@@ -94,6 +105,26 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
         
     }
+    /*
+    func loadDataFromNetwork() {
+    
+    // Display HUD right before next request is made
+    MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+    
+    // ...
+    
+    let task : NSURLSessionDataTask = mySession.dataTaskWithRequest(request,
+    completionHandler: { (data, response, error) in
+    
+    // Hide HUD once network request comes back (must be done on main UI thread)
+    MBProgressHUD.hideHUDForView(self.view, animated: true)
+    
+    // ...
+    
+    });
+    task.resume()
+    */
+    
     
     //attempt at implementing refresh
     lazy var refreshControl: UIRefreshControl = {
@@ -102,13 +133,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         return refreshControl
     }()
-
-
+    
+    
     func handleRefresh(refreshControl: UIRefreshControl) {
         // Do some reloading of data and update the table view's data source
         // Fetch more objects from a web service, for example...
-
         
+        loadFromSource()
         self.tableView.reloadData()
         refreshControl.endRefreshing()
     }

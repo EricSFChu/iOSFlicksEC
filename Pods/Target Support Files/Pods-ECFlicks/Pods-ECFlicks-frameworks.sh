@@ -85,7 +85,9 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-ECFlicks/AFNetworking.framework"
+  install_framework "Pods-ECFlicks/MBProgressHUD.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-ECFlicks/AFNetworking.framework"
+  install_framework "Pods-ECFlicks/MBProgressHUD.framework"
 fi
