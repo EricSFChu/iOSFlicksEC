@@ -17,6 +17,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="141" id="n9s-XE-HLN" customClass="MovieCell" customModule="ECFlicks" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="141"/>
@@ -45,6 +46,7 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="overviewLabel" destination="dsu-gV-zuS" id="EUu-z4-UoF"/>
                                             <outlet property="posterView" destination="MQ2-Wn-w2u" id="S02-Ab-Xug"/>
@@ -54,7 +56,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="eai-uh-zrn" id="AEm-E2-PYk"/>
@@ -64,5 +66,37 @@
             </objects>
             <point key="canvasLocation" x="162" y="366"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="kES-AF-BWA">
+            <objects>
+                <viewController id="tMa-4q-YkW" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aKO-7S-xBF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HT4-aK-J1k">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.73494073275862071" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Network Error"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="modal" id="2DQ-HG-HZd"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconmonstr-warning-7-24" id="xWN-id-GqT">
+                                <rect key="frame" x="80" y="5" width="28" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FeC-NH-PnU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="517" y="366"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="iconmonstr-warning-7-24" width="24" height="24"/>
+    </resources>
 </document>
