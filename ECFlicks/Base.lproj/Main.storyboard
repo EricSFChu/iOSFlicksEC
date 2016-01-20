@@ -23,7 +23,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="153"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n9s-XE-HLN" id="lbg-ey-vQA">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="152"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="152.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dsu-gV-zuS">
@@ -60,16 +60,17 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="eai-uh-zrn" id="AEm-E2-PYk"/>
+                        <segue destination="tMa-4q-YkW" kind="modal" identifier="Network error" id="WlW-Hf-BzZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="162" y="366"/>
         </scene>
-        <!--View Controller-->
+        <!--Network error-->
         <scene sceneID="kES-AF-BWA">
             <objects>
-                <viewController id="tMa-4q-YkW" sceneMemberID="viewController">
+                <viewController title="Network error" id="tMa-4q-YkW" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aKO-7S-xBF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -79,9 +80,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.73494073275862071" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Network Error"/>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="modal" id="2DQ-HG-HZd"/>
-                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconmonstr-warning-7-24" id="xWN-id-GqT">
                                 <rect key="frame" x="80" y="25" width="28" height="20"/>
@@ -93,7 +91,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FeC-NH-PnU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="519" y="366"/>
+            <point key="canvasLocation" x="645" y="366"/>
         </scene>
     </scenes>
     <resources>

@@ -105,25 +105,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
         
     }
-    /*
-    func loadDataFromNetwork() {
-    
-    // Display HUD right before next request is made
-    MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-    
-    // ...
-    
-    let task : NSURLSessionDataTask = mySession.dataTaskWithRequest(request,
-    completionHandler: { (data, response, error) in
-    
-    // Hide HUD once network request comes back (must be done on main UI thread)
-    MBProgressHUD.hideHUDForView(self.view, animated: true)
-    
-    // ...
-    
-    });
-    task.resume()
-    */
     
     
     //attempt at implementing refresh
