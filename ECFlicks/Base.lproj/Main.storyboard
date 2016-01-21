@@ -60,7 +60,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="eai-uh-zrn" id="AEm-E2-PYk"/>
-                        <segue destination="tMa-4q-YkW" kind="modal" identifier="Network error" id="WlW-Hf-BzZ"/>
+                        <segue destination="tMa-4q-YkW" kind="modal" identifier="NetworkError" id="WlW-Hf-BzZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -70,7 +70,7 @@
         <!--Network error-->
         <scene sceneID="kES-AF-BWA">
             <objects>
-                <viewController title="Network error" id="tMa-4q-YkW" sceneMemberID="viewController">
+                <viewController title="Network error" id="tMa-4q-YkW" customClass="NetworkErrorController" customModule="ECFlicks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aKO-7S-xBF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -80,6 +80,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.73494073275862071" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Network Error"/>
+                                <connections>
+                                    <action selector="buttonClicked:" destination="tMa-4q-YkW" eventType="touchUpInside" id="FYB-xU-SBh"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconmonstr-warning-7-24" id="xWN-id-GqT">
                                 <rect key="frame" x="80" y="25" width="28" height="20"/>
@@ -88,6 +91,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="NPz-BB-Xkz"/>
+                    <connections>
+                        <outlet property="errorButton" destination="HT4-aK-J1k" id="5qz-7i-zSe"/>
+                        <segue destination="BYZ-38-t0r" kind="modal" identifier="backToMain" id="CIi-aD-sKx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FeC-NH-PnU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

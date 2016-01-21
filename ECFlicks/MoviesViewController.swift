@@ -4,7 +4,7 @@
 //
 //  Created by EricDev on 1/17/16.
 //  Copyright © 2016 EricDev. All rights reserved.
-//
+//  
 
 import UIKit
 import AFNetworking
@@ -23,12 +23,20 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.dataSource = self
         tableView.delegate = self
         
+        //load view for network error if there is no network
         loadFromSource()
 
         //The subview shows the loading
         self.tableView.addSubview(self.refreshControl)
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        if Reachability.isConnectedToNetwork() == true {
+            loadFromSource()
+        } else {
+            performSegueWithIdentifier("NetworkError", sender: nil)
+        }    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
