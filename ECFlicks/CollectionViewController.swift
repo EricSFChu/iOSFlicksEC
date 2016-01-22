@@ -11,7 +11,7 @@ import MBProgressHUD
 
 class CollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet var collectionView: UICollectionView!
-    
+    @IBOutlet weak var backToListView: UIBarButtonItem!
     var movies: [NSDictionary]?
     
     override func viewDidLoad() {
@@ -22,7 +22,8 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         
         loadFromSource()
     }
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -36,6 +37,9 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
             return 0
         }
         
+    }
+    @IBAction func segueToListView(sender: AnyObject) {
+        performSegueWithIdentifier("Back to list", sender: nil)
     }
     
     // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
@@ -56,6 +60,8 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         return cell
         
     }
+    
+
 
     func loadFromSource(){
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"

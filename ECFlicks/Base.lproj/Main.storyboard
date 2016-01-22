@@ -23,7 +23,7 @@
                                         <rect key="frame" x="0.0" y="92" width="320" height="153"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n9s-XE-HLN" id="lbg-ey-vQA">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="152.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="152"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dsu-gV-zuS">
@@ -61,7 +61,7 @@
                     <navigationItem key="navigationItem" id="eqi-dj-APB">
                         <barButtonItem key="leftBarButtonItem" title="Collection" id="4I8-EU-hMA">
                             <connections>
-                                <segue destination="agw-vd-uA5" kind="modal" id="3vN-VP-Qmn"/>
+                                <segue destination="RNv-LQ-d5C" kind="modal" modalTransitionStyle="crossDissolve" id="3vN-VP-Qmn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -90,7 +90,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionRe" id="sFU-qE-zLX" customClass="CollectionCell" customModule="ECFlicks" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="154" height="256"/>
+                                <rect key="frame" x="0.0" y="64" width="154" height="256"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="154" height="256"/>
@@ -100,23 +100,52 @@
                                             <rect key="frame" x="20" y="24" width="117" height="216"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.45534110069274902" green="0.085096828639507294" blue="0.50883287191390991" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" button="YES" image="YES"/>
+                                            </accessibility>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
                                     <outlet property="collectionImage" destination="Dpp-Cy-fbG" id="NB8-wK-eg8"/>
+                                    <segue destination="nwu-lz-dLa" kind="push" id="MJT-AM-OGy"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
                     </collectionView>
+                    <navigationItem key="navigationItem" id="ctl-RC-J3U">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="aKa-8k-5kC"/>
+                        <barButtonItem key="leftBarButtonItem" title="List" id="SDR-ju-1rQ">
+                            <connections>
+                                <action selector="segueToListView:" destination="agw-vd-uA5" id="pRk-y7-5bb"/>
+                                <segue destination="BYZ-38-t0r" kind="push" identifier="Back to list" id="Al4-1b-9SZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="backToListView" destination="SDR-ju-1rQ" id="pJP-hf-LIT"/>
                         <outlet property="collectionView" destination="LKy-J2-IyL" id="C6Z-ne-BSC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6hn-Dd-Bbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="694" y="1107"/>
+            <point key="canvasLocation" x="1226" y="1107"/>
+        </scene>
+        <!--Full Page View Controller-->
+        <scene sceneID="gbA-Fa-2tc">
+            <objects>
+                <viewController id="nwu-lz-dLa" customClass="FullPageViewController" customModule="ECFlicks" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="d87-dt-b9h">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="S7y-jp-1WY"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BGE-RS-UIZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1644" y="1107"/>
         </scene>
         <!--Network error-->
         <scene sceneID="kES-AF-BWA">
@@ -149,7 +178,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FeC-NH-PnU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1269" y="366"/>
+            <point key="canvasLocation" x="1219" y="366"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="43H-A3-ZcP">
@@ -169,8 +198,30 @@
             </objects>
             <point key="canvasLocation" x="162" y="366"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hOv-gu-j1R">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RNv-LQ-d5C" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="jNX-ST-gm9"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FJA-KV-a8f">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="agw-vd-uA5" kind="relationship" relationship="rootViewController" id="YVR-4h-Myg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7je-V7-QFa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="694" y="1107"/>
+        </scene>
     </scenes>
     <resources>
         <image name="iconmonstr-warning-7-24" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Al4-1b-9SZ"/>
+    </inferredMetricsTieBreakers>
 </document>
