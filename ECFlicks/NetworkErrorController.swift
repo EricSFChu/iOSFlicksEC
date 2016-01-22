@@ -14,7 +14,8 @@ class NetworkErrorController: UIViewController {
     var hidden: Bool = false
     
     @IBAction func buttonClicked(sender: UIButton) {
-        performSegueWithIdentifier("backToMain", sender: nil)
+        //performSegueWithIdentifier("NetworkError", sender: nil)
+        //use this with a custom modal segue
     }
     
 }
