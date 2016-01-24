@@ -145,6 +145,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     
+
+    @IBAction func onTap(sender: AnyObject) {
+        view.endEditing(true)
+    }
+    
+    
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         filteredData = searchText.isEmpty ? movies : movies!.filter({(movie: NSDictionary) -> Bool in
             return (movie["title"] as! String ).rangeOfString(searchText

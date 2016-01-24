@@ -62,6 +62,10 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="fd7-5H-v51" appends="YES" id="ic7-D4-3Mm"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="eqi-dj-APB">
                         <barButtonItem key="leftBarButtonItem" title="Collection" id="4I8-EU-hMA">
@@ -77,6 +81,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="fd7-5H-v51">
+                    <connections>
+                        <action selector="onTap:" destination="BYZ-38-t0r" id="V03-Yu-qiQ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="694" y="366"/>
         </scene>
