@@ -25,7 +25,7 @@
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="153" id="n9s-XE-HLN" customClass="MovieCell" customModule="ECFlicks" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="320" height="153"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="153"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n9s-XE-HLN" id="lbg-ey-vQA">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="153"/>
@@ -60,6 +60,30 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="23" id="Rl9-HT-63C">
+                                <rect key="frame" x="0.0" y="63" width="320" height="23"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rl9-HT-63C" id="SdQ-KC-OL3">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="22.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="48X-DW-fYy">
+                                            <rect key="frame" x="-15" y="-1" width="342" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.73494073280000005" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" title="Network Error"/>
+                                            <connections>
+                                                <action selector="buttonClicked:" destination="tMa-4q-YkW" eventType="touchUpInside" id="O9J-0a-woG"/>
+                                                <action selector="didClickErrorMessage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YGx-Rl-I9r"/>
+                                            </connections>
+                                        </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconmonstr-warning-7-24" id="X4s-ld-BZm">
+                                            <rect key="frame" x="84" y="3" width="18" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -82,6 +106,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="errorButton" destination="48X-DW-fYy" id="luf-BT-fAx"/>
+                        <outlet property="errorCell" destination="Rl9-HT-63C" id="zfh-xd-eiW"/>
                         <outlet property="searchBar" destination="hJ6-qc-Z06" id="rbd-jz-XAv"/>
                         <outlet property="searchButton" destination="lkZ-nR-Bhf" id="Xuq-qN-dqK"/>
                         <outlet property="tableView" destination="eai-uh-zrn" id="AEm-E2-PYk"/>
@@ -179,19 +205,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HT4-aK-J1k">
-                                <rect key="frame" x="0.0" y="64" width="320" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.73494073275862071" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Network Error"/>
-                                <connections>
-                                    <action selector="buttonClicked:" destination="tMa-4q-YkW" eventType="touchUpInside" id="FYB-xU-SBh"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconmonstr-warning-7-24" id="xWN-id-GqT">
-                                <rect key="frame" x="90" y="70" width="18" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="23" id="gKz-DO-Am4">
+                                <rect key="frame" x="0.0" y="65" width="320" height="23"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gKz-DO-Am4" id="fXa-tE-jzO">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="22.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HT4-aK-J1k">
+                                            <rect key="frame" x="-15" y="-1" width="342" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.73494073275862071" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" title="Network Error"/>
+                                            <connections>
+                                                <action selector="buttonClicked:" destination="tMa-4q-YkW" eventType="touchUpInside" id="FYB-xU-SBh"/>
+                                            </connections>
+                                        </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconmonstr-warning-7-24" id="xWN-id-GqT">
+                                            <rect key="frame" x="84" y="3" width="18" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -202,7 +238,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FeC-NH-PnU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1219" y="366"/>
+            <point key="canvasLocation" x="1160" y="414"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="43H-A3-ZcP">
@@ -220,7 +256,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Og-HA-tyM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="162" y="366"/>
+            <point key="canvasLocation" x="156" y="320"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hOv-gu-j1R">
@@ -239,7 +275,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7je-V7-QFa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="678" y="1127"/>
+            <point key="canvasLocation" x="594" y="1107"/>
         </scene>
     </scenes>
     <resources>

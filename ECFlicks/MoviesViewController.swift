@@ -13,6 +13,8 @@ import MBProgressHUD
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     
+    @IBOutlet weak var errorButton: UIButton!
+    @IBOutlet weak var errorCell: UITableViewCell!
     @IBOutlet weak var searchButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -24,6 +26,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         self.searchBar.hidden = false
+        self.errorCell.hidden = true
         // Display HUD right before next request is made
         
         // MBProgressHUD.showHUDAddedTo(self.view, animated: true)
@@ -45,9 +48,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         //load view for network error if there is no network
         if Reachability.isConnectedToNetwork() == true {
+            self.errorCell.hidden = true
+            self.searchBar.hidden = false
             loadFromSource()
         } else {
-            performSegueWithIdentifier("NetworkError", sender: nil)
+            self.searchBar.hidden = true
+            self.errorCell.hidden = false
+            //performSegueWithIdentifier("NetworkError", sender: nil)
         }
     }
     
@@ -69,6 +76,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     
+    @IBAction func didClickErrorMessage(sender: AnyObject) {
+        viewDidAppear(true)
+    }
     func loadFromSource(){
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         let url = NSURL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
