@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--Movies View Controller-->
+        <!--FlikR-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MoviesViewController" customModule="ECFlicks" customModuleProvider="target" sceneMemberID="viewController">
@@ -13,12 +13,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" id="hJ6-qc-Z06">
+                            <searchBar hidden="YES" contentMode="redraw" showsSearchResultsButton="YES" id="hJ6-qc-Z06">
                                 <rect key="frame" x="0.0" y="63" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="153" sectionHeaderHeight="28" sectionFooterHeight="28" id="eai-uh-zrn">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="153" sectionHeaderHeight="28" sectionFooterHeight="28" id="eai-uh-zrn">
                                 <rect key="frame" x="0.0" y="107" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -28,7 +28,7 @@
                                         <rect key="frame" x="0.0" y="92" width="320" height="153"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n9s-XE-HLN" id="lbg-ey-vQA">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="152.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="153"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dsu-gV-zuS">
@@ -67,15 +67,23 @@
                             <outletCollection property="gestureRecognizers" destination="fd7-5H-v51" appends="YES" id="ic7-D4-3Mm"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="eqi-dj-APB">
-                        <barButtonItem key="leftBarButtonItem" title="Collection" id="4I8-EU-hMA">
+                    <navigationItem key="navigationItem" title="FlikR" id="eqi-dj-APB">
+                        <barButtonItem key="leftBarButtonItem" image="Image" id="4I8-EU-hMA">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="RNv-LQ-d5C" kind="modal" modalTransitionStyle="crossDissolve" id="3vN-VP-Qmn"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="search" id="lkZ-nR-Bhf">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="searchButtonCall:" destination="BYZ-38-t0r" id="oTa-gB-SIY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="hJ6-qc-Z06" id="rbd-jz-XAv"/>
+                        <outlet property="searchButton" destination="lkZ-nR-Bhf" id="Xuq-qN-dqK"/>
                         <outlet property="tableView" destination="eai-uh-zrn" id="AEm-E2-PYk"/>
                         <segue destination="tMa-4q-YkW" kind="push" identifier="NetworkError" id="WlW-Hf-BzZ"/>
                     </connections>
@@ -87,7 +95,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="694" y="366"/>
+            <point key="canvasLocation" x="594" y="342"/>
         </scene>
         <!--Collection View Controller-->
         <scene sceneID="o6I-ZF-bET">
@@ -131,7 +139,8 @@
                     </collectionView>
                     <navigationItem key="navigationItem" id="ctl-RC-J3U">
                         <barButtonItem key="backBarButtonItem" title="Back" id="aKa-8k-5kC"/>
-                        <barButtonItem key="leftBarButtonItem" title="List" id="SDR-ju-1rQ">
+                        <barButtonItem key="leftBarButtonItem" image="Image-1" id="SDR-ju-1rQ">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="segueToListView:" destination="agw-vd-uA5" id="pRk-y7-5bb"/>
                                 <segue destination="BYZ-38-t0r" kind="push" identifier="Back to list" id="Al4-1b-9SZ"/>
@@ -230,11 +239,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7je-V7-QFa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="694" y="1107"/>
+            <point key="canvasLocation" x="678" y="1127"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Image" width="32" height="32"/>
+        <image name="Image-1" width="32" height="32"/>
         <image name="iconmonstr-warning-7-24" width="24" height="24"/>
+        <image name="search" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Al4-1b-9SZ"/>

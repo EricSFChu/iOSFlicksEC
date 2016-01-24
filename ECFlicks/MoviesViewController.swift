@@ -13,6 +13,7 @@ import MBProgressHUD
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     
+    @IBOutlet weak var searchButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -22,8 +23,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.searchBar.hidden = false
         // Display HUD right before next request is made
-        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        
+        // MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        self.navigationController?.navigationBar.barTintColor = UIColor.blackColor()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -52,6 +57,17 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     
+    @IBAction func searchButtonCall(sender: AnyObject) {
+        if  (self.searchBar.hidden == true) {
+            self.searchBar.hidden = false
+            self.tableView.reloadData()
+        }else {
+            self.searchBar.hidden = true
+            searchBar.resignFirstResponder()
+            self.tableView.reloadData()
+        }
+    }
+    
     
     func loadFromSource(){
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
@@ -62,6 +78,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             delegate:nil,
             delegateQueue:NSOperationQueue.mainQueue()
         )
+        
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         
         let task : NSURLSessionDataTask = session.dataTaskWithRequest(request,
             completionHandler: { (dataOrNil, response, error) in
@@ -78,7 +96,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                     }
                 }
                 // Hide HUD once network request comes back (must be done on main UI thread)
-                MBProgressHUD.hideHUDForView(self.view, animated: true)
+                MBProgressHUD.hideHUDForView(self.view, animated: false)
                 
         });
         task.resume()

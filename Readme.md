@@ -2,7 +2,7 @@
 
 **Name of your app** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **16** hours spent in total
+Time spent: **18** hours spent in total
 
 ## User Stories
 
@@ -19,7 +19,7 @@ The following **optional** features are implemented:
 - [x] Movies are displayed using a CollectionView instead of a TableView.
 - [x] User can search for a movie.
 - [x] All images fade in as they are loading.
-- [ ] Customize the UI.
+- [x] Customize the UI.
 
 The following **additional** features are implemented:
 
@@ -30,11 +30,11 @@ The following **additional** features are implemented:
 Here's a walkthrough of implemented user stories:
 
 
-![Walkthrough](DemoWTwReload.gif)
+![Walkthrough](DemoWTwReloadUpdated.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
-## Notes
+Done with views. Currently attempting to refactor and condense all views onto one view controller.
 
 Describe any challenges encountered while building the app.
 
