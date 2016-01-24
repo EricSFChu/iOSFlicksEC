@@ -29,7 +29,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.delegate = self
         searchBar.delegate = self
         
-        //load view for network error if there is no network
         loadFromSource()
 
         //The subview shows the loading
@@ -38,11 +37,14 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     override func viewDidAppear(animated: Bool) {
+        
+        //load view for network error if there is no network
         if Reachability.isConnectedToNetwork() == true {
             loadFromSource()
         } else {
             performSegueWithIdentifier("NetworkError", sender: nil)
-        }    }
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -118,7 +120,32 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let baseUrl = "http://image.tmdb.org/t/p/w500"
         let filePath = movie["poster_path"] as! String
         let imageUrl = NSURL(string: baseUrl + filePath)
-        cell.posterView.setImageWithURL(imageUrl!)
+        //cell.posterView.setImageWithURL(imageUrl!)
+        
+        let imageRequest = NSURLRequest(URL: imageUrl!)
+        
+        //allow pictures to fade in if it is loading for the first time
+        cell.posterView.setImageWithURLRequest(
+            imageRequest,
+            placeholderImage: nil,
+            success: { (imageRequest, imageResponse, image) -> Void in
+                
+                // imageResponse will be nil if the image is cached
+                if imageResponse != nil {
+                    print("Image was NOT cached, fade in image")
+                    cell.posterView.alpha = 0.0
+                    cell.posterView.image = image
+                    UIView.animateWithDuration(0.3, animations: { () -> Void in
+                        cell.posterView.alpha = 1.0
+                    })
+                } else {
+                    print("Image was cached so just update the image")
+                    cell.posterView.image = image
+                }
+            },
+            failure: { (imageRequest, imageResponse, error) -> Void in
+                // do something for the failure condition
+        })
         
         print("row \(indexPath.row)")
         return cell
