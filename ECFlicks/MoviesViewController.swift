@@ -10,10 +10,15 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+    
+    
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var movies: [NSDictionary]?
+    var filteredData: [NSDictionary]!
+    var movieList: [NSDictionary]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +27,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         tableView.dataSource = self
         tableView.delegate = self
+        searchBar.delegate = self
         
         //load view for network error if there is no network
         loadFromSource()
@@ -62,6 +68,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                         data, options:[]) as? NSDictionary {
                             NSLog("response: \(responseDictionary)")
                             self.movies = responseDictionary["results"] as? [NSDictionary]
+                            self.filteredData = self.movies
+                    
+                            
+                            
                             self.tableView.reloadData()
                     }
                 }
@@ -70,6 +80,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 
         });
         task.resume()
+    
     }
     
     /*
@@ -83,8 +94,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @available(iOS 2.0, *)
     internal func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if let movies = movies {
-            return movies.count
+        if let filteredData = filteredData {
+            return filteredData.count
         } else {
             return 0
         }
@@ -98,7 +109,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     internal func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
         
-        let movie = movies![indexPath.row]
+        let movie = filteredData![indexPath.row]
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
         cell.titleLabel.text = title
@@ -131,5 +142,14 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         loadFromSource()
         self.tableView.reloadData()
         refreshControl.endRefreshing()
+    }
+    
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredData = searchText.isEmpty ? movies : movies!.filter({(movie: NSDictionary) -> Bool in
+            return (movie["title"] as! String ).rangeOfString(searchText
+                , options: .CaseInsensitiveSearch) != nil
+        })
+        tableView.reloadData()
     }
 }
