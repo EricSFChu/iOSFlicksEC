@@ -14,8 +14,6 @@ public class FullViewHelper{
     var imageURLtransfer = NSURL(string: "")
     var overviewTransfer: String = ""
     
-    public func setImage(var something: NSURL){
-        imageURLtransfer = something
-    }
+        
 
 }

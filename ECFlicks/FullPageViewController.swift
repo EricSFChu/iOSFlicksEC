@@ -11,6 +11,8 @@ import UIKit
 class FullPageViewController: UIViewController {
 
     @IBOutlet weak var fullImage: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var overViewLabel: UILabel!
 
     
     var movie: NSDictionary?
@@ -22,7 +24,11 @@ class FullPageViewController: UIViewController {
         let baseURL = "http://image.tmdb.org/t/p/w500"
         let posterPath = movie!["poster_path"] as! String
         let imageURL = NSURL(string: baseURL + posterPath)
+        let title = movie!["title"] as! String
+        let overview = movie!["overview"] as! String
         
+        titleLabel.text = title
+        overViewLabel.text = overview
         fullImage.setImageWithURL(imageURL!)
         
         // Do any additional setup after loading the view.
