@@ -19,7 +19,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="153" sectionHeaderHeight="28" sectionFooterHeight="28" id="eai-uh-zrn">
-                                <rect key="frame" x="0.0" y="107" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="107" width="320" height="461"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -123,11 +123,11 @@
             </objects>
             <point key="canvasLocation" x="594" y="342"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--FlikR-->
         <scene sceneID="o6I-ZF-bET">
             <objects>
                 <viewController id="agw-vd-uA5" customClass="CollectionViewController" customModule="ECFlicks" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="LKy-J2-IyL">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" delaysContentTouches="NO" dataMode="prototypes" id="LKy-J2-IyL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -139,7 +139,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionRe" id="sFU-qE-zLX" customClass="CollectionCell" customModule="ECFlicks" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="154" height="256"/>
+                                <rect key="frame" x="0.0" y="0.0" width="154" height="256"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="154" height="256"/>
@@ -158,20 +158,12 @@
                                 </view>
                                 <connections>
                                     <outlet property="collectionImage" destination="Dpp-Cy-fbG" id="NB8-wK-eg8"/>
-                                    <segue destination="nwu-lz-dLa" kind="push" id="MJT-AM-OGy"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="ctl-RC-J3U">
+                    <navigationItem key="navigationItem" title="FlikR" id="ctl-RC-J3U">
                         <barButtonItem key="backBarButtonItem" title="Back" id="aKa-8k-5kC"/>
-                        <barButtonItem key="leftBarButtonItem" image="Image-1" id="SDR-ju-1rQ">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="segueToListView:" destination="agw-vd-uA5" id="pRk-y7-5bb"/>
-                                <segue destination="BYZ-38-t0r" kind="push" identifier="Back to list" id="Al4-1b-9SZ"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="backToListView" destination="SDR-ju-1rQ" id="pJP-hf-LIT"/>
@@ -180,7 +172,92 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6hn-Dd-Bbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1226" y="1107"/>
+            <point key="canvasLocation" x="2017" y="1102"/>
+        </scene>
+        <!--FlikR-->
+        <scene sceneID="Hbv-GG-qDb">
+            <objects>
+                <viewController id="38i-gQ-3bY" customClass="NewCollectionViewController" customModule="ECFlicks" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KEr-gc-T7c">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" id="9wk-eC-SHy">
+                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" delaysContentTouches="NO" dataMode="prototypes" id="NCR-rC-Zbp">
+                                <rect key="frame" x="0.0" y="108" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mFR-Wt-8RV">
+                                    <size key="itemSize" width="154" height="256"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionRe" id="UnO-FU-nNn" customClass="CollectionCell" customModule="ECFlicks" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="154" height="256"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="154" height="256"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="P4f-fB-7Ji">
+                                                    <rect key="frame" x="20" y="24" width="117" height="216"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.4553411007" green="0.085096828639999997" blue="0.50883287190000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" button="YES" image="YES"/>
+                                                    </accessibility>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <outlet property="collectionImage" destination="P4f-fB-7Ji" id="3DG-te-HbX"/>
+                                            <segue destination="nwu-lz-dLa" kind="push" id="j5s-5B-Ic6"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="v9Z-qd-va4" appends="YES" id="7Xe-ti-fuP"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="FlikR" id="iAJ-hu-WAn">
+                        <barButtonItem key="leftBarButtonItem" image="Image-1" id="SDR-ju-1rQ">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="segueToListView:" destination="agw-vd-uA5" id="pRk-y7-5bb"/>
+                                <segue destination="BYZ-38-t0r" kind="push" identifier="Back to list" id="Al4-1b-9SZ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="search" id="tmG-8V-sbq">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="searchButtonCall:" destination="38i-gQ-3bY" id="xTl-wB-zBk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="backToListView" destination="SDR-ju-1rQ" id="Y9Q-Br-rBu"/>
+                        <outlet property="collectionView" destination="NCR-rC-Zbp" id="dTM-bh-fhZ"/>
+                        <outlet property="searchBar" destination="9wk-eC-SHy" id="SEc-Q5-z6s"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nyf-PB-6cm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="v9Z-qd-va4">
+                    <connections>
+                        <action selector="onTap:" destination="38i-gQ-3bY" id="VnF-Ha-RYc"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1059" y="1107"/>
         </scene>
         <!--Full Page View Controller-->
         <scene sceneID="gbA-Fa-2tc">
@@ -191,11 +268,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="S7y-jp-1WY"/>
+                    <navigationItem key="navigationItem" id="S7y-jp-1WY">
+                        <barButtonItem key="rightBarButtonItem" title="check" id="46v-i0-WK2"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BGE-RS-UIZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1644" y="1107"/>
+            <point key="canvasLocation" x="1546" y="1131"/>
         </scene>
         <!--Network error-->
         <scene sceneID="kES-AF-BWA">
@@ -238,7 +317,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FeC-NH-PnU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1160" y="414"/>
+            <point key="canvasLocation" x="1192" y="342"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="43H-A3-ZcP">
@@ -256,7 +335,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Og-HA-tyM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="156" y="320"/>
+            <point key="canvasLocation" x="12" y="332"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hOv-gu-j1R">
@@ -270,7 +349,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="agw-vd-uA5" kind="relationship" relationship="rootViewController" id="YVR-4h-Myg"/>
+                        <segue destination="38i-gQ-3bY" kind="relationship" relationship="rootViewController" id="OWt-gD-vLF"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7je-V7-QFa" userLabel="First Responder" sceneMemberID="firstResponder"/>
