@@ -214,4 +214,15 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.reloadData()
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "Full View" {
+            print("list to full segue called")
+            let cell = sender as! UITableViewCell
+            let indexPath = tableView.indexPathForCell(cell)
+            let movie = filteredData![indexPath!.row]
+            
+            let detailViewController = segue.destinationViewController as! FullPageViewController
+            detailViewController.movie = movie
+        }
+    }
 }

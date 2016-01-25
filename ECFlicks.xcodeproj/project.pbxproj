@@ -95,7 +95,6 @@
 				7A1D7B9D1C4DBF3800959E94 /* Views */,
 				7A1D7B871C4593E100959E94 /* AppDelegate.swift */,
 				7A1D7B8B1C4593E100959E94 /* Main.storyboard */,
-				7AAA09581C528BB9007547F1 /* FullPageViewController.swift */,
 				7A1D7B8E1C4593E100959E94 /* Assets.xcassets */,
 				7A1D7B901C4593E100959E94 /* LaunchScreen.storyboard */,
 				7A1D7B931C4593E100959E94 /* Info.plist */,
@@ -119,6 +118,7 @@
 				7AB8471A1C55BB9000EF24D2 /* NewCollectionViewController.swift */,
 				7A5A33FC1C506C8500D77879 /* NetworkErrorController.swift */,
 				7A1D7B9B1C4CADA200959E94 /* MoviesViewController.swift */,
+				7AAA09581C528BB9007547F1 /* FullPageViewController.swift */,
 				7ACD7FF51C52208800DC55A9 /* CollectionViewController.swift */,
 			);
 			name = "View Controllers";
