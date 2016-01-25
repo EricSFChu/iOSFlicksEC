@@ -2,7 +2,7 @@
 
 **Name of your app** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **22** hours spent in total
+Time spent: **24** hours spent in total
 
 ## User Stories
 
@@ -23,7 +23,8 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [x] Created a full view page to be implemented later
+- [x] Created a full view page that can be accessed from both the tableView and the collectionView
+
 
 ## Video Walkthrough 
 
@@ -31,6 +32,7 @@ Here's a walkthrough of implemented user stories:
 
 
 ![Walkthrough](DemoWTwReloadUpdated.gif)
+![Addition](animationAddition.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
