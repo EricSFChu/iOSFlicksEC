@@ -20,16 +20,28 @@ class FullPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.barTintColor = UIColor.blackColor()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
         print(movie)
         let baseURL = "http://image.tmdb.org/t/p/w500"
-        let posterPath = movie!["poster_path"] as! String
-        let imageURL = NSURL(string: baseURL + posterPath)
+        
+        if let posterPath = movie!["poster_path"] as? String {
+            
+            let imageURL = NSURL(string: baseURL + posterPath)
+            fullImage.setImageWithURL(imageURL!)
+        
+        }
+        
+        
+        
+        
         let title = movie!["title"] as! String
         let overview = movie!["overview"] as! String
         
         titleLabel.text = title
         overViewLabel.text = overview
-        fullImage.setImageWithURL(imageURL!)
+
         
         // Do any additional setup after loading the view.
     }

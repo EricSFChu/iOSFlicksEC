@@ -206,7 +206,7 @@
             </objects>
             <point key="canvasLocation" x="1059" y="1107"/>
         </scene>
-        <!--Full Page View Controller-->
+        <!--FlickR-->
         <scene sceneID="gbA-Fa-2tc">
             <objects>
                 <viewController id="nwu-lz-dLa" customClass="FullPageViewController" customModule="ECFlicks" customModuleProvider="target" sceneMemberID="viewController">
@@ -240,10 +240,16 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="S7y-jp-1WY">
-                        <barButtonItem key="rightBarButtonItem" title="check" id="46v-i0-WK2"/>
+                    <navigationItem key="navigationItem" title="FlickR" id="S7y-jp-1WY">
+                        <barButtonItem key="backBarButtonItem" id="Ts9-n7-5eA">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="check" id="46v-i0-WK2">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="fullImage" destination="dmi-AL-EH6" id="hVT-Al-eh9"/>
@@ -303,4 +309,5 @@
         <segue reference="P5V-WF-N2W"/>
         <segue reference="Al4-1b-9SZ"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
