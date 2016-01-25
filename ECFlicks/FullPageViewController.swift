@@ -10,9 +10,21 @@ import UIKit
 
 class FullPageViewController: UIViewController {
 
+    @IBOutlet weak var fullImage: UIImageView!
+
+    
+    var movie: NSDictionary?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        print(movie)
+        let baseURL = "http://image.tmdb.org/t/p/w500"
+        let posterPath = movie!["poster_path"] as! String
+        let imageURL = NSURL(string: baseURL + posterPath)
+        
+        fullImage.setImageWithURL(imageURL!)
+        
         // Do any additional setup after loading the view.
     }
 

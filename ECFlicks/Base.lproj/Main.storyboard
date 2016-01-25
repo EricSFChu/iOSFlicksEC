@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="3gB-GO-Z6P">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="3gB-GO-Z6P">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -65,7 +65,7 @@
                                 <rect key="frame" x="0.0" y="63" width="320" height="23"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rl9-HT-63C" id="SdQ-KC-OL3">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="22.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="22"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="48X-DW-fYy">
@@ -166,7 +166,7 @@
                                         </view>
                                         <connections>
                                             <outlet property="collectionImage" destination="P4f-fB-7Ji" id="3DG-te-HbX"/>
-                                            <segue destination="nwu-lz-dLa" kind="push" id="j5s-5B-Ic6"/>
+                                            <segue destination="nwu-lz-dLa" kind="push" identifier="collectionToFull" id="j5s-5B-Ic6"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -213,11 +213,20 @@
                     <view key="view" contentMode="scaleToFill" id="d87-dt-b9h">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="dmi-AL-EH6">
+                                <rect key="frame" x="0.0" y="55" width="320" height="513"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="S7y-jp-1WY">
                         <barButtonItem key="rightBarButtonItem" title="check" id="46v-i0-WK2"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="fullImage" destination="dmi-AL-EH6" id="hVT-Al-eh9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BGE-RS-UIZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -268,7 +277,7 @@
         <image name="search" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Al4-1b-9SZ"/>
         <segue reference="P5V-WF-N2W"/>
+        <segue reference="Al4-1b-9SZ"/>
     </inferredMetricsTieBreakers>
 </document>

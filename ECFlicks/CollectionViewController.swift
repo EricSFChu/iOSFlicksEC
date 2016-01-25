@@ -93,5 +93,17 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         });
         task.resume()
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "collectionToFull" {
+            print("collection to full segue called")
+            let cell = sender as! UICollectionViewCell
+            let indexPath = collectionView.indexPathForCell(cell)
+            let movie = movies![indexPath!.row]
+            
+            let detailViewController = segue.destinationViewController as! FullPageViewController
+            detailViewController.movie = movie
+        }
+    }
 
 }
