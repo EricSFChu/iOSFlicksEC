@@ -146,11 +146,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         cell.overviewLabel.text = overview
         
         let baseUrl = "http://image.tmdb.org/t/p/w500"
-        let filePath = movie["poster_path"] as! String
-        let imageUrl = NSURL(string: baseUrl + filePath)
+        
+        if let filePath = movie["poster_path"] as? String {
+            
+            let imageUrl = NSURL(string: baseUrl + filePath)
+            let imageRequest = NSURLRequest(URL: imageUrl!)
         //cell.posterView.setImageWithURL(imageUrl!)
         
-        let imageRequest = NSURLRequest(URL: imageUrl!)
         
         //allow pictures to fade in if it is loading for the first time
         cell.posterView.setImageWithURLRequest(
@@ -174,6 +176,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             failure: { (imageRequest, imageResponse, error) -> Void in
                 // do something for the failure condition
         })
+        }
         
         print("row \(indexPath.row)")
         return cell

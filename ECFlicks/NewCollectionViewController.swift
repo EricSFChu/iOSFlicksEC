@@ -72,10 +72,10 @@ UISearchBarDelegate{
         let movie = filteredData![indexPath.row]
         
         let baseUrl = "http://image.tmdb.org/t/p/w500"
-        let filePath = movie["poster_path"] as! String
-        let imageUrl = NSURL(string: baseUrl + filePath)
-        cell.collectionImage.setImageWithURL(imageUrl!)
-        
+        if let filePath = movie["poster_path"] as? String {
+            let imageUrl = NSURL(string: baseUrl + filePath)
+            cell.collectionImage.setImageWithURL(imageUrl!)
+        }
         print("row \(indexPath.row)")
         return cell
         
