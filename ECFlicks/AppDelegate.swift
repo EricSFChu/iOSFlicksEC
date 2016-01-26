@@ -15,31 +15,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        /*
+        
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        // Set up the first View Controller
-        let vc1 = storyboard.instantiateViewControllerWithIdentifier("listViewSB") 
+        // Set up the now playing View Controller
+        let nowPlayingNavigationController = storyboard.instantiateViewControllerWithIdentifier("MoviesNavControl") as! UINavigationController
+        let nowPlayingViewController = nowPlayingNavigationController.topViewController as! MoviesViewController
+        nowPlayingViewController.endPoint = "now_playing"
+
+        // Set up the now playing View Controller
+        let topRatedNavigationController = storyboard.instantiateViewControllerWithIdentifier("MoviesNavControl") as! UINavigationController
+        let topRatedViewController = topRatedNavigationController.topViewController as! MoviesViewController
+        topRatedViewController.endPoint = "top_rated"
+        
+        // Set up tabbed bar
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [nowPlayingNavigationController, topRatedNavigationController]
+        
         
         //vc1.view.backgroundColor = UIColor.orangeColor()
-        vc1.tabBarItem.title = "Orange"
-        vc1.tabBarItem.image = UIImage(named: "heart")
+        nowPlayingNavigationController.tabBarItem.title = "Now Playing"
+        nowPlayingNavigationController.tabBarItem.image = UIImage(named: "MovieStrip")
         
-        // Set up the second View Controller
-        let vc2 = storyboard.instantiateViewControllerWithIdentifier("collectionViewSB")
+
         //vc2.view.backgroundColor = UIColor.purpleColor()
-        vc2.tabBarItem.title = "Purple"
-        vc2.tabBarItem.image = UIImage(named: "star")
+        topRatedNavigationController.tabBarItem.title = "Top Rated"
+        topRatedNavigationController.tabBarItem.image = UIImage(named: "Star")
         
-        // Set up the Tab Bar Controller to have two tabs
-        let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [vc1, vc2]
         
         // Make the Tab Bar Controller the root view controller
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
-        */
+        
         return true
     }
 
