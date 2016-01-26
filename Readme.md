@@ -64,7 +64,7 @@ If the app was not designed with the correct views from the beginning, it is inc
 
 **FlikR** is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **X** hours spent in total
+Time spent: **8** hours spent in total
 
 ## User Stories
 
@@ -92,7 +92,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![WalkThrough2](WeekTwo.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
