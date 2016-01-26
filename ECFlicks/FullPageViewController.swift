@@ -45,7 +45,7 @@ class FullPageViewController: UIViewController {
         overViewLabel.text = overview
         overViewLabel.sizeToFit()
         
-        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: detailView.frame.origin.y + detailView.frame.size.height)
+        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: detailView.frame.origin.y + overViewLabel.frame.size.height + 2*(titleLabel.frame.size.height))
         
         // Do any additional setup after loading the view.
     }
