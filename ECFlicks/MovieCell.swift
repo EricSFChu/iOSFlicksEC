@@ -18,6 +18,9 @@ class MovieCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.grayColor()
+        self.selectedBackgroundView = backgroundView
         // Initialization code
     }
 
