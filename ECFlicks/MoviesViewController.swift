@@ -67,11 +67,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @IBAction func searchButtonCall(sender: AnyObject) {
         if  (self.searchBar.hidden == true) {
             self.searchBar.hidden = false
-            self.tableView.frame.origin.y = 107
+            //self.tableView.frame.origin.y = 107
+            tableView.frame = CGRect(x: 0, y: 107, width: 320, height: 412)
             self.tableView.reloadData()
         }else {
             self.searchBar.hidden = true
-            self.tableView.frame.origin.y = 63
+            //self.tableView.frame.origin.y = 63
+            tableView.frame = CGRect(x: 0, y: 63, width: 320, height: 456)
             searchBar.resignFirstResponder()
             self.tableView.reloadData()
         }
