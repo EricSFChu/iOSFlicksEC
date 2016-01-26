@@ -22,6 +22,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     var movies: [NSDictionary]?
     var filteredData: [NSDictionary]!
     var movieList: [NSDictionary]!
+    var topRated: [NSDictionary]?
+    var endPoint: String!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,7 +88,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     func loadFromSource(){
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = NSURL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
+        let url = NSURL(string:"https://api.themoviedb.org/3/movie/\(endPoint)?api_key=\(apiKey)")
         let request = NSURLRequest(URL: url!)
         let session = NSURLSession(
             configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
@@ -230,6 +233,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             
             let detailViewController = segue.destinationViewController as! FullPageViewController
             detailViewController.movie = movie
+        }
+        if segue.identifier == "toCollection" {
+            let destinationNavigationController = segue.destinationViewController as! UINavigationController
+            let targetController = destinationNavigationController.topViewController as! NewCollectionViewController
+       
+            targetController.endPoint = endPoint
         }
     }
 }

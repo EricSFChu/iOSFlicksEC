@@ -106,7 +106,7 @@
                         <barButtonItem key="leftBarButtonItem" image="Image" id="4I8-EU-hMA">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="RNv-LQ-d5C" kind="modal" modalTransitionStyle="crossDissolve" id="3vN-VP-Qmn"/>
+                                <segue destination="RNv-LQ-d5C" kind="modal" identifier="toCollection" modalTransitionStyle="crossDissolve" id="3vN-VP-Qmn"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="search" id="lkZ-nR-Bhf">
@@ -217,6 +217,7 @@
                         <outlet property="backToListView" destination="SDR-ju-1rQ" id="Y9Q-Br-rBu"/>
                         <outlet property="collectionView" destination="NCR-rC-Zbp" id="dTM-bh-fhZ"/>
                         <outlet property="searchBar" destination="9wk-eC-SHy" id="SEc-Q5-z6s"/>
+                        <outlet property="tabedBarController" destination="eZD-I9-uee" id="jYM-TM-nz7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nyf-PB-6cm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -294,7 +295,7 @@
         <!--Navigation Controller-->
         <scene sceneID="43H-A3-ZcP">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3gB-GO-Z6P" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MoviesNavControl" automaticallyAdjustsScrollViewInsets="NO" id="3gB-GO-Z6P" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QGu-2v-yKT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -312,7 +313,7 @@
         <!--Navigation Controller-->
         <scene sceneID="hOv-gu-j1R">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RNv-LQ-d5C" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="collectionNavControl" automaticallyAdjustsScrollViewInsets="NO" id="RNv-LQ-d5C" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="jNX-ST-gm9"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FJA-KV-a8f">
