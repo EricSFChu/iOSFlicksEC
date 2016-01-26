@@ -106,7 +106,7 @@
                         <barButtonItem key="leftBarButtonItem" image="Image" id="4I8-EU-hMA">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="RNv-LQ-d5C" kind="modal" identifier="toCollection" modalTransitionStyle="crossDissolve" id="3vN-VP-Qmn"/>
+                                <segue destination="38i-gQ-3bY" kind="push" identifier="toCollection" id="JPb-mW-Agf"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="search" id="lkZ-nR-Bhf">
@@ -227,7 +227,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1059" y="1107"/>
+            <point key="canvasLocation" x="1065" y="866"/>
         </scene>
         <!--FlickR-->
         <scene sceneID="gbA-Fa-2tc">
@@ -309,25 +309,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Og-HA-tyM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="12" y="332"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="hOv-gu-j1R">
-            <objects>
-                <navigationController storyboardIdentifier="collectionNavControl" automaticallyAdjustsScrollViewInsets="NO" id="RNv-LQ-d5C" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="jNX-ST-gm9"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FJA-KV-a8f">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="38i-gQ-3bY" kind="relationship" relationship="rootViewController" id="OWt-gD-vLF"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7je-V7-QFa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="594" y="1107"/>
         </scene>
     </scenes>
     <resources>

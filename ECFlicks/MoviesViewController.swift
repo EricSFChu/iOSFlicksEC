@@ -235,10 +235,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             detailViewController.movie = movie
         }
         if segue.identifier == "toCollection" {
-            let destinationNavigationController = segue.destinationViewController as! UINavigationController
-            let targetController = destinationNavigationController.topViewController as! NewCollectionViewController
+            let destinationNavigationController = segue.destinationViewController as! NewCollectionViewController//as! UINavigationController
+            //let targetController = destinationNavigationController.topViewController as! NewCollectionViewController
        
-            targetController.endPoint = endPoint
+            destinationNavigationController.endPoint = endPoint
         }
     }
 }
