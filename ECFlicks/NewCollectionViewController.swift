@@ -36,9 +36,11 @@ UISearchBarDelegate{
     @IBAction func searchButtonCall(sender: AnyObject) {
         if  (self.searchBar.hidden == true) {
             self.searchBar.hidden = false
+            collectionView.frame = CGRect(x: 0, y: 107, width: 320, height: 412)
             self.collectionView.reloadData()
         }else {
             self.searchBar.hidden = true
+            collectionView.frame = CGRect(x: 0, y: 63, width: 320, height: 456)
             searchBar.resignFirstResponder()
             self.collectionView.reloadData()
         }

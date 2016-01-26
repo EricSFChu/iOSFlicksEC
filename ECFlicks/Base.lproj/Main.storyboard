@@ -89,9 +89,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
-                                    <tabBarItem systemItem="favorites" id="Fg4-PK-jRE"/>
-                                    <tabBarItem systemItem="more" id="X2o-b6-ALB"/>
+                                    <tabBarItem title="Now Playing" image="MovieStrip" id="Fg4-PK-jRE"/>
+                                    <tabBarItem title="Top Rated" image="Star" id="X2o-b6-ALB"/>
                                 </items>
+                                <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -145,7 +147,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" delaysContentTouches="NO" dataMode="prototypes" id="NCR-rC-Zbp">
-                                <rect key="frame" x="0.0" y="108" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="108" width="320" height="411"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mFR-Wt-8RV">
@@ -183,6 +185,17 @@
                                     <outletCollection property="gestureRecognizers" destination="v9Z-qd-va4" appends="YES" id="7Xe-ti-fuP"/>
                                 </connections>
                             </collectionView>
+                            <tabBar contentMode="scaleToFill" id="eZD-I9-uee">
+                                <rect key="frame" x="0.0" y="519" width="320" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem title="Now Playing" image="MovieStrip" id="4Ls-k8-oYv"/>
+                                    <tabBarItem title="Top Rated" image="Star" id="o1J-qn-dYD"/>
+                                </items>
+                                <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -319,12 +332,14 @@
     <resources>
         <image name="Image" width="32" height="32"/>
         <image name="Image-1" width="32" height="32"/>
+        <image name="MovieStrip" width="32" height="32"/>
+        <image name="Star" width="32" height="32"/>
         <image name="iconmonstr-warning-7-24" width="24" height="24"/>
         <image name="search" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Al4-1b-9SZ"/>
-        <segue reference="P5V-WF-N2W"/>
+        <segue reference="j5s-5B-Ic6"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
