@@ -24,7 +24,6 @@ UISearchBarDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //setTabedNavigation()
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -37,6 +36,8 @@ UISearchBarDelegate{
         loadFromSource()
         self.collectionView.addSubview(self.refreshControl)
     }
+    
+    
     @IBAction func searchButtonCall(sender: AnyObject) {
         if  (self.searchBar.hidden == true) {
             self.searchBar.hidden = false
@@ -49,39 +50,8 @@ UISearchBarDelegate{
             self.collectionView.reloadData()
         }
     }
-    /*
-    func setTabedNavigation() {
-        let window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        // Make the Tab Bar Controller the root view controller
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        // Set up the now playing View Controller
-        let nowPlayingNavigationController = storyboard.instantiateViewControllerWithIdentifier("collectionNavControl") as! UINavigationController
-        let nowPlayingViewController = nowPlayingNavigationController.topViewController as! NewCollectionViewController
-        nowPlayingViewController.endPoint = "now_playing"
-        
-        // Set up the now playing View Controller
-        let topRatedNavigationController = storyboard.instantiateViewControllerWithIdentifier("collectionNavControl") as! UINavigationController
-        let topRatedViewController = topRatedNavigationController.topViewController as! NewCollectionViewController
-        topRatedViewController.endPoint = "top_rated"
-        
-        // Set up tabbed bar
-        let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [nowPlayingViewController, topRatedViewController]
-        //vc1.view.backgroundColor = UIColor.orangeColor()
-        nowPlayingNavigationController.tabBarItem.title = "Now Playing"
-        nowPlayingNavigationController.tabBarItem.image = UIImage(named: "MovieStrip")
-        
-        
-        //vc2.view.backgroundColor = UIColor.purpleColor()
-        topRatedNavigationController.tabBarItem.title = "Top Rated"
-        topRatedNavigationController.tabBarItem.image = UIImage(named: "Star")
-        
-        window.rootViewController = tabBarController
-        window.makeKeyAndVisible()
-    }
-    */
+    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
