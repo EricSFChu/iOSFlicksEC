@@ -15,7 +15,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        /*
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // Set up the first View Controller
+        let vc1 = storyboard.instantiateViewControllerWithIdentifier("listViewSB") 
+        
+        //vc1.view.backgroundColor = UIColor.orangeColor()
+        vc1.tabBarItem.title = "Orange"
+        vc1.tabBarItem.image = UIImage(named: "heart")
+        
+        // Set up the second View Controller
+        let vc2 = storyboard.instantiateViewControllerWithIdentifier("collectionViewSB")
+        //vc2.view.backgroundColor = UIColor.purpleColor()
+        vc2.tabBarItem.title = "Purple"
+        vc2.tabBarItem.image = UIImage(named: "star")
+        
+        // Set up the Tab Bar Controller to have two tabs
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [vc1, vc2]
+        
+        // Make the Tab Bar Controller the root view controller
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
+        */
         return true
     }
 

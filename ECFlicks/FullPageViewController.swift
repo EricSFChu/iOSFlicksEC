@@ -13,6 +13,8 @@ class FullPageViewController: UIViewController {
     @IBOutlet weak var fullImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overViewLabel: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var detailView: UIView!
 
     
     var movie: NSDictionary?
@@ -22,7 +24,7 @@ class FullPageViewController: UIViewController {
         
         self.navigationController?.navigationBar.barTintColor = UIColor.blackColor()
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        
+
         print(movie)
         let baseURL = "http://image.tmdb.org/t/p/w500"
         
@@ -41,7 +43,9 @@ class FullPageViewController: UIViewController {
         
         titleLabel.text = title
         overViewLabel.text = overview
-
+        overViewLabel.sizeToFit()
+        
+        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: detailView.frame.origin.y + overViewLabel.frame.size.height + 2*(titleLabel.frame.size.height))
         
         // Do any additional setup after loading the view.
     }
