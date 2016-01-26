@@ -67,9 +67,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @IBAction func searchButtonCall(sender: AnyObject) {
         if  (self.searchBar.hidden == true) {
             self.searchBar.hidden = false
+            self.tableView.frame.origin.y = 107
             self.tableView.reloadData()
         }else {
             self.searchBar.hidden = true
+            self.tableView.frame.origin.y = 63
             searchBar.resignFirstResponder()
             self.tableView.reloadData()
         }

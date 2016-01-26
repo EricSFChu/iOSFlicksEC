@@ -84,6 +84,15 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tabBar contentMode="scaleToFill" id="Zts-QL-dst">
+                                <rect key="frame" x="0.0" y="519" width="320" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem systemItem="favorites" id="Fg4-PK-jRE"/>
+                                    <tabBarItem systemItem="more" id="X2o-b6-ALB"/>
+                                </items>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
