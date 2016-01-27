@@ -20,21 +20,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         //There is an optional tab bar delegate 
-        
+        let popularNavigationController = storyboard.instantiateViewControllerWithIdentifier("MoviesNavControl") as! UINavigationController
+        let popularViewController = popularNavigationController.topViewController as! MoviesViewController
+        popularViewController.endPoint = "popular"
         
         // Set up the now playing View Controller
         let nowPlayingNavigationController = storyboard.instantiateViewControllerWithIdentifier("MoviesNavControl") as! UINavigationController
         let nowPlayingViewController = nowPlayingNavigationController.topViewController as! MoviesViewController
         nowPlayingViewController.endPoint = "now_playing"
 
-        // Set up the now playing View Controller
+        // Set up the top Rated View Controller
         let topRatedNavigationController = storyboard.instantiateViewControllerWithIdentifier("MoviesNavControl") as! UINavigationController
         let topRatedViewController = topRatedNavigationController.topViewController as! MoviesViewController
         topRatedViewController.endPoint = "top_rated"
         
+        // Set up the upcoming View Controller
+        let upcomingNavigationController = storyboard.instantiateViewControllerWithIdentifier("MoviesNavControl") as! UINavigationController
+        let upcomingViewController = upcomingNavigationController.topViewController as! MoviesViewController
+        upcomingViewController.endPoint = "upcoming"
+        
         // Set up tabbed bar
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [nowPlayingNavigationController, topRatedNavigationController]
+        tabBarController.viewControllers = [nowPlayingNavigationController, topRatedNavigationController, popularNavigationController, upcomingNavigationController]
         
         
         //vc1.view.backgroundColor = UIColor.orangeColor()
@@ -46,6 +53,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         topRatedNavigationController.tabBarItem.title = "Top Rated"
         topRatedNavigationController.tabBarItem.image = UIImage(named: "Star")
         
+        popularNavigationController.tabBarItem.title = "Popular"
+        popularNavigationController.tabBarItem.image = UIImage(named: "Star")
+        
+        upcomingNavigationController.tabBarItem.title = "Upcoming"
+        upcomingNavigationController.tabBarItem.image = UIImage(named: "Star")
         
         // Make the Tab Bar Controller the root view controller
         window?.rootViewController = tabBarController

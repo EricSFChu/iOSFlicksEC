@@ -45,7 +45,7 @@ class VideoViewController: UIViewController {
                 //endPoint = youtubeDict!["key"] as! String
 
                     
-                
+                //Can cause array out of bounds exception
                 self.youtube = (self.youtubeDict?[0])! as NSDictionary
                 
                 print(self.youtube!["key"] as! String)
