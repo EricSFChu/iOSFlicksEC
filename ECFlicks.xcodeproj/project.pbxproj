@@ -19,6 +19,8 @@
 		7AAA09591C528BB9007547F1 /* FullPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAA09581C528BB9007547F1 /* FullPageViewController.swift */; };
 		7AB8471B1C55BB9000EF24D2 /* NewCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB8471A1C55BB9000EF24D2 /* NewCollectionViewController.swift */; };
 		7AB8471E1C55DAAD00EF24D2 /* FullViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB8471D1C55DAAD00EF24D2 /* FullViewHelper.swift */; };
+		7AB847201C586A6100EF24D2 /* VideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB8471F1C586A6100EF24D2 /* VideoPlayerController.swift */; };
+		7AB847221C58B5D200EF24D2 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB847211C58B5D200EF24D2 /* MovieModel.swift */; };
 		7ACD7FF41C521E1700DC55A9 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACD7FF31C521E1700DC55A9 /* CollectionCell.swift */; };
 		7AEBA5D61C51C0A50076A3B1 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEBA5D51C51C0A50076A3B1 /* ImageCell.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +40,8 @@
 		7AAA09581C528BB9007547F1 /* FullPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullPageViewController.swift; sourceTree = "<group>"; };
 		7AB8471A1C55BB9000EF24D2 /* NewCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCollectionViewController.swift; sourceTree = "<group>"; };
 		7AB8471D1C55DAAD00EF24D2 /* FullViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullViewHelper.swift; sourceTree = "<group>"; };
+		7AB8471F1C586A6100EF24D2 /* VideoPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerController.swift; sourceTree = "<group>"; };
+		7AB847211C58B5D200EF24D2 /* MovieModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		7ACD7FF31C521E1700DC55A9 /* CollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		7AEBA5D51C51C0A50076A3B1 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		89E3C2C6F857D329EC2C5EDA /* Pods-ECFlicks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ECFlicks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ECFlicks/Pods-ECFlicks.debug.xcconfig"; sourceTree = "<group>"; };
@@ -114,6 +118,7 @@
 				7AB8471A1C55BB9000EF24D2 /* NewCollectionViewController.swift */,
 				7A1D7B9B1C4CADA200959E94 /* MoviesViewController.swift */,
 				7AAA09581C528BB9007547F1 /* FullPageViewController.swift */,
+				7AB8471F1C586A6100EF24D2 /* VideoPlayerController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 			children = (
 				7A5A33FA1C505AED00D77879 /* Reachability.swift */,
 				7AB8471D1C55DAAD00EF24D2 /* FullViewHelper.swift */,
+				7AB847211C58B5D200EF24D2 /* MovieModel.swift */,
 			);
 			name = "Helper Classes";
 			sourceTree = "<group>";
@@ -261,9 +267,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7AAA09591C528BB9007547F1 /* FullPageViewController.swift in Sources */,
+				7AB847221C58B5D200EF24D2 /* MovieModel.swift in Sources */,
 				7A1D7B881C4593E100959E94 /* AppDelegate.swift in Sources */,
 				7A1D7B9C1C4CADA200959E94 /* MoviesViewController.swift in Sources */,
 				7A5A33FB1C505AED00D77879 /* Reachability.swift in Sources */,
+				7AB847201C586A6100EF24D2 /* VideoPlayerController.swift in Sources */,
 				7ACD7FF41C521E1700DC55A9 /* CollectionCell.swift in Sources */,
 				7AB8471E1C55DAAD00EF24D2 /* FullViewHelper.swift in Sources */,
 				7AB8471B1C55BB9000EF24D2 /* NewCollectionViewController.swift in Sources */,
