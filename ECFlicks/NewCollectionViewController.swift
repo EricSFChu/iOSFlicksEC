@@ -28,7 +28,7 @@ UISearchBarDelegate{
         collectionView.delegate = self
         collectionView.dataSource = self
         searchBar.delegate = self
-
+        searchButtonCall(self)
         
         self.navigationController?.navigationBar.barTintColor = UIColor.blackColor()
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
