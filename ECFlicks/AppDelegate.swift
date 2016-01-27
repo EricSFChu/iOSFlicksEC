@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
+        //There is an optional tab bar delegate 
+        
+        
         // Set up the now playing View Controller
         let nowPlayingNavigationController = storyboard.instantiateViewControllerWithIdentifier("MoviesNavControl") as! UINavigationController
         let nowPlayingViewController = nowPlayingNavigationController.topViewController as! MoviesViewController
