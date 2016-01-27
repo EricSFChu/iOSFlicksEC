@@ -28,7 +28,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.searchBar.hidden = false
+        searchButtonCall(self)
         self.errorCell.hidden = true
         // Display HUD right before next request is made
         
