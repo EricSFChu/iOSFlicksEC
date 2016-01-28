@@ -146,6 +146,13 @@ class FullPageViewController: UIViewController {
             let vidView = segue.destinationViewController as! VideoViewController
             vidView.movie = self.movie
         }
+        
+        if segue.identifier == "toReview" {
+            print("to view segue called")
+            
+            let reviewView = segue.destinationViewController as! ReviewsViewController
+            reviewView.id = self.movie!["id"] as! IntegerLiteralType
+        }
 
     }
 
