@@ -14,8 +14,10 @@
 		7A1D7B921C4593E100959E94 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A1D7B901C4593E100959E94 /* LaunchScreen.storyboard */; };
 		7A1D7B9C1C4CADA200959E94 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1D7B9B1C4CADA200959E94 /* MoviesViewController.swift */; };
 		7A1D7B9F1C4DBF6200959E94 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1D7B9E1C4DBF6200959E94 /* MovieCell.swift */; };
+		7A2416EA1C59BF7500245AE7 /* ReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2416E91C59BF7500245AE7 /* ReviewsViewController.swift */; };
 		7A5A33F71C4F67B100D77879 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A5A33F61C4F67B100D77879 /* Icons.xcassets */; };
 		7A5A33FB1C505AED00D77879 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5A33FA1C505AED00D77879 /* Reachability.swift */; };
+		7A70CEA71C59FE8E0082291F /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A70CEA61C59FE8E0082291F /* ReviewCell.swift */; };
 		7AAA09591C528BB9007547F1 /* FullPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAA09581C528BB9007547F1 /* FullPageViewController.swift */; };
 		7AB8471B1C55BB9000EF24D2 /* NewCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB8471A1C55BB9000EF24D2 /* NewCollectionViewController.swift */; };
 		7AB8471E1C55DAAD00EF24D2 /* FullViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB8471D1C55DAAD00EF24D2 /* FullViewHelper.swift */; };
@@ -35,8 +37,10 @@
 		7A1D7B931C4593E100959E94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A1D7B9B1C4CADA200959E94 /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		7A1D7B9E1C4DBF6200959E94 /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		7A2416E91C59BF7500245AE7 /* ReviewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsViewController.swift; sourceTree = "<group>"; };
 		7A5A33F61C4F67B100D77879 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
 		7A5A33FA1C505AED00D77879 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		7A70CEA61C59FE8E0082291F /* ReviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
 		7AAA09581C528BB9007547F1 /* FullPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullPageViewController.swift; sourceTree = "<group>"; };
 		7AB8471A1C55BB9000EF24D2 /* NewCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCollectionViewController.swift; sourceTree = "<group>"; };
 		7AB8471D1C55DAAD00EF24D2 /* FullViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullViewHelper.swift; sourceTree = "<group>"; };
@@ -107,6 +111,7 @@
 			children = (
 				7ACD7FF31C521E1700DC55A9 /* CollectionCell.swift */,
 				7A1D7B9E1C4DBF6200959E94 /* MovieCell.swift */,
+				7A70CEA61C59FE8E0082291F /* ReviewCell.swift */,
 				7AEBA5D51C51C0A50076A3B1 /* ImageCell.swift */,
 			);
 			name = Views;
@@ -119,6 +124,7 @@
 				7A1D7B9B1C4CADA200959E94 /* MoviesViewController.swift */,
 				7AAA09581C528BB9007547F1 /* FullPageViewController.swift */,
 				7AB8471F1C586A6100EF24D2 /* VideoPlayerController.swift */,
+				7A2416E91C59BF7500245AE7 /* ReviewsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -276,6 +282,8 @@
 				7AB8471E1C55DAAD00EF24D2 /* FullViewHelper.swift in Sources */,
 				7AB8471B1C55BB9000EF24D2 /* NewCollectionViewController.swift in Sources */,
 				7AEBA5D61C51C0A50076A3B1 /* ImageCell.swift in Sources */,
+				7A70CEA71C59FE8E0082291F /* ReviewCell.swift in Sources */,
+				7A2416EA1C59BF7500245AE7 /* ReviewsViewController.swift in Sources */,
 				7A1D7B9F1C4DBF6200959E94 /* MovieCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

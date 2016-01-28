@@ -51,7 +51,7 @@ class VideoViewController: UIViewController {
                 print(self.youtube!["key"] as! String)
                 let youString = self.youtube!["key"] as! String
                 print(youString)
-                let youtubeURL: String = "http://www.youtube.com/embed/\(youString)"
+                let youtubeURL: String = "http://www.youtube.com/embed/\(youString)?rel=0&autoplay=1"
                 let width = 300
                 let height = 200
                 let frame = 10
