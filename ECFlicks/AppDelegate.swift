@@ -54,10 +54,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         topRatedNavigationController.tabBarItem.image = UIImage(named: "Star")
         
         popularNavigationController.tabBarItem.title = "Popular"
-        popularNavigationController.tabBarItem.image = UIImage(named: "Star")
+        popularNavigationController.tabBarItem.image = UIImage(named: "heart")
         
         upcomingNavigationController.tabBarItem.title = "Upcoming"
-        upcomingNavigationController.tabBarItem.image = UIImage(named: "Star")
+        upcomingNavigationController.tabBarItem.image = UIImage(named: "arrow")
         
         // Make the Tab Bar Controller the root view controller
         window?.rootViewController = tabBarController
