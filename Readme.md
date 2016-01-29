@@ -98,7 +98,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-![WalkThrough4](WeekTwoUpdated2.gif)
+![WalkThrough4](WeekTwoUpdated4.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
