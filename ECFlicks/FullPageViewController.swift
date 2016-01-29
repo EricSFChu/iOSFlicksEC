@@ -103,7 +103,7 @@ class FullPageViewController: UIViewController {
         let popularity1 = movie!["popularity"] as! double_t
         
         popularity.text = "Popularity: " +  "\(popularity1)"
-        voteAverage.text = "Vote Averaege: " + "\(average)"
+        voteAverage.text = "Vote Average: " + "\(average)"
         releaseLabel.text = "Release Date: " + releaseDate
         popularity.sizeToFit()
         voteAverage.sizeToFit()

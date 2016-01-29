@@ -81,6 +81,7 @@ class ReviewsViewController: UIViewController, UITableViewDataSource, UITableVie
         let content = review["content"] as! String
         
         cell.authorLabel.text = author
+        cell.authorLabel.sizeToFit()
         cell.reviewLabel.text = content
         cell.reviewLabel.sizeToFit()
         tableView.rowHeight = cell.reviewLabel.frame.height + 2*cell.authorLabel.frame.height

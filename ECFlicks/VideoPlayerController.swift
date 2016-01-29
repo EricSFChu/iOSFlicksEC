@@ -46,19 +46,33 @@ class VideoViewController: UIViewController {
 
                     
                 //Can cause array out of bounds exception
-                self.youtube = (self.youtubeDict?[0])! as NSDictionary
+                if self.youtubeDict?.count != 0 {
+                    self.youtube = (self.youtubeDict?[0])! as NSDictionary
                 
                 print(self.youtube!["key"] as! String)
                 let youString = self.youtube!["key"] as! String
                 print(youString)
-                let youtubeURL: String = "http://www.youtube.com/embed/\(youString)?rel=0&autoplay=1"
-                let width = 300
-                let height = 200
-                let frame = 10
-                let code: NSString = "<iframe width=\(width) height=\(height) src=\(youtubeURL) frameborder=\(frame) allowfullscreen></iframe>";
+/*
+                    let youtubeURL: String = "http://www.youtube.com/embed/\(youString)?rel=0&autoplay=1"
+
+                let width = 330
+                let height = 240
+                let frame = 0
+                let marginY = 0
+                let marginX = 0
+               // let code: NSString = "<iframe width='\(width)' height='\(height)' src='\(youtubeURL)' frameborder='\(frame)' marginheight='\(marginY)' marginwidth='\(marginX)' allowfullscreen></iframe>";
+                let code: NSString = "<iframe src='\(youtubeURL)' allowfullscreen></iframe>";
                 self.videoView.loadHTMLString(code as String, baseURL: nil)
+                  // let uul = NSURL(string: "www.youtube.com")
+                    //self.videoView.loadHTMLString("<iframe src='www.youtube.com' ></iframe>", baseURL: nil)*/
+                    
+                    let urlPath = "http://www.youtube.com/watch?v=\(youString)"
+
+                        let requestUrl = NSURL(string: urlPath)
+                        let request = NSURLRequest(URL: requestUrl!)
+                        self.videoView.loadRequest(request)
                 }
-                
+                    }
                 
                 }
         });
