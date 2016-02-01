@@ -29,6 +29,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let navigationBar = navigationController?.navigationBar {
+            navigationBar.setBackgroundImage(UIImage(named:"background"), forBarMetrics: .Default)
+        }
+        
         self.searchBar.hidden = false
         searchButtonCall(self)
         self.errorCell.hidden = true

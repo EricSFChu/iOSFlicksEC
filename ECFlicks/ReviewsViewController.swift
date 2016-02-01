@@ -21,6 +21,7 @@ class ReviewsViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         self.navigationController?.navigationBar.barTintColor = UIColor.blackColor()
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+  
         tableView.dataSource = self
         tableView.delegate = self
         //tableView.rowHeight = UITableViewAutomaticDimension
