@@ -64,7 +64,7 @@ If the app was not designed with the correct views from the beginning, it is inc
 
 **FlikR** is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **28** hours spent in total
+Time spent: **30** hours spent in total
 
 ## User Stories
 
@@ -77,7 +77,7 @@ The following **required** functionality is completed:
 The following **optional** features are implemented:
 
 - [x] For the large poster, load the low resolution image first and then switch to the high resolution image when complete.
-- [ ] Customize the navigation bar.
+- [x] Customize the navigation bar.
 
 The following **additional** features are implemented:
 
@@ -98,7 +98,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-![WalkThrough4](WeekTwoUpdated4.gif)
+![WalkThrough4](WeekTwoUpdated5.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
