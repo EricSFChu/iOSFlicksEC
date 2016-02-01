@@ -91,8 +91,8 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1. 
-2. 
+1. I would like to extend the app even further by completing the user experience with ticket purchases
+2. Perhaps improve the UI even further with animations
 
 ## Video Walkthrough 
 
