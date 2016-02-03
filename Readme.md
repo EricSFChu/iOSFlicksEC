@@ -88,6 +88,7 @@ The following **additional** features are implemented:
 - [x] Implemented two additional endpoints [popular, upcoming]
 - [x] Added the reviews endpoint and review view
 - [x] Youtube comments is now accessible added full functionality via webview
+- [x] Added a splash screen
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
