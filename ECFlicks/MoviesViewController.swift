@@ -23,10 +23,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     var filteredData: [NSDictionary]!
     var movieList: [NSDictionary]!
     var topRated: [NSDictionary]?
+    
     var endPoint: String!
     var pageNumber: Int = 1
-    let threshold: CGFloat = 300.0
+    let threshold: CGFloat = 700.0
     var loading = false
+    var isSearching = false
     
     
     override func viewDidLoad() {
@@ -36,12 +38,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             navigationBar.setBackgroundImage(UIImage(named:"background"), for: .default)
         }
         
-        self.searchBar.isHidden = false
-        searchButtonCall(self)
-        self.errorCell.isHidden = true
-        // Display HUD right before next request is made
+        searchBar.isHidden = false
+        errorCell.isHidden = true
         
-        // MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         self.navigationController?.navigationBar.barTintColor = UIColor.black
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
@@ -52,40 +51,34 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         if pageNumber == 1 {
             loadFromSource()
         }
-        //The subview shows the loading
+        
         self.tableView.addSubview(self.refreshControl)
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
-        //load view for network error if there is no network
         if Reachability.isConnectedToNetwork() == true {
+            
             self.errorCell.isHidden = true
             self.searchBar.isHidden = false
+            
         } else {
+            
             self.searchBar.isHidden = true
             self.errorCell.isHidden = false
-            //performSegueWithIdentifier("NetworkError", sender: nil)
+            
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    @IBAction func searchButtonCall(_ sender: AnyObject) {
-        if  (self.searchBar.isHidden == true) {
-            self.searchBar.isHidden = false
-
-            self.tableView.reloadData()
+    @IBAction func searchButtonCall(_ sender: UIBarButtonItem) {
+        if  (searchBar.isHidden) {
+        
+            searchBar.isHidden = false
+            
         }else {
-            self.searchBar.isHidden = true
-
+            
+            searchBar.isHidden = true
             searchBar.resignFirstResponder()
-            self.tableView.reloadData()
         }
     }
     
@@ -100,7 +93,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         let apiKey = "5cac2af0689a8d6cb9c0a63aa3a886e9"
         let endPoint2 = endPoint!
-        let url : NSString = "https://api.themoviedb.org/3/movie/\(endPoint2)?api_key=\(apiKey)&page=\(pageNumCheck)" as NSString
+        let url : NSString = "\(BASE_URL)\(endPoint2)?api_key=\(apiKey)&page=\(pageNumCheck)" as NSString
         let urlStr = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let urlStrUrl = URL(string: urlStr!)
         print(endPoint)
@@ -141,27 +134,20 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         NSLog("LoadFromSource Called: \(pageNumber)")
     }
     
-    /*
-    // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
     @available(iOS 2.0, *)
     internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if let filteredData = filteredData {
+            
             return filteredData.count
+            
         } else {
+            
             return 0
+            
         }
         
     }
-    
-    // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-    // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
     
     @available(iOS 2.0, *)
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -212,8 +198,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     
-    //attempt at implementing refresh
     lazy var refreshControl: UIRefreshControl = {
+        
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(MoviesViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
         
@@ -222,12 +208,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     func handleRefresh(_ refreshControl: UIRefreshControl) {
-        // Do some reloading of data and update the table view's data source
-        // Fetch more objects from a web service, for example...
-        
-        loadFromSource()
-        self.tableView.reloadData()
-        refreshControl.endRefreshing()
+        if !isSearching {
+            
+            loadFromSource()
+            self.tableView.reloadData()
+            refreshControl.endRefreshing()
+            
+        }
     }
     
     
@@ -238,44 +225,64 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
         filteredData = searchText.isEmpty ? movies : movies!.filter({(movie: NSDictionary) -> Bool in
-            return (movie["title"] as! String ).range(of: searchText
-                , options: .caseInsensitive) != nil
+            
+            return (movie["title"] as! String ).range(of: searchText, options: .caseInsensitive) != nil
+            
         })
+        
+        if searchText != "" {
+            
+            isSearching = true
+            
+        } else {
+            
+            isSearching = false
+            
+        }
+        
         tableView.reloadData()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let contentOffset = tableView.contentOffset.y + view.frame.height
-        let maxOffset = tableView.contentSize.height
-        NSLog(String(maxOffset - contentOffset <= threshold) + "ContentOffSet: \(contentOffset) MaxOffSet: \(maxOffset)")
-        if !loading && (maxOffset - contentOffset <= threshold) {
-            self.loading = true
+        
+        if !isSearching {
+        
+            let contentOffset = tableView.contentOffset.y + view.frame.height
+            let maxOffset = tableView.contentSize.height
+        
+            if !loading && (maxOffset - contentOffset <= threshold) {
             
-            DispatchQueue.main.async(execute: {
-                self.loadFromSource()
-                self.loading = false
-            })
+                self.loading = true
             
+                DispatchQueue.main.async(execute: {
+        
+                    self.loadFromSource()
+                    self.loading = false
+        
+                })
+            
+            }
         }
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "Full View" {
-            print("list to full segue called")
+        
             let cell = sender as! UITableViewCell
             let indexPath = tableView.indexPath(for: cell)
             let movie = filteredData![indexPath!.row]
-            
             let detailViewController = segue.destination as! FullPageViewController
             detailViewController.movie = movie
-        }
-        if segue.identifier == "toCollection" {
-            let destinationNavigationController = segue.destination as! NewCollectionViewController//as! UINavigationController
-            //let targetController = destinationNavigationController.topViewController as! NewCollectionViewController
-       
+            
+        } else if segue.identifier == "toCollection" {
+            
+            let destinationNavigationController = segue.destination as! NewCollectionViewController
             destinationNavigationController.endPoint = endPoint
+            
         }
     }
 }

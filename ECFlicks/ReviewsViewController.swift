@@ -24,7 +24,6 @@ class ReviewsViewController: UIViewController, UITableViewDataSource, UITableVie
   
         tableView.dataSource = self
         tableView.delegate = self
-        //tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 300
         loadFromSource()
         self.tableView.reloadData()

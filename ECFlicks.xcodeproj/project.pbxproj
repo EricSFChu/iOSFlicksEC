@@ -17,11 +17,11 @@
 		7A2416EA1C59BF7500245AE7 /* ReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2416E91C59BF7500245AE7 /* ReviewsViewController.swift */; };
 		7A5A33F71C4F67B100D77879 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A5A33F61C4F67B100D77879 /* Icons.xcassets */; };
 		7A5A33FB1C505AED00D77879 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5A33FA1C505AED00D77879 /* Reachability.swift */; };
+		7A67E96F1ED6880E0000DFCA /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A67E96E1ED6880E0000DFCA /* constants.swift */; };
 		7A70CEA71C59FE8E0082291F /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A70CEA61C59FE8E0082291F /* ReviewCell.swift */; };
 		7A9EDA861C6271E50029FE62 /* LoadScreen.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A9EDA851C6271E50029FE62 /* LoadScreen.xcassets */; };
 		7AAA09591C528BB9007547F1 /* FullPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAA09581C528BB9007547F1 /* FullPageViewController.swift */; };
 		7AB8471B1C55BB9000EF24D2 /* NewCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB8471A1C55BB9000EF24D2 /* NewCollectionViewController.swift */; };
-		7AB8471E1C55DAAD00EF24D2 /* FullViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB8471D1C55DAAD00EF24D2 /* FullViewHelper.swift */; };
 		7AB847201C586A6100EF24D2 /* VideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB8471F1C586A6100EF24D2 /* VideoPlayerController.swift */; };
 		7AB847221C58B5D200EF24D2 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB847211C58B5D200EF24D2 /* MovieModel.swift */; };
 		7ACD7FF41C521E1700DC55A9 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACD7FF31C521E1700DC55A9 /* CollectionCell.swift */; };
@@ -41,11 +41,11 @@
 		7A2416E91C59BF7500245AE7 /* ReviewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsViewController.swift; sourceTree = "<group>"; };
 		7A5A33F61C4F67B100D77879 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
 		7A5A33FA1C505AED00D77879 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		7A67E96E1ED6880E0000DFCA /* constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
 		7A70CEA61C59FE8E0082291F /* ReviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
 		7A9EDA851C6271E50029FE62 /* LoadScreen.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = LoadScreen.xcassets; sourceTree = "<group>"; };
 		7AAA09581C528BB9007547F1 /* FullPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullPageViewController.swift; sourceTree = "<group>"; };
 		7AB8471A1C55BB9000EF24D2 /* NewCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCollectionViewController.swift; sourceTree = "<group>"; };
-		7AB8471D1C55DAAD00EF24D2 /* FullViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullViewHelper.swift; sourceTree = "<group>"; };
 		7AB8471F1C586A6100EF24D2 /* VideoPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerController.swift; sourceTree = "<group>"; };
 		7AB847211C58B5D200EF24D2 /* MovieModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		7ACD7FF31C521E1700DC55A9 /* CollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
@@ -96,7 +96,8 @@
 		7A1D7B861C4593E100959E94 /* ECFlicks */ = {
 			isa = PBXGroup;
 			children = (
-				7AB8471C1C55DA8200EF24D2 /* Helper Classes */,
+				7AB8471C1C55DA8200EF24D2 /* Utility */,
+				7A67E96D1ED686CC0000DFCA /* Models */,
 				7A1D7BA01C4DBF7E00959E94 /* View Controllers */,
 				7A1D7B9D1C4DBF3800959E94 /* Views */,
 				7A1D7B871C4593E100959E94 /* AppDelegate.swift */,
@@ -123,23 +124,30 @@
 		7A1D7BA01C4DBF7E00959E94 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7AB8471A1C55BB9000EF24D2 /* NewCollectionViewController.swift */,
 				7A1D7B9B1C4CADA200959E94 /* MoviesViewController.swift */,
 				7AAA09581C528BB9007547F1 /* FullPageViewController.swift */,
+				7AB8471A1C55BB9000EF24D2 /* NewCollectionViewController.swift */,
 				7AB8471F1C586A6100EF24D2 /* VideoPlayerController.swift */,
 				7A2416E91C59BF7500245AE7 /* ReviewsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
-		7AB8471C1C55DA8200EF24D2 /* Helper Classes */ = {
+		7A67E96D1ED686CC0000DFCA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7AB847211C58B5D200EF24D2 /* MovieModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		7AB8471C1C55DA8200EF24D2 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
 				7A5A33FA1C505AED00D77879 /* Reachability.swift */,
-				7AB8471D1C55DAAD00EF24D2 /* FullViewHelper.swift */,
-				7AB847211C58B5D200EF24D2 /* MovieModel.swift */,
+				7A67E96E1ED6880E0000DFCA /* constants.swift */,
 			);
-			name = "Helper Classes";
+			name = Utility;
 			sourceTree = "<group>";
 		};
 		82BBFCAA56AEAD885C75C389 /* Pods */ = {
@@ -283,8 +291,8 @@
 				7A1D7B9C1C4CADA200959E94 /* MoviesViewController.swift in Sources */,
 				7A5A33FB1C505AED00D77879 /* Reachability.swift in Sources */,
 				7AB847201C586A6100EF24D2 /* VideoPlayerController.swift in Sources */,
+				7A67E96F1ED6880E0000DFCA /* constants.swift in Sources */,
 				7ACD7FF41C521E1700DC55A9 /* CollectionCell.swift in Sources */,
-				7AB8471E1C55DAAD00EF24D2 /* FullViewHelper.swift in Sources */,
 				7AB8471B1C55BB9000EF24D2 /* NewCollectionViewController.swift in Sources */,
 				7AEBA5D61C51C0A50076A3B1 /* ImageCell.swift in Sources */,
 				7A70CEA71C59FE8E0082291F /* ReviewCell.swift in Sources */,
