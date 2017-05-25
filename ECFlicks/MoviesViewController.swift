@@ -38,21 +38,27 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             navigationBar.setBackgroundImage(UIImage(named:"background"), for: .default)
         }
         
+        movies = [NSDictionary]()
+        filteredData = [NSDictionary]()
+        
         searchBar.isHidden = false
         errorCell.isHidden = true
         
         self.navigationController?.navigationBar.barTintColor = UIColor.black
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
-        tableView.dataSource = self
-        tableView.delegate = self
         searchBar.delegate = self
         
         if pageNumber == 1 {
             loadFromSource()
         }
         
+        
+        
         self.tableView.addSubview(self.refreshControl)
+        
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -90,14 +96,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     func loadFromSource(){
         let pageNumCheck = pageNumber == 1 ? 1 : pageNumber + 1
         pageNumber += 1
-        
-        let apiKey = "5cac2af0689a8d6cb9c0a63aa3a886e9"
         let endPoint2 = endPoint!
-        let url : NSString = "\(BASE_URL)\(endPoint2)?api_key=\(apiKey)&page=\(pageNumCheck)" as NSString
+        let url : NSString = "\(BASE_URL)\(endPoint2)?api_key=\(API_KEY)&page=\(pageNumCheck)" as NSString
         let urlStr = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let urlStrUrl = URL(string: urlStr!)
-        print(endPoint)
-        print(url)
+
         let request = URLRequest(url: urlStrUrl!)
         let session = URLSession(
             configuration: URLSessionConfiguration.default,
@@ -112,38 +115,29 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 if let data = dataOrNil {
                     if let responseDictionary = try! JSONSerialization.jsonObject(
                         with: data, options:[]) as? NSDictionary {
-                            NSLog("response: \(responseDictionary)")
-                            self.movies = responseDictionary["results"] as? [NSDictionary]
-                        for movie in self.movies! {
-                            if self.filteredData == nil {
-                                self.filteredData = [NSDictionary]()
-                            }
-                            self.filteredData.append(movie)
+                        for movie in (responseDictionary["results"] as? [NSDictionary])! {
+                            self.movies?.append(movie)
                         }
-                            //self.filteredData = self.movies
-                        
-                        
                             self.tableView.reloadData()
                     }
                 }
-                // Hide HUD once network request comes back (must be done on main UI thread)
+        
                 MBProgressHUD.hide(for: self.view, animated: false)
                 
         });
+        
         task.resume()
-        NSLog("LoadFromSource Called: \(pageNumber)")
     }
     
     @available(iOS 2.0, *)
     internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if let filteredData = filteredData {
+        if isSearching {
             
             return filteredData.count
             
         } else {
             
-            return 0
+            return (movies?.count ?? 0)!
             
         }
         
@@ -153,7 +147,15 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
-        let movie = filteredData![indexPath.row]
+        let movie: NSDictionary
+        if isSearching {
+            movie = filteredData![indexPath.row]
+        } else {
+            movie = (movies?[indexPath.row])!
+        }
+        
+        
+        
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
         cell.titleLabel.text = title
@@ -285,4 +287,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             
         }
     }
+}
+
+extension UIView {
+    
+    
+    
 }
