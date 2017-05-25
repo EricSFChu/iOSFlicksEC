@@ -27,12 +27,12 @@ class FullPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.barTintColor = UIColor.blackColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         //let youtubeBaseURL = "https://www.youtube.com/watch?v="
         //the key is key under http://api.themoviedb.org/3/movie/257088/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed
         //replace 257088 with the id of the movie
-        print(movie)
+        print(movie ?? "None")
         //movieInfo.MovieModelHelper(movie!)
         
         let baseURL = "http://image.tmdb.org/t/p/w500"
@@ -45,18 +45,18 @@ class FullPageViewController: UIViewController {
             //fullImage.setImageWithURL(imageURL!)
             let smallImageUrl = smallBaseURL + posterPath
             let largeImageUrl = baseURL + posterPath
-            let smallImageRequest = NSURLRequest(URL: NSURL(string: smallImageUrl)!)
-            let largeImageRequest = NSURLRequest(URL: NSURL(string: largeImageUrl)!)
+            let smallImageRequest = URLRequest(url: URL(string: smallImageUrl)!)
+            let largeImageRequest = URLRequest(url: URL(string: largeImageUrl)!)
         
             let backdropPath = movie!["backdrop_path"] as? String
             if backdropPath != nil{
-                let backdropURL = NSURL(string: baseURL + backdropPath!)
-                self.backdropImage.setImageWithURL(backdropURL!)
+                let backdropURL = URL(string: baseURL + backdropPath!)
+                self.backdropImage.setImageWith(backdropURL!)
             } else {
-                self.backdropImage.setImageWithURL(NSURL(string: largeImageUrl)!)
+                self.backdropImage.setImageWith(URL(string: largeImageUrl)!)
             }
             
-        self.fullImage.setImageWithURLRequest(
+        self.fullImage.setImageWith(
             smallImageRequest,
             placeholderImage: nil,
             success: { (smallImageRequest, smallImageResponse, smallImage) -> Void in
@@ -66,7 +66,7 @@ class FullPageViewController: UIViewController {
                 self.fullImage.alpha = 0.0
                 self.fullImage.image = smallImage;
                 
-                UIView.animateWithDuration(0.75, animations: { () -> Void in
+                UIView.animate(withDuration: 0.75, animations: { () -> Void in
                     
                     self.fullImage.alpha = 1.0
                     
@@ -74,7 +74,7 @@ class FullPageViewController: UIViewController {
                         
                         // The AFNetworking ImageView Category only allows one request to be sent at a time
                         // per ImageView. This code must be in the completion block.
-                        self.fullImage.setImageWithURLRequest(
+                        self.fullImage.setImageWith(
                             largeImageRequest,
                             placeholderImage: smallImage,
                             success: { (largeImageRequest, largeImageResponse, largeImage) -> Void in
@@ -112,9 +112,13 @@ class FullPageViewController: UIViewController {
         overViewLabel.text = overview
         overViewLabel.sizeToFit()
         
-        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: detailView.frame.origin.y + overViewLabel.frame.size.height + 2*(titleLabel.frame.size.height)) //+ transparantView.frame.size.height)
         
-        // Do any additional setup after loading the view.
+        
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: detailView.frame.origin.y + transparantView.frame.size.height + fullImage.frame.size.height)
     }
 
     override func didReceiveMemoryWarning() {
@@ -122,8 +126,8 @@ class FullPageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onTap(sender: AnyObject) {
-    UIView.animateWithDuration(2, delay: 0, options: [UIViewAnimationOptions.CurveEaseOut], animations: {
+    @IBAction func onTap(_ sender: AnyObject) {
+    UIView.animate(withDuration: 2, delay: 0, options: [UIViewAnimationOptions.curveEaseOut], animations: {
         self.transparantView.frame.origin.y = 568//CGRect(x: 0, y: 568, width: 320, height: 273)
         self.detailView.frame = CGRect(x: 0, y: 568 + self.transparantView.frame.height, width: 320, height: self.detailView.frame.height)
         self.scrollView.contentSize = CGSize(width: self.scrollView.frame.size.width, height: self.detailView.frame.origin.y + self.overViewLabel.frame.size.height + 2*(self.titleLabel.frame.size.height))//+ self.transparantView.frame.size.height)
@@ -139,18 +143,18 @@ class FullPageViewController: UIViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toVideo" {
             print("to video segue called")
             
-            let vidView = segue.destinationViewController as! VideoViewController
+            let vidView = segue.destination as! VideoViewController
             vidView.movie = self.movie
         }
         
         if segue.identifier == "toReview" {
             print("to view segue called")
             
-            let reviewView = segue.destinationViewController as! ReviewsViewController
+            let reviewView = segue.destination as! ReviewsViewController
             reviewView.id = self.movie!["id"] as! IntegerLiteralType
         }
 

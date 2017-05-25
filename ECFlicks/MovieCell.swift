@@ -19,12 +19,12 @@ class MovieCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.grayColor()
+        backgroundView.backgroundColor = UIColor.gray
         self.selectedBackgroundView = backgroundView
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

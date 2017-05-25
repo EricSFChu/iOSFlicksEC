@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-public class FullViewHelper{
+open class FullViewHelper{
     
-    var imageURLtransfer = NSURL(string: "")
+    var imageURLtransfer = URL(string: "")
     var overviewTransfer: String = ""
     
         

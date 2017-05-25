@@ -8,10 +8,10 @@
 
 import UIKit
 
-enum AwfulError: ErrorType {
-    case Bad
-    case Worse
-    case Terrible
+enum AwfulError: Error {
+    case bad
+    case worse
+    case terrible
 }
 
 class VideoViewController: UIViewController {
@@ -26,19 +26,19 @@ class VideoViewController: UIViewController {
         let movieID = movie!["id"] as! IntegerLiteralType
        // let apiBaseURL = "http://api.themoviedb.org/3/movie/\(movieID)/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"
         
-        let url = NSURL(string:"http://api.themoviedb.org/3/movie/\(movieID)/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")
+        let url = URL(string:"http://api.themoviedb.org/3/movie/\(movieID)/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")
         print(url)
-        let request = NSURLRequest(URL: url!)
-        let session = NSURLSession(
-            configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
+        let request = URLRequest(url: url!)
+        let session = URLSession(
+            configuration: URLSessionConfiguration.default,
             delegate:nil,
-            delegateQueue:NSOperationQueue.mainQueue()
+            delegateQueue:OperationQueue.main
         )
         
-        let task : NSURLSessionDataTask = session.dataTaskWithRequest(request,
+        let task : URLSessionDataTask = session.dataTask(with: request,
             completionHandler: { (dataOrNil, response, error) in
-                if let data = dataOrNil {if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
-            data, options:[]) as? NSDictionary {
+                if let data = dataOrNil {if let responseDictionary = try! JSONSerialization.jsonObject(
+            with: data, options:[]) as? NSDictionary {
                 print("response: \(responseDictionary)")
                 self.youtubeDict = responseDictionary["results"] as? [NSDictionary]
                 print(self.youtubeDict)
@@ -68,8 +68,8 @@ class VideoViewController: UIViewController {
                     
                     let urlPath = "http://www.youtube.com/watch?v=\(youString)"
 
-                        let requestUrl = NSURL(string: urlPath)
-                        let request = NSURLRequest(URL: requestUrl!)
+                        let requestUrl = URL(string: urlPath)
+                        let request = URLRequest(url: requestUrl!)
                         self.videoView.loadRequest(request)
                 }
                     }

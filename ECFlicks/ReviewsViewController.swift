@@ -19,8 +19,8 @@ class ReviewsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.barTintColor = UIColor.blackColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
   
         tableView.dataSource = self
         tableView.delegate = self
@@ -34,21 +34,21 @@ class ReviewsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func loadFromSource(){
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = NSURL(string:"https://api.themoviedb.org/3/movie/\(id)/reviews?api_key=\(apiKey)")
-        let request = NSURLRequest(URL: url!)
-        let session = NSURLSession(
-            configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
+        let url = URL(string:"https://api.themoviedb.org/3/movie/\(id)/reviews?api_key=\(apiKey)")
+        let request = URLRequest(url: url!)
+        let session = URLSession(
+            configuration: URLSessionConfiguration.default,
             delegate:nil,
-            delegateQueue:NSOperationQueue.mainQueue()
+            delegateQueue:OperationQueue.main
         )
         
-        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         
-        let task : NSURLSessionDataTask = session.dataTaskWithRequest(request,
+        let task : URLSessionDataTask = session.dataTask(with: request,
             completionHandler: { (dataOrNil, response, error) in
                 if let data = dataOrNil {
-                    if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
-                        data, options:[]) as? NSDictionary {
+                    if let responseDictionary = try! JSONSerialization.jsonObject(
+                        with: data, options:[]) as? NSDictionary {
                             NSLog("response: \(responseDictionary)")
                             self.reviews = responseDictionary["results"] as? [NSDictionary]
                             
@@ -59,14 +59,14 @@ class ReviewsViewController: UIViewController, UITableViewDataSource, UITableVie
                     }
                 }
                 // Hide HUD once network request comes back (must be done on main UI thread)
-                MBProgressHUD.hideHUDForView(self.view, animated: false)
+                MBProgressHUD.hide(for: self.view, animated: false)
                 
         });
         task.resume()
         
     }
 
-    internal func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if let reviews = reviews {
             return reviews.count
@@ -75,8 +75,8 @@ class ReviewsViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
     }
-    internal func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reviewCell", forIndexPath: indexPath) as! ReviewCell
+    internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reviewCell", for: indexPath) as! ReviewCell
         let review = reviews![indexPath.row]
         let author = review["author"] as! String
         let content = review["content"] as! String
