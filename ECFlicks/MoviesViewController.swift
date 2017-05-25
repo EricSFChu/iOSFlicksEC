@@ -98,6 +98,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         pageNumber += 1
         let endPoint2 = endPoint!
         let url : NSString = "\(BASE_URL)\(endPoint2)?api_key=\(API_KEY)&page=\(pageNumCheck)" as NSString
+        print(url)
         let urlStr = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let urlStrUrl = URL(string: urlStr!)
 
@@ -276,7 +277,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
             let cell = sender as! UITableViewCell
             let indexPath = tableView.indexPath(for: cell)
-            let movie = filteredData![indexPath!.row]
+            var movie: NSDictionary
+            if !isSearching {
+                movie = movies![indexPath!.row]
+            } else {
+                movie = filteredData[indexPath!.row]
+            }
             let detailViewController = segue.destination as! FullPageViewController
             detailViewController.movie = movie
             
@@ -284,6 +290,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             
             let destinationNavigationController = segue.destination as! NewCollectionViewController
             destinationNavigationController.endPoint = endPoint
+            destinationNavigationController.movies = self.movies
             
         }
     }

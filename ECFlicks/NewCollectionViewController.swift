@@ -33,7 +33,7 @@ UISearchBarDelegate{
         self.navigationController?.navigationBar.barTintColor = UIColor.black
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
-        loadFromSource()
+        //loadFromSource()
         self.collectionView.addSubview(self.refreshControl)
     }
     
@@ -57,8 +57,8 @@ UISearchBarDelegate{
     @available(iOS 2.0, *)
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if let filteredData = filteredData {
-            return filteredData.count
+        if let movie = movies {
+            return movie.count
         } else {
             return 0
         }
@@ -75,7 +75,7 @@ UISearchBarDelegate{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionRe", for: indexPath) as! CollectionCell
         
-        let movie = filteredData![indexPath.row]
+        let movie = movies![indexPath.row]
         
         let baseUrl = "http://image.tmdb.org/t/p/w500"
         if let filePath = movie["poster_path"] as? String {
@@ -156,7 +156,7 @@ UISearchBarDelegate{
             print("collection to full segue called")
             let cell = sender as! UICollectionViewCell
             let indexPath = collectionView.indexPath(for: cell)
-            let movie = filteredData![indexPath!.row]
+            let movie = movies![indexPath!.row]
             
             let detailViewController = segue.destination as! FullPageViewController
             detailViewController.movie = movie

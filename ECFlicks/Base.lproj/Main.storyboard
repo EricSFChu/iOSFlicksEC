@@ -584,8 +584,8 @@
         <image name="search" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Y6N-uP-QU5"/>
-        <segue reference="P5V-WF-N2W"/>
+        <segue reference="j5s-5B-Ic6"/>
+        <segue reference="Al4-1b-9SZ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
