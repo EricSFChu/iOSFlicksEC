@@ -26,7 +26,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     var endPoint: String!
     var pageNumber: Int = 1
-    let threshold: CGFloat = 700.0
+    let threshold: CGFloat = 1000.0
     var loading = false
     var isSearching = false
     
@@ -146,56 +146,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     @available(iOS 2.0, *)
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
-        let movie: NSDictionary
-        if isSearching {
-            movie = filteredData![indexPath.row]
-        } else {
-            movie = (movies?[indexPath.row])!
-        }
+        let movie: MovieModel = isSearching ? MovieModel(movie: filteredData![indexPath.row]) : MovieModel(movie:(movies?[indexPath.row])!)
+
+        cell.configCell(movie: movie)
         
-        
-        
-        let title = movie["title"] as! String
-        let overview = movie["overview"] as! String
-        cell.titleLabel.text = title
-        cell.overviewLabel.text = overview
-        
-        let baseUrl = "http://image.tmdb.org/t/p/w500"
-        
-        if let filePath = movie["poster_path"] as? String {
-            
-            let imageUrl = URL(string: baseUrl + filePath)
-            let imageRequest = URLRequest(url: imageUrl!)
-        //cell.posterView.setImageWithURL(imageUrl!)
-        
-        
-        //allow pictures to fade in if it is loading for the first time
-        cell.posterView.setImageWith(
-            imageRequest,
-            placeholderImage: nil,
-            success: { (imageRequest, imageResponse, image) -> Void in
-                
-                // imageResponse will be nil if the image is cached
-                if imageResponse != nil {
-                    print("Image was NOT cached, fade in image")
-                    cell.posterView.alpha = 0.0
-                    cell.posterView.image = image
-                    UIView.animate(withDuration: 0.3, animations: { () -> Void in
-                        cell.posterView.alpha = 1.0
-                    })
-                } else {
-                    print("Image was cached so just update the image")
-                    cell.posterView.image = image
-                }
-            },
-            failure: { (imageRequest, imageResponse, error) -> Void in
-                // do something for the failure condition
-        })
-        }
-        
-        print("row \(indexPath.row)")
         return cell
         
     }

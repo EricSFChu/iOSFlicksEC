@@ -27,6 +27,10 @@ class FullPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let topItem = self.navigationController?.navigationBar.topItem {
+            topItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        }
+        
         self.navigationController?.navigationBar.barTintColor = UIColor.black
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         //let youtubeBaseURL = "https://www.youtube.com/watch?v="
@@ -111,14 +115,11 @@ class FullPageViewController: UIViewController {
         titleLabel.text = title
         overViewLabel.text = overview
         overViewLabel.sizeToFit()
-        
-        
-        
 
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: detailView.frame.origin.y + transparantView.frame.size.height + fullImage.frame.size.height)
+        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: detailView.frame.size.height + transparantView.frame.size.height + fullImage.frame.size.height + 49 + (self.navigationController?.navigationBar.frame.height)!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -128,8 +129,8 @@ class FullPageViewController: UIViewController {
     
     @IBAction func onTap(_ sender: AnyObject) {
     UIView.animate(withDuration: 2, delay: 0, options: [UIViewAnimationOptions.curveEaseOut], animations: {
-        self.transparantView.frame.origin.y = 568//CGRect(x: 0, y: 568, width: 320, height: 273)
-        self.detailView.frame = CGRect(x: 0, y: 568 + self.transparantView.frame.height, width: 320, height: self.detailView.frame.height)
+       // self.transparantView.frame.origin.y = 568//CGRect(x: 0, y: 568, width: 320, height: 273)
+       // self.detailView.frame = CGRect(x: 0, y: 568 + self.transparantView.frame.height, width: 320, height: self.detailView.frame.height)
         self.scrollView.contentSize = CGSize(width: self.scrollView.frame.size.width, height: self.detailView.frame.origin.y + self.overViewLabel.frame.size.height + 2*(self.titleLabel.frame.size.height))//+ self.transparantView.frame.size.height)
         }, completion: { finished in
     print("Move Successful")

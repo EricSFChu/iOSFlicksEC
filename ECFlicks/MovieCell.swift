@@ -18,10 +18,7 @@ class MovieCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.gray
-        self.selectedBackgroundView = backgroundView
-        // Initialization code
+   
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -29,5 +26,41 @@ class MovieCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func configCell(movie: MovieModel) {
+        
+        titleLabel.text = movie.title
+        overviewLabel.text = movie.overview
+        
+        if let filePath = movie.posterPath {
+            
+            let imageUrl = URL(string: "\(POSTER_BASE_URL)\(filePath)")
+            let imageRequest = URLRequest(url: imageUrl!)
+            
+            //allow pictures to fade in if it is loading for the first time
+            posterView.setImageWith(
+                imageRequest,
+                placeholderImage: nil,
+                success: { (imageRequest, imageResponse, image) -> Void in
+                    
+                    // imageResponse will be nil if the image is cached
+                    if imageResponse != nil {
+                        self.posterView.alpha = 0.0
+                        self.posterView.image = image
+                        UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                            self.posterView.alpha = 1.0
+                        })
+                    } else {
+                        self.posterView.image = image
+                    }
+            },
+                failure: { (imageRequest, imageResponse, error) -> Void in
+                    NSLog(error.localizedDescription)
+            })
+        }
+        
+    }
+    
+    
 
 }

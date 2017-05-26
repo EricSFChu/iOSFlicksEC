@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-private class MovieModel
+class MovieModel
 {
     let id: String!
     let originalLanguage: String!
@@ -18,15 +18,21 @@ private class MovieModel
     let popularity: String!
     let posterPath: String!
     let releaseDate: String!
+    let backdropPath: String!
+    let voteCount: String!
+    let voteAverage: String!
     
-    init (m: NSDictionary)
+    init (movie: NSDictionary)
     {
-        id = m["id"] as! String
-        originalLanguage = m["original_language"] as! String
-        title = m["title"] as! String
-        overview = m["overview"] as! String
-        popularity = m["popularity"] as! String
-        posterPath = m["poster_path"] as! String
-        releaseDate = m["release_date"] as! String
+        id = "\(String(describing: movie["id"]))"
+        originalLanguage = movie["original_language"] as! String
+        title = movie["title"] as! String
+        overview = movie["overview"] as! String
+        popularity = "\(String(describing: movie["popularity"]))"
+        posterPath = movie["poster_path"] as! String
+        releaseDate = movie["release_date"] as! String
+        backdropPath = movie["backdrop_path"] as! String
+        voteCount = "\(String(describing: movie["vote_count"]))"
+        voteAverage = "\(String(describing: movie["vote_average"]))"
     }
 }
