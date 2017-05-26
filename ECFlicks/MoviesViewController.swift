@@ -98,7 +98,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         pageNumber += 1
         let endPoint2 = endPoint!
         let url : NSString = "\(BASE_URL)\(endPoint2)?api_key=\(API_KEY)&page=\(pageNumCheck)" as NSString
-        print(url)
         let urlStr = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let urlStrUrl = URL(string: urlStr!)
 

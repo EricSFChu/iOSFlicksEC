@@ -11,28 +11,84 @@ import UIKit
 
 class MovieModel
 {
-    let id: String!
-    let originalLanguage: String!
-    let title: String!
-    let overview: String!
-    let popularity: String!
-    let posterPath: String!
-    let releaseDate: String!
-    let backdropPath: String!
-    let voteCount: String!
-    let voteAverage: String!
+   private var _id: String!
+   private var _originalLanguage: String!
+   private var _title: String!
+   private var _overview: String!
+   private var _popularity: String!
+   private var _posterPath: String!
+   private var _releaseDate: String!
+   private var _backdropPath: String!
+   private var _voteCount: String!
+   private var _voteAverage: String!
+    
+    var id: String {
+        return _id
+    }
+    
+    var originalLanguage: String {
+        return _originalLanguage
+    }
+    
+    var title: String {
+        return _title
+    }
+    
+    var overview: String {
+        return _overview
+    }
+    
+    var popularity: String {
+        return _popularity
+    }
+    
+    var posterPath: String {
+        if _posterPath == nil {
+            _posterPath = ""
+        }
+        return _posterPath
+    }
+    
+    var releaseDate: String {
+        return _releaseDate
+    }
+    
+    var backdropPath: String {
+        return _backdropPath
+    }
+    
+    var voteCount: String {
+        return _voteCount
+    }
+    
+    var voteAverage: String {
+        return _voteAverage
+    }
     
     init (movie: NSDictionary)
     {
-        id = "\(String(describing: movie["id"]))"
-        originalLanguage = movie["original_language"] as! String
-        title = movie["title"] as! String
-        overview = movie["overview"] as! String
-        popularity = "\(String(describing: movie["popularity"]))"
-        posterPath = movie["poster_path"] as! String
-        releaseDate = movie["release_date"] as! String
-        backdropPath = movie["backdrop_path"] as! String
-        voteCount = "\(String(describing: movie["vote_count"]))"
-        voteAverage = "\(String(describing: movie["vote_average"]))"
+        _id = "\(String(describing: movie["id"]))"
+        _originalLanguage = movie["original_language"] as! String
+        _title = movie["title"] as! String
+        _overview = movie["overview"] as! String
+        _popularity = "\(String(describing: movie["popularity"]))"
+        
+        if let poster = movie["poster_path"] {
+           
+            self._posterPath = poster as? String
+        
+        }
+        
+        
+        
+        _releaseDate = movie["release_date"] as! String
+        
+        if let backdrop = movie["backdrop_path"] {
+ 
+            self._backdropPath = backdrop as? String
+    
+        }
+        _voteCount = "\(String(describing: movie["vote_count"]))"
+        _voteAverage = "\(String(describing: movie["vote_average"]))"
     }
 }

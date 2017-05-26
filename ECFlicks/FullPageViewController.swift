@@ -35,9 +35,7 @@ class FullPageViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         //let youtubeBaseURL = "https://www.youtube.com/watch?v="
         //the key is key under http://api.themoviedb.org/3/movie/257088/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed
-        //replace 257088 with the id of the movie
-        print(movie ?? "None")
-        //movieInfo.MovieModelHelper(movie!)
+
         
         let baseURL = "http://image.tmdb.org/t/p/w500"
         let smallBaseURL = "http://image.tmdb.org/t/p/w185"
@@ -102,16 +100,16 @@ class FullPageViewController: UIViewController {
         
         let title = movie!["title"] as! String
         let overview = movie!["overview"] as! String
-        let releaseDate = movie!["release_date"] as! String
-        let average = movie!["vote_average"] as! double_t
-        let popularity1 = movie!["popularity"] as! double_t
+//        let releaseDate = movie!["release_date"] as! String
+//        let average = movie!["vote_average"] as! double_t
+//        let popularity1 = movie!["popularity"] as! double_t
         
-        popularity.text = "Popularity: " +  "\(popularity1)"
-        voteAverage.text = "Vote Average: " + "\(average)"
-        releaseLabel.text = "Release Date: " + releaseDate
-        popularity.sizeToFit()
-        voteAverage.sizeToFit()
-        releaseLabel.sizeToFit()
+        //popularity.text = "Popularity: " +  "\(popularity1)"
+        //voteAverage.text = "Vote Average: " + "\(average)"
+        //releaseLabel.text = "Release Date: " + releaseDate
+        //popularity.sizeToFit()
+        //voteAverage.sizeToFit()
+        //releaseLabel.sizeToFit()
         titleLabel.text = title
         overViewLabel.text = overview
         overViewLabel.sizeToFit()
@@ -127,15 +125,15 @@ class FullPageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onTap(_ sender: AnyObject) {
-    UIView.animate(withDuration: 2, delay: 0, options: [UIViewAnimationOptions.curveEaseOut], animations: {
-       // self.transparantView.frame.origin.y = 568//CGRect(x: 0, y: 568, width: 320, height: 273)
-       // self.detailView.frame = CGRect(x: 0, y: 568 + self.transparantView.frame.height, width: 320, height: self.detailView.frame.height)
-        self.scrollView.contentSize = CGSize(width: self.scrollView.frame.size.width, height: self.detailView.frame.origin.y + self.overViewLabel.frame.size.height + 2*(self.titleLabel.frame.size.height))//+ self.transparantView.frame.size.height)
-        }, completion: { finished in
-    print("Move Successful")
-    })
-}
+//    @IBAction func onTap(_ sender: AnyObject) {
+//    UIView.animate(withDuration: 2, delay: 0, options: [UIViewAnimationOptions.curveEaseOut], animations: {
+//       // self.transparantView.frame.origin.y = 568//CGRect(x: 0, y: 568, width: 320, height: 273)
+//       // self.detailView.frame = CGRect(x: 0, y: 568 + self.transparantView.frame.height, width: 320, height: self.detailView.frame.height)
+//        self.scrollView.contentSize = CGSize(width: self.scrollView.frame.size.width, height: self.detailView.frame.origin.y + self.overViewLabel.frame.size.height + 2*(self.titleLabel.frame.size.height))//+ self.transparantView.frame.size.height)
+//        }, completion: { finished in
+//    print("Move Successful")
+//        })
+//    }
 
 
 
