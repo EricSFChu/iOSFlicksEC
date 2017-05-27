@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class ReviewCell: UITableViewCell {
+class ReviewCell: SwipeTableViewCell {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var reviewLabel: UILabel!
 

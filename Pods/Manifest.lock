@@ -1,29 +1,32 @@
 PODS:
-  - AFNetworking (3.0.4):
-    - AFNetworking/NSURLSession (= 3.0.4)
-    - AFNetworking/Reachability (= 3.0.4)
-    - AFNetworking/Security (= 3.0.4)
-    - AFNetworking/Serialization (= 3.0.4)
-    - AFNetworking/UIKit (= 3.0.4)
-  - AFNetworking/NSURLSession (3.0.4):
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.0.4)
-  - AFNetworking/Security (3.0.4)
-  - AFNetworking/Serialization (3.0.4)
-  - AFNetworking/UIKit (3.0.4):
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - MBProgressHUD (0.9.2)
+  - MBProgressHUD (1.0.0)
+  - SwipeCellKit (1.8.0)
 
 DEPENDENCIES:
   - AFNetworking
   - MBProgressHUD
+  - SwipeCellKit
 
 SPEC CHECKSUMS:
-  AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
-  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  SwipeCellKit: 01a58bf7e63d5df09aedd161828833944c4c333c
 
-PODFILE CHECKSUM: c54dfb581ec4563706111c347928c973ecc1daaa
+PODFILE CHECKSUM: c9aade5e5fabb3b13e72a3d398309b7b1f2cc5fa
 
 COCOAPODS: 1.2.1

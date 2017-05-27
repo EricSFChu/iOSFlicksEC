@@ -29,10 +29,8 @@ class VideoViewController: UIViewController {
         }
         
         let movieID = movie!["id"] as! IntegerLiteralType
-       // let apiBaseURL = "http://api.themoviedb.org/3/movie/\(movieID)/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"
         
         let url = URL(string:"http://api.themoviedb.org/3/movie/\(movieID)/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")
-        print(url)
         let request = URLRequest(url: url!)
         let session = URLSession(
             configuration: URLSessionConfiguration.default,
@@ -46,11 +44,7 @@ class VideoViewController: UIViewController {
             with: data, options:[]) as? NSDictionary {
                 print("response: \(responseDictionary)")
                 self.youtubeDict = responseDictionary["results"] as? [NSDictionary]
-                print(self.youtubeDict)
-                //endPoint = youtubeDict!["key"] as! String
-
                     
-                //Can cause array out of bounds exception
                 if self.youtubeDict?.count != 0 {
                     self.youtube = (self.youtubeDict?[0])! as NSDictionary
                 

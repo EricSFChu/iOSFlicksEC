@@ -120,6 +120,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                         }
                             self.tableView.reloadData()
                     }
+                } else {
+                    NSLog(error.debugDescription)
                 }
         
                 MBProgressHUD.hide(for: self.view, animated: false)

@@ -8,8 +8,9 @@
 
 import UIKit
 import MBProgressHUD
+import SwipeCellKit
 
-class ReviewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ReviewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SwipeTableViewCellDelegate {
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -32,8 +33,7 @@ class ReviewsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     
     func loadFromSource(){
-        let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = URL(string:"https://api.themoviedb.org/3/movie/\(id)/reviews?api_key=\(apiKey)")
+        let url = URL(string:"https://api.themoviedb.org/3/movie/\(id)/reviews?api_key=\(API_KEY)")
         let request = URLRequest(url: url!)
         let session = URLSession(
             configuration: URLSessionConfiguration.default,
@@ -48,12 +48,7 @@ class ReviewsViewController: UIViewController, UITableViewDataSource, UITableVie
                 if let data = dataOrNil {
                     if let responseDictionary = try! JSONSerialization.jsonObject(
                         with: data, options:[]) as? NSDictionary {
-                            NSLog("response: \(responseDictionary)")
                             self.reviews = responseDictionary["results"] as? [NSDictionary]
-                            
-                            
-                            
-                            
                             self.tableView.reloadData()
                     }
                 }
@@ -79,7 +74,7 @@ class ReviewsViewController: UIViewController, UITableViewDataSource, UITableVie
         let review = reviews![indexPath.row]
         let author = review["author"] as! String
         let content = review["content"] as! String
-        
+        cell.delegate = self
         cell.authorLabel.text = author
         cell.authorLabel.sizeToFit()
         cell.reviewLabel.text = content
@@ -87,8 +82,28 @@ class ReviewsViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.rowHeight = cell.reviewLabel.frame.height + 2*cell.authorLabel.frame.height
 
 
-        print("row \(indexPath.row)")
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        
+        guard orientation == .right else { return nil }
+        
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") {
+            action, indexPath in
+            //
+        }
+        
+        let saveAction = SwipeAction(style: .default, title: "Save") {
+            action, indexPath in
+            //
+        
+        }
+        
+        deleteAction.image = UIImage(named: "Star")
+        saveAction.image = UIImage(named: "Star")
+        
+        return [deleteAction, saveAction]
     }
     
     
