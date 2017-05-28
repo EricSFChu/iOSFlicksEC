@@ -14,7 +14,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     @IBOutlet weak var errorButton: UIButton!
-    @IBOutlet weak var errorCell: UITableViewCell!
     @IBOutlet weak var searchButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -41,7 +40,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         filteredData = [NSDictionary]()
         
         searchBar.isHidden = false
-        errorCell.isHidden = true
+        errorButton.isHidden = true
         searchBar.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
@@ -62,15 +61,16 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidAppear(_ animated: Bool) {
         
-        if Reachability.isConnectedToNetwork() == true {
+        if currentReachabilityStatus != .notReachable {
             
-            self.errorCell.isHidden = true
+            self.errorButton.isHidden = true
             self.searchBar.isHidden = false
+            loadFromSource()
             
         } else {
             
             self.searchBar.isHidden = true
-            self.errorCell.isHidden = false
+            self.errorButton.isHidden = false
             
         }
     }

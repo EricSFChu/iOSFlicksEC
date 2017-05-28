@@ -26,6 +26,19 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48X-DW-fYy">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <color key="backgroundColor" red="0.73494070768356323" green="0.73494070768356323" blue="0.73494070768356323" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="bby-QB-tfY"/>
+                                </constraints>
+                                <state key="normal" title="Network Error">
+                                    <color key="titleColor" red="1" green="0.22791108893537748" blue="0.11834667582489655" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didClickErrorMessage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YGx-Rl-I9r"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="153" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eai-uh-zrn">
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -108,40 +121,19 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="23" translatesAutoresizingMaskIntoConstraints="NO" id="Rl9-HT-63C">
-                                <rect key="frame" x="0.0" y="-85" width="0.0" height="45"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rl9-HT-63C" id="SdQ-KC-OL3">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48X-DW-fYy">
-                                            <rect key="frame" x="-15" y="-1" width="342" height="26"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.73494070768356323" green="0.73494070768356323" blue="0.73494070768356323" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <state key="normal" title="Network Error"/>
-                                            <connections>
-                                                <action selector="didClickErrorMessage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YGx-Rl-I9r"/>
-                                            </connections>
-                                        </button>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconmonstr-warning-7-24" translatesAutoresizingMaskIntoConstraints="NO" id="X4s-ld-BZm">
-                                            <rect key="frame" x="84" y="3" width="18" height="17"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="hJ6-qc-Z06" firstAttribute="leading" secondItem="Rl9-HT-63C" secondAttribute="leading" id="4AG-Ga-pZl"/>
                             <constraint firstAttribute="trailing" secondItem="eai-uh-zrn" secondAttribute="trailing" id="Cjz-PA-tYW"/>
-                            <constraint firstItem="hJ6-qc-Z06" firstAttribute="top" secondItem="Rl9-HT-63C" secondAttribute="bottom" constant="40" id="Gbm-Fx-5Nq"/>
                             <constraint firstItem="hJ6-qc-Z06" firstAttribute="trailing" secondItem="eai-uh-zrn" secondAttribute="trailing" id="GdZ-6H-9Gd"/>
                             <constraint firstItem="eai-uh-zrn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="HkO-Yx-FKp"/>
                             <constraint firstItem="eai-uh-zrn" firstAttribute="top" secondItem="hJ6-qc-Z06" secondAttribute="bottom" id="IBg-vY-OCK"/>
                             <constraint firstItem="hJ6-qc-Z06" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="IU2-dy-Byz"/>
+                            <constraint firstItem="48X-DW-fYy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="LgX-MY-tO5"/>
                             <constraint firstItem="hJ6-qc-Z06" firstAttribute="leading" secondItem="eai-uh-zrn" secondAttribute="leading" id="XGK-Da-r3H"/>
+                            <constraint firstItem="48X-DW-fYy" firstAttribute="top" secondItem="hJ6-qc-Z06" secondAttribute="top" id="huP-uP-2e7"/>
+                            <constraint firstAttribute="trailing" secondItem="48X-DW-fYy" secondAttribute="trailing" id="qP0-2K-M0f"/>
                             <constraint firstItem="la1-g5-GQo" firstAttribute="top" secondItem="eai-uh-zrn" secondAttribute="bottom" id="ypT-DB-jzr"/>
                         </constraints>
                         <connections>
@@ -164,7 +156,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="errorButton" destination="48X-DW-fYy" id="luf-BT-fAx"/>
-                        <outlet property="errorCell" destination="Rl9-HT-63C" id="zfh-xd-eiW"/>
                         <outlet property="searchBar" destination="hJ6-qc-Z06" id="rbd-jz-XAv"/>
                         <outlet property="searchButton" destination="lkZ-nR-Bhf" id="Xuq-qN-dqK"/>
                         <outlet property="tableView" destination="eai-uh-zrn" id="AEm-E2-PYk"/>
@@ -576,7 +567,6 @@
         <image name="Image" width="32" height="32"/>
         <image name="Image-1" width="32" height="32"/>
         <image name="MovieStrip" width="32" height="32"/>
-        <image name="iconmonstr-warning-7-24" width="24" height="24"/>
         <image name="search" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
