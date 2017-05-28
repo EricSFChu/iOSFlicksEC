@@ -20,6 +20,7 @@ UISearchBarDelegate{
     var movies: [NSDictionary]?
     var filteredData: [NSDictionary]?
     var endPoint: String!
+    var isSearching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,6 @@ UISearchBarDelegate{
         self.navigationController?.navigationBar.barTintColor = UIColor.black
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
-        self.collectionView.addSubview(self.refreshControl)
     }
     
     
@@ -57,8 +57,19 @@ UISearchBarDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if let movie = movies {
-            return movie.count
+            
+            if isSearching {
+                
+                return (filteredData?.count)!
+                
+            } else {
+                
+                return movie.count
+                
+            }
+            
         } else {
+            
             return 0
         }
         
@@ -67,53 +78,44 @@ UISearchBarDelegate{
         performSegue(withIdentifier: "Back to list", sender: nil)
     }
     
-    // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-    // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
-    
     @available(iOS 2.0, *)
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionRe", for: indexPath) as! CollectionCell
         
-        let movie = movies![indexPath.row]
-        
-        if let filePath = movie["poster_path"] as? String {
-            
-            let imageUrl = URL(string: POSTER_BASE_URL + filePath)
-            cell.collectionImage.setImageWith(imageUrl!)
-            
+        if isSearching {
+            cell.configureCell(movie: filteredData![indexPath.row])
+        } else {
+            cell.configureCell(movie: movies![indexPath.row])
         }
         
-        print("row \(indexPath.row)")
         return cell
         
     }
-
-    lazy var refreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(NewCollectionViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
-        
-        return refreshControl
-        
-    }()
    
-
     @IBAction func onTap(_ sender: AnyObject) {
         view.endEditing(true)
     }
     
-    func handleRefresh(_ refreshControl: UIRefreshControl) {
-        // Do some reloading of data and update the table view's data source
-        // Fetch more objects from a web service, for example...
-        self.collectionView.reloadData()
-        refreshControl.endRefreshing()
-    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         filteredData = searchText.isEmpty ? movies : movies!.filter({(movie: NSDictionary) -> Bool in
-            return (movie["title"] as! String ).range(of: searchText
-                , options: .caseInsensitive) != nil
+            
+            return (movie["title"] as! String ).range(of: searchText, options: .caseInsensitive) != nil
+            
         })
+        
+        if searchText != "" {
+            
+            isSearching = true
+            
+        } else {
+            
+            isSearching = false
+            
+        }
         
         collectionView.reloadData()
         
@@ -122,7 +124,6 @@ UISearchBarDelegate{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "collectionToFull" {
             
-            print("collection to full segue called")
             let cell = sender as! UICollectionViewCell
             let indexPath = collectionView.indexPath(for: cell)
             let movie = movies![indexPath!.row]

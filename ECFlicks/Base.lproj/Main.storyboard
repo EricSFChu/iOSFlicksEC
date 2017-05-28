@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--FlikR-->
+        <!--Movies-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="listViewSB" id="BYZ-38-t0r" customClass="MoviesViewController" customModule="ECFlicks" customModuleProvider="target" sceneMemberID="viewController">
@@ -38,11 +38,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="170"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="02x-Dh-zhn">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="02x-Dh-zhn">
                                                     <rect key="frame" x="92" y="0.0" width="223" height="68"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
                                                     <color key="textColor" red="0.22638396918773651" green="0.86058688163757324" blue="0.77357661724090576" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <color key="highlightedColor" red="0.22638396918773651" green="0.86058688163757324" blue="0.77357661724090576" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="highlightedColor" red="0.22745098039215686" green="0.86274509803921573" blue="0.77254901960784317" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MQ2-Wn-w2u">
                                                     <rect key="frame" x="3" y="4" width="81" height="162"/>
@@ -51,7 +51,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsu-gV-zuS">
-                                                    <rect key="frame" x="92" y="43" width="223" height="77"/>
+                                                    <rect key="frame" x="92" y="43" width="223" height="87"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="UpE-tS-qIw"/>
                                                     </constraints>
@@ -59,19 +59,19 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Release Date" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMD-Eg-H5L">
-                                                    <rect key="frame" x="92" y="122" width="234" height="20"/>
+                                                    <rect key="frame" x="92" y="132" width="234" height="16"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="Fer-XT-u4W"/>
+                                                        <constraint firstAttribute="height" constant="16" id="Fer-XT-u4W"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Original Language" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f9f-LK-WzB">
-                                                    <rect key="frame" x="92" y="144" width="234" height="20"/>
+                                                    <rect key="frame" x="92" y="148" width="234" height="16"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="hl3-Dl-V5W"/>
+                                                        <constraint firstAttribute="height" constant="16" id="hl3-Dl-V5W"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </label>
                                             </subviews>
@@ -91,7 +91,7 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="02x-Dh-zhn" secondAttribute="trailing" constant="19" id="nhw-Ag-1t6"/>
                                                 <constraint firstItem="02x-Dh-zhn" firstAttribute="leading" secondItem="dsu-gV-zuS" secondAttribute="leading" id="nwi-1o-eGI"/>
                                                 <constraint firstItem="MQ2-Wn-w2u" firstAttribute="centerY" secondItem="lbg-ey-vQA" secondAttribute="centerY" id="oVW-DK-Xhe"/>
-                                                <constraint firstItem="f9f-LK-WzB" firstAttribute="top" secondItem="vMD-Eg-H5L" secondAttribute="bottom" constant="2" id="ohF-OG-va3"/>
+                                                <constraint firstItem="f9f-LK-WzB" firstAttribute="top" secondItem="vMD-Eg-H5L" secondAttribute="bottom" id="ohF-OG-va3"/>
                                                 <constraint firstItem="f9f-LK-WzB" firstAttribute="leading" secondItem="MQ2-Wn-w2u" secondAttribute="trailing" constant="8" id="olJ-ev-jEy"/>
                                                 <constraint firstItem="f9f-LK-WzB" firstAttribute="bottom" secondItem="lbg-ey-vQA" secondAttribute="bottomMargin" constant="2" id="x2M-Up-Jgj"/>
                                             </constraints>
@@ -148,7 +148,7 @@
                             <outletCollection property="gestureRecognizers" destination="fd7-5H-v51" appends="YES" id="ic7-D4-3Mm"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="FlikR" id="eqi-dj-APB">
+                    <navigationItem key="navigationItem" title="Movies" id="eqi-dj-APB">
                         <barButtonItem key="leftBarButtonItem" image="Image" id="4I8-EU-hMA">
                             <color key="tintColor" red="0.22638396918773651" green="0.86058688163757324" blue="0.77357661724090576" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -179,7 +179,7 @@
             </objects>
             <point key="canvasLocation" x="858.39999999999998" y="277.51124437781112"/>
         </scene>
-        <!--FlikR-->
+        <!--Movies-->
         <scene sceneID="Hbv-GG-qDb">
             <objects>
                 <viewController storyboardIdentifier="collectionViewSB" id="38i-gQ-3bY" customClass="NewCollectionViewController" customModule="ECFlicks" customModuleProvider="target" sceneMemberID="viewController">
@@ -249,7 +249,7 @@
                             <constraint firstItem="5tA-WL-Jje" firstAttribute="top" secondItem="NCR-rC-Zbp" secondAttribute="bottom" id="pOk-Jx-n8Y"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="FlikR" id="iAJ-hu-WAn">
+                    <navigationItem key="navigationItem" title="Movies" id="iAJ-hu-WAn">
                         <barButtonItem key="leftBarButtonItem" image="Image-1" id="SDR-ju-1rQ">
                             <color key="tintColor" red="0.22638396918773651" green="0.86058688163757324" blue="0.77357661724090576" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -276,7 +276,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1519.5652173913045" y="888.179347826087"/>
+            <point key="canvasLocation" x="1522" y="899"/>
         </scene>
         <!--Details-->
         <scene sceneID="gbA-Fa-2tc">
@@ -580,7 +580,7 @@
         <image name="search" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="j5s-5B-Ic6"/>
+        <segue reference="P5V-WF-N2W"/>
         <segue reference="Al4-1b-9SZ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

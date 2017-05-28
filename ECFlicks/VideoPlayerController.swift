@@ -7,15 +7,12 @@
 //
 
 import UIKit
+import MBProgressHUD
 
-enum AwfulError: Error {
-    case bad
-    case worse
-    case terrible
-}
-
-class VideoViewController: UIViewController {
+class VideoViewController: UIViewController, UIWebViewDelegate {
+    
     @IBOutlet weak var videoView: UIWebView!
+    
     var endPoint: String = "ncvFAm4kYCo"
     var movie: NSDictionary?
     var youtubeDict: [NSDictionary]?
@@ -28,9 +25,17 @@ class VideoViewController: UIViewController {
             topItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         }
         
+        videoView.delegate = self
+
+        loadVideo()
+        
+    }
+    
+    func loadVideo() {
+        
         let movieID = movie!["id"] as! IntegerLiteralType
         
-        let url = URL(string:"http://api.themoviedb.org/3/movie/\(movieID)/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")
+        let url = URL(string:"\(BASE_URL)\(movieID)/videos?api_key=\(API_KEY)")
         let request = URLRequest(url: url!)
         let session = URLSession(
             configuration: URLSessionConfiguration.default,
@@ -38,47 +43,39 @@ class VideoViewController: UIViewController {
             delegateQueue:OperationQueue.main
         )
         
+        
         let task : URLSessionDataTask = session.dataTask(with: request,
             completionHandler: { (dataOrNil, response, error) in
                 if let data = dataOrNil {if let responseDictionary = try! JSONSerialization.jsonObject(
-            with: data, options:[]) as? NSDictionary {
-                print("response: \(responseDictionary)")
-                self.youtubeDict = responseDictionary["results"] as? [NSDictionary]
-                    
-                if self.youtubeDict?.count != 0 {
-                    self.youtube = (self.youtubeDict?[0])! as NSDictionary
-                
-                print(self.youtube!["key"] as! String)
-                let youString = self.youtube!["key"] as! String
-                print(youString)
-/*
-                    let youtubeURL: String = "http://www.youtube.com/embed/\(youString)?rel=0&autoplay=1"
+                    with: data, options:[]) as? NSDictionary {
+                    MBProgressHUD.showAdded(to: self.view, animated: true)
 
-                let width = 330
-                let height = 240
-                let frame = 0
-                let marginY = 0
-                let marginX = 0
-               // let code: NSString = "<iframe width='\(width)' height='\(height)' src='\(youtubeURL)' frameborder='\(frame)' marginheight='\(marginY)' marginwidth='\(marginX)' allowfullscreen></iframe>";
-                let code: NSString = "<iframe src='\(youtubeURL)' allowfullscreen></iframe>";
-                self.videoView.loadHTMLString(code as String, baseURL: nil)
-                  // let uul = NSURL(string: "www.youtube.com")
-                    //self.videoView.loadHTMLString("<iframe src='www.youtube.com' ></iframe>", baseURL: nil)*/
-                    
-                    let urlPath = "http://www.youtube.com/watch?v=\(youString)"
-
-                        let requestUrl = URL(string: urlPath)
-                        let request = URLRequest(url: requestUrl!)
-                        self.videoView.loadRequest(request)
-                }
+                        print("response: \(responseDictionary)")
+                        self.youtubeDict = responseDictionary["results"] as? [NSDictionary]
+                                                                
+                        if self.youtubeDict?.count != 0 {
+                            
+                            self.youtube = (self.youtubeDict?[0])! as NSDictionary
+                                                                    
+                                let youString = self.youtube!["key"] as! String
+                                let urlPath = "\(BASE_YOUTUBE_URL)\(youString)"
+                                let requestUrl = URL(string: urlPath)
+                                let request = URLRequest(url: requestUrl!)
+                                self.videoView.loadRequest(request)
+                        
+                        }
                     }
-                
                 }
         });
         task.resume()
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        if webView.isLoading {
+            return
+        }
+       
+        MBProgressHUD.hide(for: self.view, animated: false)
         
-        //print(youtubeDict)
-        //let endPoint = youtube!["key"] as! String
-
-}
+    }
 }

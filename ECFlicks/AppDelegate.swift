@@ -52,12 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         tabBarController.tabBar.barTintColor = UIColor.black
         tabBarController.tabBar.tintColor = UIColor(red: 64.0/255.0, green: 224.0/255.0, blue: 208.0/255.0, alpha: 1.0)
-        //vc1.view.backgroundColor = UIColor.orangeColor()
         nowPlayingNavigationController.tabBarItem.title = "Now Playing"
         nowPlayingNavigationController.tabBarItem.image = UIImage(named: "MovieStrip")
-        
 
-        //vc2.view.backgroundColor = UIColor.purpleColor()
         topRatedNavigationController.tabBarItem.title = "Top Rated"
         topRatedNavigationController.tabBarItem.image = UIImage(named: "Star")
         

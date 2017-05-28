@@ -59,7 +59,7 @@ class MovieCell: UITableViewCell {
                 }
         },
             failure: { (imageRequest, imageResponse, error) -> Void in
-                NSLog(error.localizedDescription)
+                NSLog("Image: \(error.localizedDescription)")
         })
     }
 

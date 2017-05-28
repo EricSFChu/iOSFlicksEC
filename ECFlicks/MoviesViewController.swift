@@ -26,10 +26,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     var endPoint: String!
     var pageNumber: Int = 1
-    let threshold: CGFloat = 1000.0
+    let threshold: CGFloat = 1400.0
     var loading = false
     var isSearching = false
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,22 +42,22 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         searchBar.isHidden = false
         errorCell.isHidden = true
+        searchBar.delegate = self
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        tableView.decelerationRate = UIScrollViewDecelerationRateFast
         
         self.navigationController?.navigationBar.barTintColor = UIColor.black
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        
-        searchBar.delegate = self
         
         if pageNumber == 1 {
             loadFromSource()
         }
         
-        
-        
         self.tableView.addSubview(self.refreshControl)
         
-        tableView.dataSource = self
-        tableView.delegate = self
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -94,6 +93,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func loadFromSource(){
+        loading = true
         let pageNumCheck = pageNumber == 1 ? 1 : pageNumber + 1
         pageNumber += 1
         let endPoint2 = endPoint!
@@ -109,6 +109,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         )
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
+        MBProgressHUD.setAnimationDuration(2.0)
+        
         
         let task : URLSessionDataTask = session.dataTask(with: request,
             completionHandler: { (dataOrNil, response, error) in
@@ -120,12 +122,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                         }
                             self.tableView.reloadData()
                     }
-                } else {
-                    NSLog(error.debugDescription)
+                    
                 }
         
                 MBProgressHUD.hide(for: self.view, animated: false)
-                
+                self.loading = false
         });
         
         task.resume()
@@ -172,7 +173,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         if !isSearching {
             
             loadFromSource()
-            self.tableView.reloadData()
             refreshControl.endRefreshing()
             
         }
