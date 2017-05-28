@@ -102,11 +102,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let urlStrUrl = URL(string: urlStr!)
 
         let request = URLRequest(url: urlStrUrl!)
-        let session = URLSession(
-            configuration: URLSessionConfiguration.default,
-            delegate:nil,
-            delegateQueue:OperationQueue.main
-        )
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         MBProgressHUD.setAnimationDuration(2.0)

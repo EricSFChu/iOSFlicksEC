@@ -8,6 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		1C922A2D4D64AFDCFD20F63E /* Pods_ECFlicks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D16257054595BE5CA6D9E59 /* Pods_ECFlicks.framework */; };
+		7A0358811EDA78AA00FEF8D9 /* libAppnextLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A03587D1EDA75D200FEF8D9 /* libAppnextLib.a */; };
+		7A0358821EDA78AA00FEF8D9 /* libAppnextSDKCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A03587E1EDA75D200FEF8D9 /* libAppnextSDKCore.a */; };
+		7A03588A1EDA797500FEF8D9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0358891EDA797500FEF8D9 /* QuartzCore.framework */; };
+		7A03588C1EDA797E00FEF8D9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A03588B1EDA797E00FEF8D9 /* Security.framework */; };
+		7A03588E1EDA798600FEF8D9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A03588D1EDA798600FEF8D9 /* CFNetwork.framework */; };
+		7A0358901EDA798D00FEF8D9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A03588F1EDA798D00FEF8D9 /* AVFoundation.framework */; };
+		7A0358921EDA799500FEF8D9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0358911EDA799500FEF8D9 /* SystemConfiguration.framework */; };
+		7A0358941EDA799F00FEF8D9 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0358931EDA799F00FEF8D9 /* MobileCoreServices.framework */; };
+		7A0358961EDA79A500FEF8D9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0358951EDA79A500FEF8D9 /* CoreGraphics.framework */; };
+		7A0358981EDA79AC00FEF8D9 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0358971EDA79AC00FEF8D9 /* CoreMedia.framework */; };
+		7A03589A1EDA79B200FEF8D9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0358991EDA79B200FEF8D9 /* AdSupport.framework */; };
+		7A03589C1EDA79BE00FEF8D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A03589B1EDA79BE00FEF8D9 /* UIKit.framework */; };
+		7A03589E1EDA79C600FEF8D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A03589D1EDA79C600FEF8D9 /* Foundation.framework */; };
+		7A0358A01EDA79CD00FEF8D9 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A03589F1EDA79CD00FEF8D9 /* CoreTelephony.framework */; };
 		7A1D7B881C4593E100959E94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1D7B871C4593E100959E94 /* AppDelegate.swift */; };
 		7A1D7B8D1C4593E100959E94 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A1D7B8B1C4593E100959E94 /* Main.storyboard */; };
 		7A1D7B8F1C4593E100959E94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A1D7B8E1C4593E100959E94 /* Assets.xcassets */; };
@@ -31,6 +45,38 @@
 /* Begin PBXFileReference section */
 		1F5184838E10F3FFB4670647 /* Pods-ECFlicks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ECFlicks.release.xcconfig"; path = "Pods/Target Support Files/Pods-ECFlicks/Pods-ECFlicks.release.xcconfig"; sourceTree = "<group>"; };
 		3D16257054595BE5CA6D9E59 /* Pods_ECFlicks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ECFlicks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A03587B1EDA75C200FEF8D9 /* AppnextIOSSDK */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AppnextIOSSDK; path = ../AppnextIOSSDK_1.8.2/AppnextIOSSDK; sourceTree = "<group>"; };
+		7A03587D1EDA75D200FEF8D9 /* libAppnextLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAppnextLib.a; path = ../AppnextIOSSDK_1.8.2/AppnextIOSSDK/libAppnextLib.a; sourceTree = "<group>"; };
+		7A03587E1EDA75D200FEF8D9 /* libAppnextSDKCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAppnextSDKCore.a; path = ../AppnextIOSSDK_1.8.2/AppnextIOSSDK/libAppnextSDKCore.a; sourceTree = "<group>"; };
+		7A0358841EDA793000FEF8D9 /* AppnextAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppnextAd.h; sourceTree = "<group>"; };
+		7A0358851EDA793000FEF8D9 /* AppnextAdConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppnextAdConfiguration.h; sourceTree = "<group>"; };
+		7A0358861EDA793000FEF8D9 /* AppnextAdData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppnextAdData.h; sourceTree = "<group>"; };
+		7A0358871EDA793000FEF8D9 /* AppnextSDKCoreApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppnextSDKCoreApi.h; sourceTree = "<group>"; };
+		7A0358881EDA793000FEF8D9 /* AppnextSDKCorePublicDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppnextSDKCorePublicDefs.h; sourceTree = "<group>"; };
+		7A0358891EDA797500FEF8D9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		7A03588B1EDA797E00FEF8D9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7A03588D1EDA798600FEF8D9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		7A03588F1EDA798D00FEF8D9 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		7A0358911EDA799500FEF8D9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7A0358931EDA799F00FEF8D9 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		7A0358951EDA79A500FEF8D9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7A0358971EDA79AC00FEF8D9 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		7A0358991EDA79B200FEF8D9 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		7A03589B1EDA79BE00FEF8D9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7A03589D1EDA79C600FEF8D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7A03589F1EDA79CD00FEF8D9 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		7A0358A11EDA7B1C00FEF8D9 /* AppnextFullScreenVideoAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppnextFullScreenVideoAd.h; sourceTree = "<group>"; };
+		7A0358A21EDA7B1C00FEF8D9 /* AppnextFullScreenVideoAdConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppnextFullScreenVideoAdConfiguration.h; sourceTree = "<group>"; };
+		7A0358A31EDA7B1C00FEF8D9 /* AppnextInterstitialAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppnextInterstitialAd.h; sourceTree = "<group>"; };
+		7A0358A41EDA7B1C00FEF8D9 /* AppnextInterstitialAdConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppnextInterstitialAdConfiguration.h; sourceTree = "<group>"; };
+		7A0358A51EDA7B1C00FEF8D9 /* AppnextLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppnextLib.h; sourceTree = "<group>"; };
+		7A0358A61EDA7B1C00FEF8D9 /* AppnextRewardedServerSidePostbackParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppnextRewardedServerSidePostbackParams.h; sourceTree = "<group>"; };
+		7A0358A71EDA7B1C00FEF8D9 /* AppnextRewardedVideoAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppnextRewardedVideoAd.h; sourceTree = "<group>"; };
+		7A0358A81EDA7B1C00FEF8D9 /* AppnextRewardedVideoAdConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppnextRewardedVideoAdConfiguration.h; sourceTree = "<group>"; };
+		7A0358A91EDA7B1C00FEF8D9 /* AppnextSDKApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppnextSDKApi.h; sourceTree = "<group>"; };
+		7A0358AA1EDA7B1C00FEF8D9 /* AppnextVideoAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppnextVideoAd.h; sourceTree = "<group>"; };
+		7A0358AB1EDA7B1C00FEF8D9 /* AppnextVideoAdConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppnextVideoAdConfiguration.h; sourceTree = "<group>"; };
+		7A0358AC1EDA7CED00FEF8D9 /* NuFlicks-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NuFlicks-Bridging-Header.h"; sourceTree = "<group>"; };
 		7A1D7B841C4593E100959E94 /* ECFlicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ECFlicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A1D7B871C4593E100959E94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A1D7B8C1C4593E100959E94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -59,6 +105,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A0358A01EDA79CD00FEF8D9 /* CoreTelephony.framework in Frameworks */,
+				7A03589E1EDA79C600FEF8D9 /* Foundation.framework in Frameworks */,
+				7A03589C1EDA79BE00FEF8D9 /* UIKit.framework in Frameworks */,
+				7A03589A1EDA79B200FEF8D9 /* AdSupport.framework in Frameworks */,
+				7A0358981EDA79AC00FEF8D9 /* CoreMedia.framework in Frameworks */,
+				7A0358961EDA79A500FEF8D9 /* CoreGraphics.framework in Frameworks */,
+				7A0358941EDA799F00FEF8D9 /* MobileCoreServices.framework in Frameworks */,
+				7A0358921EDA799500FEF8D9 /* SystemConfiguration.framework in Frameworks */,
+				7A0358901EDA798D00FEF8D9 /* AVFoundation.framework in Frameworks */,
+				7A03588E1EDA798600FEF8D9 /* CFNetwork.framework in Frameworks */,
+				7A03588C1EDA797E00FEF8D9 /* Security.framework in Frameworks */,
+				7A03588A1EDA797500FEF8D9 /* QuartzCore.framework in Frameworks */,
+				7A0358811EDA78AA00FEF8D9 /* libAppnextLib.a in Frameworks */,
+				7A0358821EDA78AA00FEF8D9 /* libAppnextSDKCore.a in Frameworks */,
 				1C922A2D4D64AFDCFD20F63E /* Pods_ECFlicks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -66,9 +126,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A0358831EDA78F800FEF8D9 /* AppNext */ = {
+			isa = PBXGroup;
+			children = (
+				7A0358841EDA793000FEF8D9 /* AppnextAd.h */,
+				7A0358A11EDA7B1C00FEF8D9 /* AppnextFullScreenVideoAd.h */,
+				7A0358A21EDA7B1C00FEF8D9 /* AppnextFullScreenVideoAdConfiguration.h */,
+				7A0358A31EDA7B1C00FEF8D9 /* AppnextInterstitialAd.h */,
+				7A0358A41EDA7B1C00FEF8D9 /* AppnextInterstitialAdConfiguration.h */,
+				7A0358A51EDA7B1C00FEF8D9 /* AppnextLib.h */,
+				7A0358A61EDA7B1C00FEF8D9 /* AppnextRewardedServerSidePostbackParams.h */,
+				7A0358A71EDA7B1C00FEF8D9 /* AppnextRewardedVideoAd.h */,
+				7A0358A81EDA7B1C00FEF8D9 /* AppnextRewardedVideoAdConfiguration.h */,
+				7A0358A91EDA7B1C00FEF8D9 /* AppnextSDKApi.h */,
+				7A0358AA1EDA7B1C00FEF8D9 /* AppnextVideoAd.h */,
+				7A0358AB1EDA7B1C00FEF8D9 /* AppnextVideoAdConfiguration.h */,
+				7A0358851EDA793000FEF8D9 /* AppnextAdConfiguration.h */,
+				7A0358861EDA793000FEF8D9 /* AppnextAdData.h */,
+				7A0358871EDA793000FEF8D9 /* AppnextSDKCoreApi.h */,
+				7A0358881EDA793000FEF8D9 /* AppnextSDKCorePublicDefs.h */,
+			);
+			name = AppNext;
+			sourceTree = "<group>";
+		};
 		7A1D7B7B1C4593E100959E94 = {
 			isa = PBXGroup;
 			children = (
+				7A0358AC1EDA7CED00FEF8D9 /* NuFlicks-Bridging-Header.h */,
+				7A0358831EDA78F800FEF8D9 /* AppNext */,
 				7A5A33F61C4F67B100D77879 /* Icons.xcassets */,
 				7A1D7B861C4593E100959E94 /* ECFlicks */,
 				7A1D7B851C4593E100959E94 /* Products */,
@@ -145,6 +230,21 @@
 		947B136A2A3EEE9353D45067 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7A03589F1EDA79CD00FEF8D9 /* CoreTelephony.framework */,
+				7A03589D1EDA79C600FEF8D9 /* Foundation.framework */,
+				7A03589B1EDA79BE00FEF8D9 /* UIKit.framework */,
+				7A0358991EDA79B200FEF8D9 /* AdSupport.framework */,
+				7A0358971EDA79AC00FEF8D9 /* CoreMedia.framework */,
+				7A0358951EDA79A500FEF8D9 /* CoreGraphics.framework */,
+				7A0358931EDA799F00FEF8D9 /* MobileCoreServices.framework */,
+				7A0358911EDA799500FEF8D9 /* SystemConfiguration.framework */,
+				7A03588F1EDA798D00FEF8D9 /* AVFoundation.framework */,
+				7A03588D1EDA798600FEF8D9 /* CFNetwork.framework */,
+				7A03588B1EDA797E00FEF8D9 /* Security.framework */,
+				7A0358891EDA797500FEF8D9 /* QuartzCore.framework */,
+				7A03587D1EDA75D200FEF8D9 /* libAppnextLib.a */,
+				7A03587E1EDA75D200FEF8D9 /* libAppnextSDKCore.a */,
+				7A03587B1EDA75C200FEF8D9 /* AppnextIOSSDK */,
 				3D16257054595BE5CA6D9E59 /* Pods_ECFlicks.framework */,
 			);
 			name = Frameworks;
@@ -417,11 +517,24 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = A8NM8AY685;
+				HEADER_SEARCH_PATHS = /Users/user/Documents/iOSProjects/AppnextIOSSDK_1.8.2/AppnextIOSSDK/Include;
 				INFOPLIST_FILE = ECFlicks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = /Users/user/Documents/iOSProjects/AppnextIOSSDK_1.8.2/AppNextIOSSDK;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"SwipeCellKit\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = CCSF.ECFlicks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/user/Documents/iOSProjects/ECFlicks/NuFlicks-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -435,11 +548,24 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = A8NM8AY685;
+				HEADER_SEARCH_PATHS = /Users/user/Documents/iOSProjects/AppnextIOSSDK_1.8.2/AppnextIOSSDK/Include;
 				INFOPLIST_FILE = ECFlicks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = /Users/user/Documents/iOSProjects/AppnextIOSSDK_1.8.2/AppNextIOSSDK;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"SwipeCellKit\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = CCSF.ECFlicks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/user/Documents/iOSProjects/ECFlicks/NuFlicks-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

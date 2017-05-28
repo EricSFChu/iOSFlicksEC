@@ -35,11 +35,6 @@ class ReviewsViewController: UIViewController, UITableViewDataSource, UITableVie
     func loadFromSource(){
         let url = URL(string:"https://api.themoviedb.org/3/movie/\(id)/reviews?api_key=\(API_KEY)")
         let request = URLRequest(url: url!)
-        let session = URLSession(
-            configuration: URLSessionConfiguration.default,
-            delegate:nil,
-            delegateQueue:OperationQueue.main
-        )
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         

@@ -36,13 +36,7 @@ class VideoViewController: UIViewController, UIWebViewDelegate {
         let movieID = movie!["id"] as! IntegerLiteralType
         
         let url = URL(string:"\(BASE_URL)\(movieID)/videos?api_key=\(API_KEY)")
-        let request = URLRequest(url: url!)
-        let session = URLSession(
-            configuration: URLSessionConfiguration.default,
-            delegate:nil,
-            delegateQueue:OperationQueue.main
-        )
-        
+        let request = URLRequest(url: url!)        
         
         let task : URLSessionDataTask = session.dataTask(with: request,
             completionHandler: { (dataOrNil, response, error) in

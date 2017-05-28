@@ -11,16 +11,17 @@ import UIKit
 
 class MovieModel
 {
-   private var _id: String!
-   private var _originalLanguage: String!
-   private var _title: String!
-   private var _overview: String!
-   private var _popularity: String!
-   private var _posterPath: String!
-   private var _releaseDate: String!
-   private var _backdropPath: String!
-   private var _voteCount: String!
-   private var _voteAverage: String!
+    private var _id: String!
+    private var _originalLanguage: String!
+    private var _title: String!
+    private var _overview: String!
+    private var _popularity: String!
+    private var _posterPath: String!
+    private var _releaseDate: String!
+    private var _backdropPath: String!
+    private var _voteCount: String!
+    private var _voteAverage: String!
+    private var _images: [String]!
     
     var id: String {
         return _id
@@ -90,5 +91,11 @@ class MovieModel
         }
         _voteCount = "\(String(describing: movie["vote_count"]))"
         _voteAverage = "\(String(describing: movie["vote_average"]))"
+    }
+    
+    func loadImages() {
+        
+        
+        
     }
 }
