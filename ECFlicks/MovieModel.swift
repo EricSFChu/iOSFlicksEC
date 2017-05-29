@@ -21,7 +21,12 @@ class MovieModel
     private var _backdropPath: String!
     private var _voteCount: String!
     private var _voteAverage: String!
+    private var _status: String!
+    private var _budget: Int!
+    private var _runtime: Int!
+    var _genre: [String]?
     var _images: [String]?
+    var _productionCompanies: [String]?
     
     var id: String {
         return _id
@@ -119,5 +124,9 @@ class MovieModel
              completed()
         });
         task.resume()
+    }
+    
+    func loadMovieDetails(completed: @escaping CompletedDownload) {
+        
     }
 }

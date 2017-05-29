@@ -113,10 +113,18 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                     if let responseDictionary = try! JSONSerialization.jsonObject(
                         with: data, options:[]) as? NSDictionary {
                         for movie in (responseDictionary["results"] as? [NSDictionary])! {
-                            self.movies?.append(movie)
+                            if (movie["poster_path"] as? String) != nil {
+                                
+                                self.movies?.append(movie)
+
+                            } else {
+                                print("\(movie) SKIPPED")
+                            }
+                            
+                        
                         }
                             self.tableView.reloadData()
-                    }
+                        }
                     
                 }
         

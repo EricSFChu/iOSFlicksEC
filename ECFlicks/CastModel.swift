@@ -1,0 +1,19 @@
+//
+//  CastModel.swift
+//  ECFlicks
+//
+//  Created by EricDev on 5/28/17.
+//  Copyright © 2017 EricDev. All rights reserved.
+//
+
+import Foundation
+
+class CastModel {
+    
+    private var _name: String!
+    private var _id: String! //is int from JSON
+    private var _character: String!
+    private var _creditId: String!
+    private var _profilePath: String! //imageURI
+    
+}

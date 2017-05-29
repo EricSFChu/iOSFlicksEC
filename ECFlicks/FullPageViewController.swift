@@ -15,7 +15,6 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var overViewLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var detailView: UIView!
-    @IBOutlet weak var backdropImage: UIImageView!
     @IBOutlet weak var transparantView: UIView!
     @IBOutlet weak var imageCollectionView: UICollectionView!
     
@@ -44,6 +43,8 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         imageCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
         scrollView.decelerationRate = UIScrollViewDecelerationRateFast
         
+        transparantView.layer.cornerRadius = 5.0
+        
         loadPage()
 
     }
@@ -53,9 +54,13 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let movies = movieObj._images {
+        if let movies = movieObj._images, movies.count > 3 {
             
             return movies.count
+            
+        } else if let movies = movieObj._images, movies.count < 4{
+            
+            return 3
             
         } else {
             
@@ -69,8 +74,12 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         let cell = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
         
-        cell.configureCell(imageURI: movieObj.getURI(index: indexPath.row))
-
+        if (movieObj._images?.count)! > indexPath.row {
+            
+            cell.configureCell(imageURI: movieObj.getURI(index: indexPath.row))
+        
+        }
+        
         return cell
     }
     
@@ -116,18 +125,11 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
             let largeImageUrl = POSTER_BASE_URL + posterPath
             let smallImageRequest = URLRequest(url: URL(string: smallImageUrl)!)
             let largeImageRequest = URLRequest(url: URL(string: largeImageUrl)!)
-            
-            let backdropPath = movie!["backdrop_path"] as? String
-            if backdropPath != nil{
-                let backdropURL = URL(string: POSTER_BASE_URL + backdropPath!)
-                self.backdropImage.setImageWith(backdropURL!)
-            } else {
-                self.backdropImage.setImageWith(URL(string: largeImageUrl)!)
-            }
+            let placeHolderImg = UIImage(named: "background")
             
             self.fullImage.setImageWith(
                 smallImageRequest,
-                placeholderImage: nil,
+                placeholderImage: placeHolderImg,
                 success: { (smallImageRequest, smallImageResponse, smallImage) -> Void in
                     
                     // smallImageResponse will be nil if the smallImage is already available
