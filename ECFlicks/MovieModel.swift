@@ -11,6 +11,7 @@ import UIKit
 
 class MovieModel
 {
+    
     private var _id: String!
     private var _originalLanguage: String!
     private var _title: String!
@@ -57,7 +58,15 @@ class MovieModel
     }
     
     var releaseDate: String {
-        return _releaseDate
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let date = dateFormatter.date(from: _releaseDate)
+        
+        dateFormatter.dateStyle = .full
+        dateFormatter.timeStyle = .none
+
+        return "\(dateFormatter.string(from: date!))"
     }
     
     var backdropPath: String {

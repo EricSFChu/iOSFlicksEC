@@ -14,9 +14,9 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overViewLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var detailView: UIView!
     @IBOutlet weak var transparantView: UIView!
     @IBOutlet weak var imageCollectionView: UICollectionView!
+    @IBOutlet weak var tableView: UITableView!
     
     var movie: NSDictionary?
     var movieObj: MovieModel!
@@ -50,7 +50,7 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: detailView.frame.size.height + transparantView.frame.size.height + fullImage.frame.size.height + 49 + (self.navigationController?.navigationBar.frame.height)! + imageCollectionView.frame.size.height)
+        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: transparantView.frame.size.height + fullImage.frame.size.height + (self.navigationController?.navigationBar.frame.height)! + imageCollectionView.frame.size.height + tableView.frame.size.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

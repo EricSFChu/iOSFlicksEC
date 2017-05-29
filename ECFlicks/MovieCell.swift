@@ -35,6 +35,7 @@ class MovieCell: UITableViewCell {
         overviewLabel.text = movie.overview
         releaseLabel.text = "Release Date: \(movie.releaseDate)"
         originalLanguageLabel.text = "Original Language: \(movie.originalLanguage.capitalized)"
+        posterView.layer.cornerRadius = 3.0
         
         let filePath = movie.posterPath
         

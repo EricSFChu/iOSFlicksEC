@@ -11,6 +11,6 @@ import Foundation
 class TrailerModel {
     
     private var _id: String!
-    
+    private var _name: String!
     
 }
