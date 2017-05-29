@@ -39,12 +39,16 @@ UISearchBarDelegate{
     
     @IBAction func searchButtonCall(_ sender: AnyObject) {
         if  (self.searchBar.isHidden == true) {
+            
             self.searchBar.isHidden = false
             self.collectionView.reloadData()
+            
         }else {
+            
             self.searchBar.isHidden = true
             searchBar.resignFirstResponder()
             self.collectionView.reloadData()
+            
         }
     }
     
@@ -53,6 +57,7 @@ UISearchBarDelegate{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     @available(iOS 2.0, *)
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -74,9 +79,6 @@ UISearchBarDelegate{
         }
         
     }
-    @IBAction func segueToListView(_ sender: AnyObject) {
-        performSegue(withIdentifier: "Back to list", sender: nil)
-    }
     
     @available(iOS 2.0, *)
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -96,6 +98,10 @@ UISearchBarDelegate{
    
     @IBAction func onTap(_ sender: AnyObject) {
         view.endEditing(true)
+    }
+    
+    @IBAction func segueToListView(_ sender: AnyObject) {
+        performSegue(withIdentifier: "Back to list", sender: nil)
     }
     
     

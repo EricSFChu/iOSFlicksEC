@@ -21,11 +21,12 @@ class MovieModel
     private var _backdropPath: String!
     private var _voteCount: String!
     private var _voteAverage: String!
-    private var _images: [String]!
+    var _images: [String]?
     
     var id: String {
         return _id
     }
+    
     
     var originalLanguage: String {
         return _originalLanguage
@@ -66,9 +67,15 @@ class MovieModel
         return _voteAverage
     }
     
+    func getURI(index: Int) -> String {
+        
+        return _images![index]
+        
+    }
+    
     init (movie: NSDictionary)
     {
-        _id = "\(String(describing: movie["id"]))"
+        _id = "\(String(describing: movie["id"]!))"
         _originalLanguage = movie["original_language"] as! String
         _title = movie["title"] as! String
         _overview = movie["overview"] as! String
@@ -93,9 +100,24 @@ class MovieModel
         _voteAverage = "\(String(describing: movie["vote_average"]))"
     }
     
-    func loadImages() {
+    func loadImageURIs(completed: @escaping CompletedDownload) {
+        _images = [String]()
+        let imagesStr = "\(BASE_URL)\(id)/images?api_key=\(API_KEY)"
+        let imagesURL = URL(string: imagesStr)
+        let request = URLRequest(url: imagesURL!)
         
-        
-        
+        let task : URLSessionDataTask = session.dataTask(with: request,
+            completionHandler: { (dataOrNil, response, error) in
+                if let data = dataOrNil {
+                    if let responseDictionary = try! JSONSerialization.jsonObject(
+                        with: data, options: []) as? NSDictionary {
+                        for imageURI in (responseDictionary["backdrops"] as? [NSDictionary])! {
+                            self._images!.append(imageURI["file_path"] as! String)
+                        }
+                    }
+                }
+             completed()
+        });
+        task.resume()
     }
 }

@@ -19,3 +19,6 @@ let session = URLSession(
     delegate:nil,
     delegateQueue:OperationQueue.main
 )
+
+typealias CompletedDownload = () -> ()
+
