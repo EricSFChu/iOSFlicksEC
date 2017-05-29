@@ -10,5 +10,6 @@ target 'ECFlicks' do
 pod 'AFNetworking'
 pod 'MBProgressHUD'
 pod 'SwipeCellKit'
+pod 'Google-Mobile-Ads-SDK'
 
 end

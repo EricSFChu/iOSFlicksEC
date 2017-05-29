@@ -14,19 +14,22 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - Google-Mobile-Ads-SDK (7.20.0)
   - MBProgressHUD (1.0.0)
   - SwipeCellKit (1.8.0)
 
 DEPENDENCIES:
   - AFNetworking
+  - Google-Mobile-Ads-SDK
   - MBProgressHUD
   - SwipeCellKit
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  Google-Mobile-Ads-SDK: 168312cdc167fa22746d4ea8e839fc4825dd2966
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   SwipeCellKit: 01a58bf7e63d5df09aedd161828833944c4c333c
 
-PODFILE CHECKSUM: c9aade5e5fabb3b13e72a3d398309b7b1f2cc5fa
+PODFILE CHECKSUM: 6ca92b3c5a6cf18821aff4ce1ac3674ab40e942d
 
 COCOAPODS: 1.2.1

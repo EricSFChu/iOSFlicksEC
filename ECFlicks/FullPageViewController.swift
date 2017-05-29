@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class FullPageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -17,6 +18,7 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var transparantView: UIView!
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bannerView2: GADBannerView!
     
     var movie: NSDictionary?
     var movieObj: MovieModel!
@@ -27,6 +29,9 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         if let topItem = self.navigationController?.navigationBar.topItem {
             topItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         }
+        bannerView2.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView2.rootViewController = self
+        bannerView2.load(GADRequest())
         
         self.navigationController?.navigationBar.barTintColor = UIColor.black
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
@@ -125,11 +130,10 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
             let largeImageUrl = POSTER_BASE_URL + posterPath
             let smallImageRequest = URLRequest(url: URL(string: smallImageUrl)!)
             let largeImageRequest = URLRequest(url: URL(string: largeImageUrl)!)
-            let placeHolderImg = UIImage(named: "background")
             
             self.fullImage.setImageWith(
                 smallImageRequest,
-                placeholderImage: placeHolderImg,
+                placeholderImage: nil,
                 success: { (smallImageRequest, smallImageResponse, smallImage) -> Void in
                     
                     // smallImageResponse will be nil if the smallImage is already available

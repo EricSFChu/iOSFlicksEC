@@ -9,6 +9,7 @@
 import UIKit
 import AFNetworking
 import MBProgressHUD
+import GoogleMobileAds
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
@@ -17,6 +18,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var searchButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var bannerView: GADBannerView!
     
     var movies: [NSDictionary]?
     var filteredData: [NSDictionary]!
@@ -39,11 +41,17 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         movies = [NSDictionary]()
         filteredData = [NSDictionary]()
         
-        searchBar.isHidden = false
+        searchBar.isHidden = true
         errorButton.isHidden = true
         searchBar.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        let request = GADRequest()
+        request.testDevices = [ "108971e7c80d88709604cbc5bbd22fb6" ]
+        //bannerView.adUnitID = ADMOB
+        bannerView.rootViewController = self
+        bannerView.load(request)
         
         tableView.decelerationRate = UIScrollViewDecelerationRateFast
         
@@ -64,12 +72,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         if currentReachabilityStatus != .notReachable {
             
             self.errorButton.isHidden = true
-            self.searchBar.isHidden = false
             loadFromSource()
             
         } else {
             
-            self.searchBar.isHidden = true
             self.errorButton.isHidden = false
             
         }
@@ -79,10 +85,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         if  (searchBar.isHidden) {
         
             searchBar.isHidden = false
+            bannerView.isHidden = true
             
         }else {
             
             searchBar.isHidden = true
+            bannerView.isHidden = false
             searchBar.resignFirstResponder()
         }
     }

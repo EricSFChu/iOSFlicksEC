@@ -8,14 +8,15 @@
 
 import UIKit
 import MBProgressHUD
+import GoogleMobileAds
 
 class NewCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,
 UISearchBarDelegate{
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet weak var backToListView: UIBarButtonItem!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var bannerView3: GADBannerView!
     
-    @IBOutlet weak var tabedBarController: UITabBar!
     
     var movies: [NSDictionary]?
     var filteredData: [NSDictionary]?
@@ -30,6 +31,10 @@ UISearchBarDelegate{
         collectionView.dataSource = self
         searchBar.delegate = self
         searchButtonCall(self)
+        
+        bannerView3.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView3.rootViewController = self
+        bannerView3.load(GADRequest())
         
         self.navigationController?.navigationBar.barTintColor = UIColor.black
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
@@ -132,7 +137,14 @@ UISearchBarDelegate{
             
             let cell = sender as! UICollectionViewCell
             let indexPath = collectionView.indexPath(for: cell)
-            let movie = movies![indexPath!.row]
+            let movie: NSDictionary!
+            
+            if isSearching {
+                movie = filteredData![(indexPath?.row)!]
+            } else {
+                movie = movies![indexPath!.row]
+            }
+           
             
             let detailViewController = segue.destination as! FullPageViewController
             detailViewController.movie = movie

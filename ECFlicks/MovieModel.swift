@@ -101,8 +101,7 @@ class MovieModel
         
         }
         
-        
-        
+
         _releaseDate = movie["release_date"] as! String
         
         if let backdrop = movie["backdrop_path"] {
