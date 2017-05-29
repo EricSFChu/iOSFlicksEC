@@ -125,10 +125,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                                 
                                 self.movies?.append(movie)
 
-                            } else {
-                                print("\(movie) SKIPPED")
                             }
-                            
                         
                         }
                             self.tableView.reloadData()

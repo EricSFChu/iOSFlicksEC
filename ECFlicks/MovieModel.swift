@@ -25,29 +25,105 @@ class MovieModel
     private var _status: String!
     private var _budget: Int!
     private var _runtime: Int!
-    var _genre: [String]?
-    var _images: [String]?
-    var _productionCompanies: [String]?
+    private var _imdbId: String!
+    
+    fileprivate var _genre: [String]?
+    fileprivate var _images: [String]?
+    fileprivate var _productionCompanies: [String]?
     
     var id: String {
+        
         return _id
+        
+    }
+    
+    var productionCompanies: String {
+        
+        var str: String = ""
+        
+        if _productionCompanies != nil && _productionCompanies?.count != 0 {
+            
+            for company in _productionCompanies! {
+                print(company)
+                str += "\(company), "
+                
+            }
+            
+            str = str.replacingOccurrences(of: ",\\s$", with: "", options: .regularExpression)
+            
+        }
+        
+        return str
+        
+    }
+    
+    var genres: String {
+        
+        var str: String = ""
+        
+        if _genre != nil && _genre?.count != 0 {
+            
+            for genre in _genre! {
+                
+                str += "\(genre), "
+                
+            }
+            
+            str = str.replacingOccurrences(of: ",\\s$", with: "", options: .regularExpression)            
+        }
+        
+        return str
+
+    }
+    
+    var status: String {
+        
+        return _status
+        
+    }
+    
+    var budget: String {
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        let formattedNum = numberFormatter.string(from: NSNumber(value: _budget))
+        
+        return "$\(String(describing: formattedNum!))"
+        
+    }
+    
+    var runtime: String {
+        
+        let hours = _runtime / 60
+        let minutes = _runtime % 60
+        
+        return "\(hours)hr \(minutes)m"
+        
     }
     
     
     var originalLanguage: String {
+        
         return _originalLanguage
+        
     }
     
     var title: String {
+        
         return _title
+        
     }
     
     var overview: String {
+        
         return _overview
+        
     }
     
     var popularity: String {
+        
         return _popularity
+        
     }
     
     var posterPath: String {
@@ -70,15 +146,32 @@ class MovieModel
     }
     
     var backdropPath: String {
+        
         return _backdropPath
+        
     }
     
     var voteCount: String {
+        
         return _voteCount
+        
     }
     
     var voteAverage: String {
-        return _voteAverage
+        
+        return "\(_voteAverage!)/10"
+        
+    }
+    
+    func getMovieImageCount() -> Int {
+        if _images == nil {
+            
+            return 0
+            
+        }
+        
+        return _images!.count
+        
     }
     
     func getURI(index: Int) -> String {
@@ -109,8 +202,8 @@ class MovieModel
             self._backdropPath = backdrop as? String
     
         }
-        _voteCount = "\(String(describing: movie["vote_count"]))"
-        _voteAverage = "\(String(describing: movie["vote_average"]))"
+        _voteCount = "\(String(describing: movie["vote_count"]!))"
+        _voteAverage = "\(String(describing: movie["vote_average"]!))"
     }
     
     func loadImageURIs(completed: @escaping CompletedDownload) {
@@ -125,7 +218,9 @@ class MovieModel
                     if let responseDictionary = try! JSONSerialization.jsonObject(
                         with: data, options: []) as? NSDictionary {
                         for imageURI in (responseDictionary["backdrops"] as? [NSDictionary])! {
+                            
                             self._images!.append(imageURI["file_path"] as! String)
+                            
                         }
                     }
                 }
@@ -135,6 +230,87 @@ class MovieModel
     }
     
     func loadMovieDetails(completed: @escaping CompletedDownload) {
+        
+        if _genre == nil {
+            
+            _genre = [String]()
+            
+        }
+        
+        if _productionCompanies == nil {
+            
+            _productionCompanies = [String]()
+            
+        }
+        
+        let url: NSString = "\(BASE_URL)\(_id!)?api_key=\(API_KEY)" as NSString
+        let urlStr = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let urlStrUrl = URL(string: urlStr!)
+        
+        let request = URLRequest(url: urlStrUrl!)
+        
+        let task: URLSessionDataTask = session.dataTask(with: request,
+            completionHandler: { (dataOrNil, response, error) in
+                if let data = dataOrNil {
+                    if let responseDictionary = try! JSONSerialization.jsonObject(
+                        with: data, options: []) as? NSDictionary {
+                        if let status = responseDictionary["status"] {
+                            
+                            self._status = status as! String
+                        
+                        }
+                        
+                        if let imdb_id = responseDictionary["imdb_id"] {
+                            
+                            self._imdbId = imdb_id as! String
+                            
+                        }
+                        
+                        if let budgetInt = responseDictionary["budget"] {
+                            
+                            self._budget = budgetInt as! Int
+                            
+                        }
+                        
+                        if let runTimeInt = responseDictionary["runtime"] {
+                            
+                            self._runtime = runTimeInt as! Int
+                            
+                        }
+                        
+                        if let genreArr = responseDictionary["genres"] {
+
+                            for genre in (genreArr as! [NSDictionary])  {
+                                
+                                if let genreStr = genre["name"] {
+                                    
+                                    self._genre!.append(genreStr as! String)
+                                    
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                        if let productionArr = responseDictionary["production_companies"] {
+                            
+                            for production in (productionArr as! [NSDictionary]) {
+                                
+                                if let productionStr = production["name"] {
+                                    
+                                    self._productionCompanies!.append(productionStr as! String)
+
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                }
+            completed()
+        })
+        task.resume()
         
     }
 }

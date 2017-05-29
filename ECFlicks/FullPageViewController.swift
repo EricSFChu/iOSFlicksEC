@@ -19,6 +19,13 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bannerView2: GADBannerView!
+    @IBOutlet weak var budgetLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var runtimeLabel: UILabel!
+    @IBOutlet weak var genreLabel: UILabel!
+    @IBOutlet weak var productionLabel: UILabel!
+    @IBOutlet weak var voteAverageLabel: UILabel!
+    @IBOutlet weak var bannerView4: GADBannerView!
     
     var movie: NSDictionary?
     var movieObj: MovieModel!
@@ -32,16 +39,19 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         bannerView2.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView2.rootViewController = self
         bannerView2.load(GADRequest())
+        bannerView4.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView4.rootViewController = self
+        bannerView4.load(GADRequest())
         
         self.navigationController?.navigationBar.barTintColor = UIColor.black
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        //let youtubeBaseURL = "https://www.youtube.com/watch?v="
-        //the key is key under http://api.themoviedb.org/3/movie/257088/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8e
         
         movieObj = MovieModel(movie: movie!)
         movieObj.loadImageURIs() {
             self.imageCollectionView.reloadData()
         }
+        
+        setMovieDetails()
         
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
@@ -59,11 +69,11 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let movies = movieObj._images, movies.count > 3 {
+        if movieObj.getMovieImageCount() > 3 {
             
-            return movies.count
+            return movieObj.getMovieImageCount()
             
-        } else if let movies = movieObj._images, movies.count < 4{
+        } else if  movieObj.getMovieImageCount() < 4 {
             
             return 3
             
@@ -79,7 +89,7 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         let cell = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
         
-        if (movieObj._images?.count)! > indexPath.row {
+        if movieObj.getMovieImageCount() > indexPath.row {
             
             cell.configureCell(imageURI: movieObj.getURI(index: indexPath.row))
         
@@ -117,6 +127,21 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         self.navigationController?.isNavigationBarHidden = false
         self.tabBarController?.tabBar.isHidden = false
         tapper.view?.removeFromSuperview()
+        
+    }
+    
+    func setMovieDetails(){
+        
+        movieObj.loadMovieDetails {
+            
+            self.budgetLabel.text = self.movieObj.budget
+            self.runtimeLabel.text = self.movieObj.runtime
+            self.genreLabel.text = self.movieObj.genres
+            self.productionLabel.text = self.movieObj.productionCompanies
+            self.statusLabel.text = self.movieObj.status
+            self.voteAverageLabel.text = self.movieObj.voteAverage
+            
+        }
         
     }
     
