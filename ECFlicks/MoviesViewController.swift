@@ -214,6 +214,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.reloadData()
     }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+        searchBar.text = ""
+        searchBar.isHidden = true
+       
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         if !isSearching {

@@ -44,7 +44,7 @@ class MovieModel
         if _productionCompanies != nil && _productionCompanies?.count != 0 {
             
             for company in _productionCompanies! {
-                print(company)
+
                 str += "\(company), "
                 
             }
@@ -69,7 +69,7 @@ class MovieModel
                 
             }
             
-            str = str.replacingOccurrences(of: ",\\s$", with: "", options: .regularExpression)            
+            str = str.replacingOccurrences(of: ",\\s$", with: "", options: .regularExpression)
         }
         
         return str
@@ -202,8 +202,17 @@ class MovieModel
             self._backdropPath = backdrop as? String
     
         }
+        
         _voteCount = "\(String(describing: movie["vote_count"]!))"
-        _voteAverage = "\(String(describing: movie["vote_average"]!))"
+        
+        if let vote_average = movie["vote_average"] {
+            
+            let num = vote_average as! Double
+            
+            _voteAverage = String(format: "%.1f", num)
+        }
+        
+        
     }
     
     func loadImageURIs(completed: @escaping CompletedDownload) {

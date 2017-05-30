@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMobileAds
 
-class FullPageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class FullPageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var fullImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -26,9 +26,12 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var productionLabel: UILabel!
     @IBOutlet weak var voteAverageLabel: UILabel!
     @IBOutlet weak var bannerView4: GADBannerView!
+    @IBOutlet weak var segmentedController: UISegmentedControl!
     
     var movie: NSDictionary?
     var movieObj: MovieModel!
+    var popUpImageView: UIImageView!
+    var cast = [CastModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,11 +55,17 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
         
         setMovieDetails()
+        loadCast() {
+            self.tableView.reloadData()
+        }
         
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
         imageCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
         scrollView.decelerationRate = UIScrollViewDecelerationRateFast
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.decelerationRate = UIScrollViewDecelerationRateFast
         
         transparantView.layer.cornerRadius = 5.0
         
@@ -65,8 +74,33 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: transparantView.frame.size.height + fullImage.frame.size.height + (self.navigationController?.navigationBar.frame.height)! + imageCollectionView.frame.size.height + tableView.frame.size.height)
+        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: transparantView.frame.size.height + fullImage.frame.size.height + (self.navigationController?.navigationBar.frame.height)! + imageCollectionView.frame.size.height + tableView.frame.size.height + bannerView2.frame.size.height + bannerView4.frame.size.height)
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if segmentedController.selectedSegmentIndex == 0 {
+           
+            return cast.count
+        
+        }
+        
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CastTrailerCell", for: indexPath) as! CastTrailerCell
+        if segmentedController.selectedSegmentIndex == 0 {
+            
+            cell.configCell(cast: cast[indexPath.row])
+        }
+        
+        return cell
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if movieObj.getMovieImageCount() > 3 {
@@ -101,9 +135,9 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let cell = imageCollectionView.cellForItem(at: indexPath) as! ImageCell
-        let imageView = cell.pictureView
+    
         
-        let popUpImageView = UIImageView(image: imageView?.image)
+        popUpImageView = UIImageView(image: cell.pictureView.image)
         popUpImageView.frame = UIScreen.main.bounds
         popUpImageView.backgroundColor = .black
         popUpImageView.contentMode = .scaleAspectFit
@@ -115,7 +149,7 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         self.view.addSubview(popUpImageView)
         
-        UIView.animate(withDuration: 1, delay: 0, options: [ .curveEaseIn ], animations: { popUpImageView.alpha = 1.0 }, completion: nil)
+        UIView.animate(withDuration: 1, delay: 0, options: [ .curveEaseIn ], animations: { self.popUpImageView.alpha = 1.0 }, completion: nil)
         
         self.navigationController?.isNavigationBarHidden = true
         self.tabBarController?.tabBar.isHidden = true
@@ -127,7 +161,17 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         self.navigationController?.isNavigationBarHidden = false
         self.tabBarController?.tabBar.isHidden = false
         tapper.view?.removeFromSuperview()
+        popUpImageView = nil
         
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        if (popUpImageView != nil && UIDevice.current.orientation.isLandscape) || (popUpImageView != nil && UIDevice.current.orientation.isPortrait)  {
+            
+            popUpImageView.frame = UIScreen.main.bounds
+            
+        }
     }
     
     func setMovieDetails(){
@@ -202,6 +246,37 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         overViewLabel.sizeToFit()
         
     }
+    
+    func loadCast(completed: @escaping CompletedDownload) {
+        
+        let url: NSString = "\(BASE_URL)\(movieObj.id)/credits?api_key=\(API_KEY)" as NSString
+        let urlStr = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let urlStrUrl = URL(string: urlStr!)
+        
+        let request = URLRequest(url: urlStrUrl!)
+        
+        let task: URLSessionDataTask = session.dataTask(with: request) { (dataOrNil, response, error) in
+            if let data = dataOrNil {
+                if let responseDictionary = try! JSONSerialization.jsonObject(
+                    with: data, options:[]) as? NSDictionary {
+         
+                        for cast in (responseDictionary["cast"] as? [NSDictionary])! {
+
+                            if (cast["profile_path"] as? NSNull) != nil {
+                            } else {
+                            
+                                self.cast.append(CastModel(cast: cast))
+
+                            }
+                        
+                        }
+                    }
+            }
+            completed()
+        }
+        task.resume()
+    }
+    
 
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -30,7 +30,7 @@ UISearchBarDelegate{
         collectionView.delegate = self
         collectionView.dataSource = self
         searchBar.delegate = self
-        searchButtonCall(self)
+        searchBar.isHidden = true
         
         bannerView3.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView3.rootViewController = self
@@ -130,6 +130,12 @@ UISearchBarDelegate{
         
         collectionView.reloadData()
         
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+        searchBar.text = ""
+        searchBar.isHidden = true
     }
   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

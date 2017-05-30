@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Set up tabbed bar
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [nowPlayingNavigationController, topRatedNavigationController, popularNavigationController, upcomingNavigationController]
+        tabBarController.viewControllers = [nowPlayingNavigationController, upcomingNavigationController, popularNavigationController, topRatedNavigationController]
         
         tabBarController.tabBar.barTintColor = UIColor.black
         tabBarController.tabBar.tintColor = UIColor(red: 64.0/255.0, green: 224.0/255.0, blue: 208.0/255.0, alpha: 1.0)
