@@ -49,6 +49,7 @@ class CastTrailerCell: UITableViewCell {
     
     func configCell(trailer: TrailerModel) {
         
+        profileImage.image = nil
         middleLabel.text = trailer.name.capitalized
         nameLabel.text = " "
         characterLabel.text = " "

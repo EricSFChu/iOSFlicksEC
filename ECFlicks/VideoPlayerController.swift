@@ -20,6 +20,8 @@ class VideoViewController: UIViewController, UIWebViewDelegate {
         
         videoView.delegate = self
         
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
         setupNav()
         loadVideo()
         

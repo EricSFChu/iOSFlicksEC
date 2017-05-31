@@ -1,5 +1,5 @@
 //
-//  ReviewCell.swift
+//  MovieLightCell.swift
 //  ECFlicks
 //
 //  Created by EricDev on 1/27/16.
@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import SwipeCellKit
 
-class ReviewCell: SwipeTableViewCell {
-    @IBOutlet weak var authorLabel: UILabel!
-    @IBOutlet weak var reviewLabel: UILabel!
+class MovieLightCell: UITableViewCell {
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var jobOrCharacterLabel: UILabel!
 
     
     override func awakeFromNib() {
@@ -22,10 +21,5 @@ class ReviewCell: SwipeTableViewCell {
         // Initialization code
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
 
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMobileAds
+import MBProgressHUD
 
 class FullPageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
 
@@ -78,10 +79,17 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         if segmentedController.selectedSegmentIndex == 0 {
             
+            let person = cast[indexPath.row]
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            person.loadBio {
+                MBProgressHUD.hide(for: self.view, animated: false)
+                self.performSegue(withIdentifier: "ToPersonVC", sender: person)
+            }
             
         } else if segmentedController.selectedSegmentIndex == 1 {
+            
             let youtubeURI: String = trailers[indexPath.row].id
-            performSegue(withIdentifier: "toVideo", sender: youtubeURI)
+            performSegue(withIdentifier: "ToVideoVC", sender: youtubeURI)
             
         } else if segmentedController.selectedSegmentIndex == 2 {
             
@@ -219,6 +227,12 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
             self.statusLabel.text = self.movieObj.status
             self.voteAverageLabel.text = self.movieObj.voteAverage
             self.releasedateLabel.text = self.movieObj.releaseDate
+            let title = self.movieObj.title
+            let overview = self.movieObj.overview
+            
+            self.titleLabel.text = title
+            self.overViewLabel.text = overview
+            self.overViewLabel.sizeToFit()
             
         }
         
@@ -269,14 +283,6 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
                 failure: { (request, response, error) -> Void in
                     NSLog(error.localizedDescription)
             })
-
-        
-        let title = movieObj.title
-        let overview = movieObj.overview
-        
-        titleLabel.text = title
-        overViewLabel.text = overview
-        overViewLabel.sizeToFit()
         
     }
     
@@ -297,7 +303,9 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
 
                             if (cast["profile_path"] as? NSNull) == nil {
                                 
-                                self.cast.append(CastModel(cast: cast))
+                                let castMember = CastModel(cast: cast)
+
+                                self.cast.append(castMember)
                                 
                             }
                         }
@@ -415,10 +423,17 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "toVideo" {
+        if segue.identifier == "ToVideoVC" {
             
             let vidView = segue.destination as! VideoViewController
             vidView.youtubeURI = sender as! String
+            
+        }
+        
+        if segue.identifier == "ToPersonVC" {
+            
+            let personVC = segue.destination as! PersonViewController
+            personVC.person = sender as! CastModel
             
         }
 

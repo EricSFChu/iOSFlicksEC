@@ -9,6 +9,7 @@
 import Foundation
 
 let BASE_URL = "https://api.themoviedb.org/3/movie/"
+let BASE_URL_PERSON = "https://api.themoviedb.org/3/person/"
 let POSTER_BASE_URL = "http://image.tmdb.org/t/p/w500"
 let POSTER_BASE_URL_LOWRES = "http://image.tmdb.org/t/p/w185"
 let BASE_YOUTUBE_URL = "http://www.youtube.com/watch?v="
