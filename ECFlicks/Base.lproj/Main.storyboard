@@ -719,6 +719,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Share" id="46v-i0-WK2">
                             <color key="tintColor" red="0.22638396918773651" green="0.86058688163757324" blue="0.77357661724090576" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="showShareOptionsWithSender:" destination="nwu-lz-dLa" id="Os7-0h-s06"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

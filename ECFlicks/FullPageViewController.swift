@@ -281,6 +281,7 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
             },
                 failure: { (request, response, error) -> Void in
                     NSLog(error.localizedDescription)
+                    self.fullImage.image = UIImage(named: "background")
             })
         
     }
@@ -419,6 +420,76 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         
     }
     
+    @IBAction func showShareOptions(sender: UIBarButtonItem) {
+
+        let actionSheet = UIAlertController(title: "Love Movies?", message: "Share the love", preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        let tweetAction = UIAlertAction(title: "Twitter", style: UIAlertActionStyle.default) { (action) -> Void in
+            
+            if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter){
+                
+                let twitterVC = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+                twitterVC?.setInitialText(self.movieObj.title)
+                twitterVC?.add(self.fullImage.image)
+                
+                self.present(twitterVC!, animated: true, completion: nil)
+                
+            } else {
+                
+                self.showAlertMessage(message: "Please log into your Twitter account.", title: "Just one more thing...")
+                
+            }
+            
+        }
+        
+        
+        let facebookPostAction = UIAlertAction(title: "Facebook", style: UIAlertActionStyle.default) { (action) -> Void in
+            
+            if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook){
+                
+                let facebookVC = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+                facebookVC?.setInitialText(self.movieObj.title)
+                facebookVC?.add(self.fullImage.image)
+                
+                self.present(facebookVC!, animated: true, completion: nil)
+                
+            } else {
+                
+                self.showAlertMessage(message: "Please log into your Facebook account.", title: "Just one more thing...")
+                
+            }
+            
+        }
+        
+        let moreAction = UIAlertAction(title: "More Options", style: UIAlertActionStyle.default) { (action) -> Void in
+            
+            let activityViewController = UIActivityViewController(activityItems: [self.movieObj.title, self.fullImage.image!], applicationActivities: nil)
+            
+            self.present(activityViewController, animated: true, completion: nil)
+        }
+        
+        
+        let dismissAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel) { (action) -> Void in
+            
+        }
+        
+        
+        actionSheet.addAction(tweetAction)
+        actionSheet.addAction(facebookPostAction)
+        actionSheet.addAction(moreAction)
+        actionSheet.addAction(dismissAction)
+        
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
+
+    func showAlertMessage(message: String!, title: String!) {
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Will do!", style: UIAlertActionStyle.default, handler: nil))
+        present(alertController, animated: true, completion: nil)
+        
+    }
 
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

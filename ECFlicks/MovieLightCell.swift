@@ -20,7 +20,8 @@ class MovieLightCell: UITableViewCell {
     }
     
     func configCell(movie: MovieModelLight) {
-    
+        pictureView.image = nil
+        
         titleLabel.text = movie.title
         jobOrCharacterLabel.text = movie.jobOrCharacter
         
@@ -44,6 +45,7 @@ class MovieLightCell: UITableViewCell {
         },
             failure: { (imageRequest, imageResponse, error) -> Void in
                 NSLog("Image: \(error.localizedDescription)")
+                self.pictureView.image = UIImage(named: "background")
         })
         
     }
