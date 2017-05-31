@@ -30,7 +30,7 @@ class MovieCell: UITableViewCell {
     }
     
     func configCell(movie: MovieModel) {
-        
+        posterView.image = nil
         titleLabel.text = movie.title
         overviewLabel.text = movie.overview
         releaseLabel.text = "Release Date: \(movie.releaseDate)"

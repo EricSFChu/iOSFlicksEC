@@ -59,7 +59,6 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         setMovieDetails()
         loadCast() {
-            
             self.tableView.reloadData()
         }
         loadTrailers() {}
@@ -67,6 +66,7 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         setUpBanners()
         setUpViews()
         loadPage()
+
 
     }
     
@@ -90,7 +90,6 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
 
             newVC.segueMovieObj = recommended[indexPath.row]
             
-            print(newVC.segueMovieObj.title)
             if let navigation = navigationController {
                 navigation.pushViewController(newVC, animated: true)
             }
@@ -296,13 +295,11 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
          
                         for cast in (responseDictionary["cast"] as? [NSDictionary])! {
 
-                            if (cast["profile_path"] as? NSNull) != nil {
-                            } else {
-                            
+                            if (cast["profile_path"] as? NSNull) == nil {
+                                
                                 self.cast.append(CastModel(cast: cast))
-
+                                
                             }
-                        
                         }
                     }
             }

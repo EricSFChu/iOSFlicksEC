@@ -15,6 +15,9 @@ class CastModel {
     private var _character: String!
     private var _creditId: String!
     private var _profilePath: String! //imageURI
+    private var _biography: String!
+    private var _birthday: String!
+    private var _birthPlace: String!
     
     var name: String {
         
@@ -54,6 +57,10 @@ class CastModel {
         self._character = cast["character"] as! String
         self._creditId = cast["credit_id"] as! String
         self._profilePath = cast["profile_path"] as! String
+        
+    }
+    
+    func loadBio() {
         
     }
     

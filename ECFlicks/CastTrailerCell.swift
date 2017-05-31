@@ -79,6 +79,7 @@ class CastTrailerCell: UITableViewCell {
     
     func configCell(recommended: MovieModel) {
         
+        profileImage.image = nil
         nameLabel.text = recommended.title
         middleLabel.text = " "
         characterLabel.text = " "

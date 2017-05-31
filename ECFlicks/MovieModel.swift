@@ -183,9 +183,25 @@ class MovieModel
     init (movie: NSDictionary)
     {
         _id = "\(String(describing: movie["id"]!))"
-        _originalLanguage = movie["original_language"] as! String
-        _title = movie["title"] as! String
-        _overview = movie["overview"] as! String
+        
+        if movie["original_language"] as? NSNull == nil {
+            
+            _originalLanguage = movie["original_language"] as! String
+        
+        }
+        
+        if movie["title"] as? NSNull == nil {
+            
+            _title = movie["title"] as! String
+            
+        }
+        
+        if movie["overview"] as? NSNull == nil {
+            
+            _overview = movie["overview"] as! String
+            
+        }
+        
         _popularity = "\(String(describing: movie["popularity"]))"
         
         if let poster = movie["poster_path"] {

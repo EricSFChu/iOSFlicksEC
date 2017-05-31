@@ -34,37 +34,47 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let navigationBar = navigationController?.navigationBar {
-            navigationBar.setBackgroundImage(UIImage(named:"background"), for: .default)
-        }
-        
         movies = [NSDictionary]()
         filteredData = [NSDictionary]()
+        
+        if pageNumber == 1 {
+            loadFromSource()
+        }
+        
+        viewConfig()
+        configBanners()
+    
+        self.tableView.addSubview(self.refreshControl)
+    
+    }
+
+    func viewConfig() {
         
         searchBar.isHidden = true
         errorButton.isHidden = true
         searchBar.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        let request = GADRequest()
-        request.testDevices = [ "108971e7c80d88709604cbc5bbd22fb6" ]
-        //bannerView.adUnitID = ADMOB
-        bannerView.rootViewController = self
-        bannerView.load(request)
-        
         tableView.decelerationRate = UIScrollViewDecelerationRateFast
+        
+        if let navigationBar = navigationController?.navigationBar {
+            navigationBar.setBackgroundImage(UIImage(named:"background"), for: .default)
+        }
         
         self.navigationController?.navigationBar.barTintColor = UIColor.black
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
-        if pageNumber == 1 {
-            loadFromSource()
-        }
+    }
+    
+    func configBanners() {
         
-        self.tableView.addSubview(self.refreshControl)
-        
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        let request = GADRequest()
+        request.testDevices = [ "108971e7c80d88709604cbc5bbd22fb6" ]
+        bannerView.rootViewController = self
+        bannerView.load(request)
 
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -160,11 +170,17 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
         let movie: MovieModel = isSearching ? MovieModel(movie: filteredData![indexPath.row]) : MovieModel(movie:(movies?[indexPath.row])!)
+        
 
         cell.configCell(movie: movie)
         
         return cell
         
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movie: MovieModel = isSearching ? MovieModel(movie: filteredData![indexPath.row]) : MovieModel(movie:(movies?[indexPath.row])!)
+        performSegue(withIdentifier: "Full View", sender: movie )
     }
     
     
@@ -248,16 +264,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         if segue.identifier == "Full View" {
         
-            let cell = sender as! UITableViewCell
-            let indexPath = tableView.indexPath(for: cell)
-            var movie: NSDictionary
-            if !isSearching {
-                movie = movies![indexPath!.row]
-            } else {
-                movie = filteredData[indexPath!.row]
-            }
             let detailViewController = segue.destination as! FullPageViewController
-            detailViewController.movie = movie
+            detailViewController.segueMovieObj = sender as! MovieModel
             
         } else if segue.identifier == "toCollection" {
             
