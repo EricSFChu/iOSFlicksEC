@@ -51,9 +51,75 @@ class MovieModelLight {
         
     }
     
-    init(movie: NSDictionary) {
+    var id: String! {
         
+        if _id == nil {
+            
+            _id = ""
+            
+        }
         
+        return _id
+        
+    }
+    
+    init(movieCast: NSDictionary) {
+        
+        if movieCast["character"] as? NSNull == nil {
+            
+            self._jobOrCharacter = movieCast["character"] as! String
+            
+        }
+        
+        if movieCast["title"] as? NSNull == nil {
+            
+            self._title = movieCast["title"] as! String
+            
+        }
+        
+        if movieCast["poster_path"] as? NSNull == nil {
+            
+            self._posterPath = movieCast["poster_path"] as! String
+            
+        }
+        
+        if movieCast["id"] as? NSNull == nil {
+            
+            let id = movieCast["id"] as! Int
+
+            self._id = "\(id)"
+            
+        }
+        
+    }
+    
+    init(movieCrew: NSDictionary) {
+        
+        if movieCrew["job"] as? NSNull == nil {
+            
+            self._jobOrCharacter = movieCrew["job"] as! String
+            
+        }
+        
+        if movieCrew["title"] as? NSNull == nil {
+            
+            self._title = movieCrew["title"] as! String
+            
+        }
+        
+        if movieCrew["poster_path"] as? NSNull == nil {
+            
+            self._posterPath = movieCrew["poster_path"] as! String
+            
+        }
+        
+        if movieCrew["id"] as? NSNull == nil {
+            
+            let id = movieCrew["id"] as! Int
+            
+            self._id = "\(id)"
+            
+        }
         
     }
     

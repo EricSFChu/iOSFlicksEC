@@ -37,10 +37,73 @@ class PersonViewController: UIViewController, UITableViewDataSource, UITableView
         viewConfig()
         loadPage()
         loadPictureURIs() {
+            
             self.collectionView.reloadData()
+        
         }
+        
+        loadTableViewData() {
+            
+            self.tableView.reloadData()
+            
+        }
+        
+        segmentedController.addTarget(self, action: #selector(segmentChanged), for: .allEvents)
+
         setUpBanners()
         self.tableView.reloadData()
+    }
+
+    func segmentChanged() {
+    
+        tableView.reloadData()
+    
+    }
+
+    func loadTableViewData(completed: @escaping CompletedDownload) {
+        
+        let str = "\(BASE_URL_PERSON)\(person.id)/movie_credits?api_key=\(API_KEY)"
+        let url = URL(string: str)
+        
+        let request = URLRequest(url: url!)
+        
+        let task: URLSessionTask = session.dataTask(with: request, completionHandler: {(dataOrNil, response, error) in
+            if let data = dataOrNil {
+                
+                if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
+                    if let castArr = responseDictionary["cast"] {
+                        
+                        let movies = castArr as! [NSDictionary]
+                        
+                        for title in movies {
+
+                            let movieLight = MovieModelLight(movieCast: title)
+                            self.movies.append(movieLight)
+                            
+                        }
+                    }
+                    
+                    
+                    if let crewArr = responseDictionary["crew"] {
+                        
+                        let movies = crewArr as! [NSDictionary]
+                        
+                        for title in movies {
+                            
+                            let movieLight = MovieModelLight(movieCrew: title)
+                            self.crew.append(movieLight)
+                                    
+                        }
+                    }
+                    
+                    completed()
+
+                }
+            }
+            
+            });
+        task.resume()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -205,16 +268,82 @@ class PersonViewController: UIViewController, UITableViewDataSource, UITableView
 
     internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 6
-        
+        if segmentedController.selectedSegmentIndex == 0 {
+            
+            return movies.count
+            
+        } else if segmentedController.selectedSegmentIndex == 1 {
+            
+            return crew.count
+            
+        } else {
+            
+            return 0
+
+        }
     }
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieLightCell", for: indexPath) as! MovieLightCell
-
+        
+        if segmentedController.selectedSegmentIndex == 0 && movies.count > 0{
+            
+            cell.configCell(movie: movies[indexPath.row])
+            
+        } else if segmentedController.selectedSegmentIndex == 1 && crew.count > 0{
+            
+            cell.configCell(movie: crew[indexPath.row])
+        }
 
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        var movie: MovieModelLight!
+        var movieObj: MovieModel!
+        
+        if segmentedController.selectedSegmentIndex == 0 {
+            
+            movie = movies[indexPath.row]
+            
+        } else if segmentedController.selectedSegmentIndex == 1 {
+            
+            movie = crew[indexPath.row]
+            
+        }
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        let str = "\(BASE_URL)\(movie.id!)?api_key=\(API_KEY)" as NSString
+        let urlStr = str.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let url = URL(string: urlStr!)
+        let request = URLRequest(url: url!)
+        
+        let task: URLSessionDataTask = session.dataTask(with: request, completionHandler: {(dataOrNil, response, error) in
+                if let data = dataOrNil {
+                
+                    if let responseDictionary = try! JSONSerialization.jsonObject(
+                        with: data, options: []) as? NSDictionary {
+                        
+                            movieObj = MovieModel(movie: responseDictionary)
+                        MBProgressHUD.hide(for: self.view, animated: false)
+                        let storyboard = self.storyboard
+                        let newVC = storyboard?.instantiateViewController(withIdentifier: "MovieDetailsVC") as! FullPageViewController
+                        
+                        newVC.segueMovieObj = movieObj
+                        
+                        if let navigation = self.navigationController {
+                            navigation.pushViewController(newVC, animated: true)
+                        }
+                    }
+                }
+        });
+        task.resume()
+        
+        
+        
+        
+    }
     
     func setUpBanners() {
         

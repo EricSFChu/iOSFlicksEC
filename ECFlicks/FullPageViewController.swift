@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMobileAds
 import MBProgressHUD
+import Social
 
 class FullPageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
 
@@ -102,8 +103,6 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
                 navigation.pushViewController(newVC, animated: true)
             }
         }
-        
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -296,6 +295,7 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         let task: URLSessionDataTask = session.dataTask(with: request) { (dataOrNil, response, error) in
             if let data = dataOrNil {
+                
                 if let responseDictionary = try! JSONSerialization.jsonObject(
                     with: data, options:[]) as? NSDictionary {
          
