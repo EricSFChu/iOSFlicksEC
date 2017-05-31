@@ -11,6 +11,7 @@ import GoogleMobileAds
 
 class FullPageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var releasedateLabel: UILabel!
     @IBOutlet weak var fullImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overViewLabel: UILabel!
@@ -30,6 +31,7 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var segmentedController: UISegmentedControl!
     
     var movie: NSDictionary?
+    var segueMovieObj: MovieModel!
     var movieObj: MovieModel!
     var popUpImageView: UIImageView!
     var cast = [CastModel]()
@@ -41,7 +43,16 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         setUpNavigation()
         
-        movieObj = MovieModel(movie: movie!)
+        if segueMovieObj != nil {
+            
+            movieObj = segueMovieObj
+            
+        } else {
+            
+            movieObj = MovieModel(movie: movie!)
+            
+        }
+        
         movieObj.loadImageURIs() {
             self.imageCollectionView.reloadData()
         }
@@ -74,8 +85,15 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
             
         } else if segmentedController.selectedSegmentIndex == 2 {
             
+            let storyboard = self.storyboard
+            let newVC = storyboard?.instantiateViewController(withIdentifier: "MovieDetailsVC") as! FullPageViewController
+
+            newVC.segueMovieObj = recommended[indexPath.row]
             
-            
+            print(newVC.segueMovieObj.title)
+            if let navigation = navigationController {
+                navigation.pushViewController(newVC, animated: true)
+            }
         }
         
         
@@ -201,6 +219,7 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
             self.productionLabel.text = self.movieObj.productionCompanies
             self.statusLabel.text = self.movieObj.status
             self.voteAverageLabel.text = self.movieObj.voteAverage
+            self.releasedateLabel.text = self.movieObj.releaseDate
             
         }
         
@@ -210,7 +229,7 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func loadPage() {
         
-        if let posterPath = movie!["poster_path"] as? String {
+        let posterPath = movieObj.posterPath
             
             let smallImageUrl = POSTER_BASE_URL_LOWRES + posterPath
             let largeImageUrl = POSTER_BASE_URL + posterPath
@@ -251,12 +270,10 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
                 failure: { (request, response, error) -> Void in
                     NSLog(error.localizedDescription)
             })
-            
-        }
+
         
-        
-        let title = movie!["title"] as! String
-        let overview = movie!["overview"] as! String
+        let title = movieObj.title
+        let overview = movieObj.overview
         
         titleLabel.text = title
         overViewLabel.text = overview
