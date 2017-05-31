@@ -26,28 +26,20 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var productionLabel: UILabel!
     @IBOutlet weak var voteAverageLabel: UILabel!
     @IBOutlet weak var bannerView4: GADBannerView!
+    @IBOutlet weak var bannerView5: GADBannerView!
     @IBOutlet weak var segmentedController: UISegmentedControl!
     
     var movie: NSDictionary?
     var movieObj: MovieModel!
     var popUpImageView: UIImageView!
     var cast = [CastModel]()
+    var trailers = [TrailerModel]()
+    var recommended = [MovieModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let topItem = self.navigationController?.navigationBar.topItem {
-            topItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-        }
-        bannerView2.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        bannerView2.rootViewController = self
-        bannerView2.load(GADRequest())
-        bannerView4.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        bannerView4.rootViewController = self
-        bannerView4.load(GADRequest())
-        
-        self.navigationController?.navigationBar.barTintColor = UIColor.black
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        setUpNavigation()
         
         movieObj = MovieModel(movie: movie!)
         movieObj.loadImageURIs() {
@@ -56,25 +48,19 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         setMovieDetails()
         loadCast() {
+            
             self.tableView.reloadData()
         }
-        
-        imageCollectionView.delegate = self
-        imageCollectionView.dataSource = self
-        imageCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
-        scrollView.decelerationRate = UIScrollViewDecelerationRateFast
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.decelerationRate = UIScrollViewDecelerationRateFast
-        
-        transparantView.layer.cornerRadius = 5.0
-        
+        loadTrailers() {}
+        loadRecommendations() {}
+        setUpBanners()
+        setUpViews()
         loadPage()
 
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: transparantView.frame.size.height + fullImage.frame.size.height + (self.navigationController?.navigationBar.frame.height)! + imageCollectionView.frame.size.height + tableView.frame.size.height + bannerView2.frame.size.height + bannerView4.frame.size.height)
+        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: transparantView.frame.size.height + fullImage.frame.size.height + (self.navigationController?.navigationBar.frame.height)! + imageCollectionView.frame.size.height + tableView.frame.size.height + bannerView2.frame.size.height + bannerView4.frame.size.height + bannerView5.frame.size.height)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -86,6 +72,14 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
            
             return cast.count
         
+        } else if segmentedController.selectedSegmentIndex == 1 {
+            
+            return trailers.count
+            
+        } else if segmentedController.selectedSegmentIndex == 2 {
+            
+            return recommended.count
+            
         }
         
         return 0
@@ -96,6 +90,15 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         if segmentedController.selectedSegmentIndex == 0 {
             
             cell.configCell(cast: cast[indexPath.row])
+            
+        } else if segmentedController.selectedSegmentIndex == 1 {
+            
+            cell.configCell(trailer: trailers[indexPath.row])
+            
+        } else if segmentedController.selectedSegmentIndex == 2 {
+            
+            cell.configCell(recommended: recommended[indexPath.row])
+            
         }
         
         return cell
@@ -275,6 +278,109 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
             completed()
         }
         task.resume()
+    }
+    
+    func loadRecommendations(completed: @escaping CompletedDownload) {
+        
+        let url: NSString = "\(BASE_URL)\(movieObj.id)/recommendations?api_key=\(API_KEY)" as NSString
+        let urlStr = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let urlStrUrl = URL(string: urlStr!)
+        
+        let request = URLRequest(url: urlStrUrl!)
+        
+        let task: URLSessionDataTask = session.dataTask(with: request) { (dataOrNil, response, error) in
+            if let data = dataOrNil {
+                if let responseDictionary = try! JSONSerialization.jsonObject(
+                    with: data, options:[]) as? NSDictionary {
+                    
+                    for recommendation in (responseDictionary["results"] as? [NSDictionary])! {
+                        
+                        if (recommendation["profile_path"] as? NSNull) != nil {
+                        } else {
+                            
+                            self.recommended.append(MovieModel(movie: recommendation))
+                            
+                        }
+                        
+                    }
+                }
+            }
+            completed()
+        }
+        task.resume()
+    }
+    
+    
+    func loadTrailers(completed: @escaping CompletedDownload) {
+        
+        let url: NSString = "\(BASE_URL)\(movieObj.id)/videos?api_key=\(API_KEY)" as NSString
+        let urlStr = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let urlStrUrl = URL(string: urlStr!)
+        
+        let request = URLRequest(url: urlStrUrl!)
+        
+        let task: URLSessionDataTask = session.dataTask(with: request) { (dataOrNil, response, error) in
+            if let data = dataOrNil {
+                if let responseDictionary = try! JSONSerialization.jsonObject(
+                    with: data, options:[]) as? NSDictionary {
+                    
+                    for trailer in (responseDictionary["results"] as? [NSDictionary])! {
+                            
+                        self.trailers.append(TrailerModel(trailer: trailer))
+                        
+                    }
+                }
+            }
+            completed()
+        }
+        task.resume()
+        
+    }
+    
+    func setUpBanners() {
+        
+        bannerView2.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView2.rootViewController = self
+        bannerView2.load(GADRequest())
+        bannerView4.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView4.rootViewController = self
+        bannerView4.load(GADRequest())
+        bannerView5.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView5.rootViewController = self
+        bannerView5.load(GADRequest())
+    }
+    
+    func setUpViews() {
+        
+        imageCollectionView.delegate = self
+        imageCollectionView.dataSource = self
+        imageCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
+        scrollView.decelerationRate = UIScrollViewDecelerationRateFast
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.decelerationRate = UIScrollViewDecelerationRateFast
+        transparantView.layer.cornerRadius = 5.0
+        
+        segmentedController.addTarget(self, action: #selector(segmentChanged), for: .allEvents)
+    }
+    
+    func segmentChanged() {
+        
+        tableView.reloadData()
+        
+    }
+    
+    func setUpNavigation() {
+        
+        if let topItem = self.navigationController?.navigationBar.topItem {
+            topItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        }
+        
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+
+        
     }
     
 
