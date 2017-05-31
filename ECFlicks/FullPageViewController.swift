@@ -65,6 +65,20 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        if segmentedController.selectedSegmentIndex == 0 {
+            
+            
+        } else if segmentedController.selectedSegmentIndex == 1 {
+            let youtubeURI: String = trailers[indexPath.row].id
+            performSegue(withIdentifier: "toVideo", sender: youtubeURI)
+            
+        } else if segmentedController.selectedSegmentIndex == 2 {
+            
+            
+            
+        }
+        
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -386,16 +400,12 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
 
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "toVideo" {
             
             let vidView = segue.destination as! VideoViewController
-            vidView.movie = self.movie
-        }
-        
-        if segue.identifier == "toReview" {
+            vidView.youtubeURI = sender as! String
             
-            let reviewView = segue.destination as! ReviewsViewController
-            reviewView.id = self.movie!["id"] as! IntegerLiteralType
         }
 
     }
