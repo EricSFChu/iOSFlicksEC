@@ -25,7 +25,7 @@
 		7A18EF061EE0EB0E000AC14C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A18EF051EE0EB0E000AC14C /* CoreData.framework */; };
 		7A18EF081EE0F23E000AC14C /* MyMoviesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A18EF071EE0F23E000AC14C /* MyMoviesVC.swift */; };
 		7A18EF0A1EE0F35D000AC14C /* SavedMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A18EF091EE0F35D000AC14C /* SavedMovieCell.swift */; };
-		7A18EF0D1EE12BAC000AC14C /* NuFlixDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7A18EF0B1EE12BAC000AC14C /* NuFlixDataModel.xcdatamodeld */; };
+		7A18EF0E1EE12F55000AC14C /* NuFlixDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7A18EF0B1EE12BAC000AC14C /* NuFlixDataModel.xcdatamodeld */; };
 		7A1D7B881C4593E100959E94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1D7B871C4593E100959E94 /* AppDelegate.swift */; };
 		7A1D7B8D1C4593E100959E94 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A1D7B8B1C4593E100959E94 /* Main.storyboard */; };
 		7A1D7B8F1C4593E100959E94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A1D7B8E1C4593E100959E94 /* Assets.xcassets */; };
@@ -384,7 +384,7 @@
 				7ACD7FF41C521E1700DC55A9 /* CollectionCell.swift in Sources */,
 				7A0358AE1EDBEF7200FEF8D9 /* CastModel.swift in Sources */,
 				7A5EDE391EDD19F2006EA1D1 /* CastTrailerCell.swift in Sources */,
-				7A18EF0D1EE12BAC000AC14C /* NuFlixDataModel.xcdatamodeld in Sources */,
+				7A18EF0E1EE12F55000AC14C /* NuFlixDataModel.xcdatamodeld in Sources */,
 				7AB8471B1C55BB9000EF24D2 /* NewCollectionViewController.swift in Sources */,
 				7A5EDE351EDC77BA006EA1D1 /* ProtectedConstants.swift in Sources */,
 				7AEBA5D61C51C0A50076A3B1 /* ImageCell.swift in Sources */,

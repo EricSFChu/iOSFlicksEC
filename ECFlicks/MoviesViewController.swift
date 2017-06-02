@@ -11,6 +11,7 @@ import AFNetworking
 import MBProgressHUD
 import GoogleMobileAds
 import SwipeCellKit
+import CoreData
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, GADInterstitialDelegate, SwipeTableViewCellDelegate {
     
@@ -205,14 +206,59 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         guard orientation == .right else { return nil }
         
         let saveAction = SwipeAction(style: .default, title: "Save") { action, indexPath in
-            print("Save Pushed")
+            if self.isSearching {
+                
+                self.saveMovie(movie: self.filteredData[indexPath.row])
+                
+            } else {
+                
+                self.saveMovie(movie: (self.movies?[indexPath.row])!)
+                
+            }
         }
         
+        saveAction.hidesWhenSelected = true
         saveAction.backgroundColor = UIColor.black
         saveAction.image = UIImage(named: "heart")
         
         return [saveAction]
     }
+    
+    func saveMovie(movie: NSDictionary) {
+        
+        let item = Movie(context: context)
+        
+        
+        if let uri = movie["backdrop_path"] {
+            
+            item.backdropURI = uri as? String
+            
+        }
+        
+        if let id = movie["id"] {
+            
+            item.id =  "\(id)"
+            
+        }
+        
+        if let title = movie["title"] {
+            
+            item.title = title as? String
+            
+        }
+
+        item.created = Date() as NSDate
+        item.goodBad = true
+        item.watchedOrNo = false
+        item.backdrop = nil
+        AD.saveContext()
+        
+        let alert = UIAlertController(title: "Alert", message: "Your Movie Has Been Saved.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
     
     
     lazy var refreshControl: UIRefreshControl = {
@@ -321,6 +367,20 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         //interstitial = createAndLoadInterstitial()
     }
     
+}
+
+//code by Leo
+extension UIView {
+    var parentViewController: UIViewController? {
+        var parentResponder: UIResponder? = self
+        while parentResponder != nil {
+            parentResponder = parentResponder!.next
+            if parentResponder is UIViewController {
+                return parentResponder as! UIViewController!
+            }
+        }
+        return nil
+    }
 }
 
 

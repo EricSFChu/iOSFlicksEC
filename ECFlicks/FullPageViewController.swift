@@ -10,6 +10,7 @@ import UIKit
 import GoogleMobileAds
 import MBProgressHUD
 import Social
+import CoreData
 
 class FullPageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
 
@@ -501,6 +502,29 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         
     }
 
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        
+        saveMovie(movie: movieObj)
+        
+    }
+    
+    func saveMovie(movie: MovieModel) {
+        
+        let item = Movie(context: context)
+        
+        item.backdropURI = movieObj.backdropPath
+        item.id =  movieObj.id
+        item.title = movieObj.title
+        item.created = Date() as NSDate
+        item.goodBad = true
+        item.watchedOrNo = false
+        item.backdrop = nil
+        AD.saveContext()
+        
+        let alert = UIAlertController(title: "Alert", message: "Your Movie Has Been Saved.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
