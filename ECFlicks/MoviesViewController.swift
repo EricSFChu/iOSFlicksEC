@@ -10,8 +10,9 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 import GoogleMobileAds
+import SwipeCellKit
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, GADInterstitialDelegate, SwipeTableViewCellDelegate {
     
     
     @IBOutlet weak var errorButton: UIButton!
@@ -30,6 +31,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     let threshold: CGFloat = 1400.0
     var loading = false
     var isSearching = false
+    var interstitial: GADInterstitial!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,11 +71,18 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     func configBanners() {
         
         bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        //ADMOB
+        //
+        //
         let request = GADRequest()
-        request.testDevices = [ "108971e7c80d88709604cbc5bbd22fb6" ]
         bannerView.rootViewController = self
         bannerView.load(request)
-
+        
+        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+        //GADInterstitial(adUnitID: ADMOB_INTERSTITIAL_1)
+        
+        let request2 = GADRequest()
+        interstitial.load(request2)
         
     }
     
@@ -88,6 +97,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             
             self.errorButton.isHidden = false
             
+        }
+        
+        if interstitial.isReady {
+            interstitial.present(fromRootViewController: self)
+        } else {
+            print("Ad wasn't ready")
         }
     }
     
@@ -111,6 +126,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func loadFromSource(){
+        
         loading = true
         let pageNumCheck = pageNumber == 1 ? 1 : pageNumber + 1
         pageNumber += 1
@@ -171,7 +187,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         let movie: MovieModel = isSearching ? MovieModel(movie: filteredData![indexPath.row]) : MovieModel(movie:(movies?[indexPath.row])!)
         
-
+        cell.delegate = self
         cell.configCell(movie: movie)
         
         return cell
@@ -179,8 +195,23 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let movie: MovieModel = isSearching ? MovieModel(movie: filteredData![indexPath.row]) : MovieModel(movie:(movies?[indexPath.row])!)
         performSegue(withIdentifier: "Full View", sender: movie )
+        
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let saveAction = SwipeAction(style: .default, title: "Save") { action, indexPath in
+            print("Save Pushed")
+        }
+        
+        saveAction.backgroundColor = UIColor.black
+        saveAction.image = UIImage(named: "heart")
+        
+        return [saveAction]
     }
     
     
@@ -190,6 +221,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         refreshControl.addTarget(self, action: #selector(MoviesViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
         
         return refreshControl
+        
     }()
     
     
@@ -275,10 +307,20 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             
         }
     }
+    
+    func createAndLoadInterstitial() -> GADInterstitial {
+        let interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+        //let interstitial = GADInterstitial(adUnitID: ADMOB_INTERSTITIAL_1)
+
+        interstitial.delegate = self
+        interstitial.load(GADRequest())
+        return interstitial
+    }
+    
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        //interstitial = createAndLoadInterstitial()
+    }
+    
 }
 
-extension UIView {
-    
-    
-    
-}
+

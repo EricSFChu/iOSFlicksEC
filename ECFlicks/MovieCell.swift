@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class MovieCell: UITableViewCell {
+class MovieCell: SwipeTableViewCell {
 
 
     @IBOutlet weak var posterView: UIImageView!

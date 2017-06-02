@@ -33,6 +33,9 @@ UISearchBarDelegate{
         searchBar.isHidden = true
         
         bannerView3.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+            //ADMOB3
+
+        //"ca-app-pub-3940256099942544/2934735716"
         bannerView3.rootViewController = self
         bannerView3.load(GADRequest())
         
