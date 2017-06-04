@@ -145,7 +145,10 @@ class MovieModel
     }
     
     var backdropPath: String {
-        
+        if _backdropPath == nil {
+            
+            _backdropPath = ""
+        }
         return _backdropPath
         
     }

@@ -29,46 +29,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        //There is an optional tab bar delegate 
-        let popularNavigationController = storyboard.instantiateViewController(withIdentifier: "MoviesNavControl") as! UINavigationController
-        let popularViewController = popularNavigationController.topViewController as! MoviesViewController
-        popularViewController.endPoint = "popular"
-        
         // Set up the now playing View Controller
         let nowPlayingNavigationController = storyboard.instantiateViewController(withIdentifier: "MoviesNavControl") as! UINavigationController
         let nowPlayingViewController = nowPlayingNavigationController.topViewController as! MoviesViewController
         nowPlayingViewController.endPoint = "now_playing"
 
-        // Set up the top Rated View Controller
-        let topRatedNavigationController = storyboard.instantiateViewController(withIdentifier: "MoviesNavControl") as! UINavigationController
-        let topRatedViewController = topRatedNavigationController.topViewController as! MoviesViewController
-        topRatedViewController.endPoint = "top_rated"
         
-        // Set up the upcoming View Controller
-        let upcomingNavigationController = storyboard.instantiateViewController(withIdentifier: "MoviesNavControl") as! UINavigationController
-        let upcomingViewController = upcomingNavigationController.topViewController as! MoviesViewController
-        upcomingViewController.endPoint = "upcoming"
-        
+        let mapViewNavigationController = storyboard.instantiateViewController(withIdentifier: "MapViewNav") as! UINavigationController
+
         
         let myMoviesNavigationController = storyboard.instantiateViewController(withIdentifier: "CoreDataNavControl") as!  UINavigationController
         
         // Set up tabbed bar
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [nowPlayingNavigationController, upcomingNavigationController, popularNavigationController, topRatedNavigationController, myMoviesNavigationController]
-        
+        tabBarController.viewControllers = [nowPlayingNavigationController, mapViewNavigationController, myMoviesNavigationController]
         tabBarController.tabBar.barTintColor = UIColor.black
         tabBarController.tabBar.tintColor = UIColor(red: 64.0/255.0, green: 224.0/255.0, blue: 208.0/255.0, alpha: 1.0)
+        
         nowPlayingNavigationController.tabBarItem.title = "Now Playing"
         nowPlayingNavigationController.tabBarItem.image = UIImage(named: "MovieStrip")
-
-        topRatedNavigationController.tabBarItem.title = "Top Rated"
-        topRatedNavigationController.tabBarItem.image = UIImage(named: "Star")
         
-        popularNavigationController.tabBarItem.title = "Popular"
-        popularNavigationController.tabBarItem.image = UIImage(named: "heart")
-        
-        upcomingNavigationController.tabBarItem.title = "Upcoming"
-        upcomingNavigationController.tabBarItem.image = UIImage(named: "arrow")
+        mapViewNavigationController.tabBarItem.title = "Venues Near Me"
+        mapViewNavigationController.tabBarItem.image = UIImage(named: "Map")
         
         myMoviesNavigationController.tabBarItem.title = "My Movies"
         myMoviesNavigationController.tabBarItem.image = UIImage(named: "SavedMovies")

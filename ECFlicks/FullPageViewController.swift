@@ -377,23 +377,19 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func setUpBanners() {
         
-        bannerView2.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        //ADMOB2
-        //
-        //
+        bannerView2.adUnitID = ADMOB3
+        //"ca-app-pub-3940256099942544/2934735716"
+
         bannerView2.rootViewController = self
         bannerView2.load(GADRequest())
-        bannerView4.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-            //ADMOB4
+        bannerView4.adUnitID = ADMOB4
         //"ca-app-pub-3940256099942544/2934735716"
-        //
 
         bannerView4.rootViewController = self
         bannerView4.load(GADRequest())
-        bannerView5.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-            //ADMOB5
+        bannerView5.adUnitID = ADMOB5
         //"ca-app-pub-3940256099942544/2934735716"
-        //
+
         bannerView5.rootViewController = self
         bannerView5.load(GADRequest())
     }
@@ -511,7 +507,6 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
     func saveMovie(movie: MovieModel) {
         
         let item = Movie(context: context)
-        
         item.backdropURI = movieObj.backdropPath
         item.id =  movieObj.id
         item.title = movieObj.title

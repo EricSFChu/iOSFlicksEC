@@ -347,14 +347,12 @@ class PersonViewController: UIViewController, UITableViewDataSource, UITableView
     
     func setUpBanners() {
         
-        bannerView6.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-            //ADMOB6
+        bannerView6.adUnitID = ADMOB6
         //"ca-app-pub-3940256099942544/2934735716"
         bannerView6.rootViewController = self
         bannerView6.load(GADRequest())
         
-        bannerView7.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-            //ADMOB7
+        bannerView7.adUnitID = ADMOB7
         //"ca-app-pub-3940256099942544/2934735716"
         bannerView7.rootViewController = self
         bannerView7.load(GADRequest())

@@ -33,6 +33,9 @@
 		7A1D7B9C1C4CADA200959E94 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1D7B9B1C4CADA200959E94 /* MoviesViewController.swift */; };
 		7A1D7B9F1C4DBF6200959E94 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1D7B9E1C4DBF6200959E94 /* MovieCell.swift */; };
 		7A2416EA1C59BF7500245AE7 /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2416E91C59BF7500245AE7 /* PersonViewController.swift */; };
+		7A3359CE1EE1DA950093FDB0 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3359CD1EE1DA950093FDB0 /* MapVC.swift */; };
+		7A3359D01EE1EDF70093FDB0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3359CF1EE1EDF70093FDB0 /* Location.swift */; };
+		7A3359D31EE273570093FDB0 /* TheaterAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3359D21EE273570093FDB0 /* TheaterAnnotation.swift */; };
 		7A5A33F71C4F67B100D77879 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A5A33F61C4F67B100D77879 /* Icons.xcassets */; };
 		7A5A33FB1C505AED00D77879 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5A33FA1C505AED00D77879 /* Reachability.swift */; };
 		7A5EDE351EDC77BA006EA1D1 /* ProtectedConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5EDE341EDC77BA006EA1D1 /* ProtectedConstants.swift */; };
@@ -83,6 +86,10 @@
 		7A1D7B9B1C4CADA200959E94 /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		7A1D7B9E1C4DBF6200959E94 /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		7A2416E91C59BF7500245AE7 /* PersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
+		7A3359CD1EE1DA950093FDB0 /* MapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
+		7A3359CF1EE1EDF70093FDB0 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		7A3359D11EE25F2C0093FDB0 /* BridgeObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgeObjC.h; sourceTree = "<group>"; };
+		7A3359D21EE273570093FDB0 /* TheaterAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheaterAnnotation.swift; sourceTree = "<group>"; };
 		7A5A33F61C4F67B100D77879 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
 		7A5A33FA1C505AED00D77879 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		7A5EDE341EDC77BA006EA1D1 /* ProtectedConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtectedConstants.swift; sourceTree = "<group>"; };
@@ -129,6 +136,7 @@
 		7A1D7B7B1C4593E100959E94 = {
 			isa = PBXGroup;
 			children = (
+				7A3359D11EE25F2C0093FDB0 /* BridgeObjC.h */,
 				7A18EF0B1EE12BAC000AC14C /* NuFlixDataModel.xcdatamodeld */,
 				7A5A33F61C4F67B100D77879 /* Icons.xcassets */,
 				7A1D7B861C4593E100959E94 /* ECFlicks */,
@@ -186,6 +194,7 @@
 				7AB8471F1C586A6100EF24D2 /* VideoPlayerController.swift */,
 				7A2416E91C59BF7500245AE7 /* PersonViewController.swift */,
 				7A18EF071EE0F23E000AC14C /* MyMoviesVC.swift */,
+				7A3359CD1EE1DA950093FDB0 /* MapVC.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -197,6 +206,7 @@
 				7A0358AD1EDBEF7200FEF8D9 /* CastModel.swift */,
 				7A0358AF1EDBF37E00FEF8D9 /* TrailerModel.swift */,
 				7A8B5EF41EDEA34C00C18CD4 /* MovieModelLight.swift */,
+				7A3359D21EE273570093FDB0 /* TheaterAnnotation.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -207,6 +217,7 @@
 				7A5A33FA1C505AED00D77879 /* Reachability.swift */,
 				7A67E96E1ED6880E0000DFCA /* constants.swift */,
 				7A5EDE341EDC77BA006EA1D1 /* ProtectedConstants.swift */,
+				7A3359CF1EE1EDF70093FDB0 /* Location.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -379,7 +390,9 @@
 				7A5A33FB1C505AED00D77879 /* Reachability.swift in Sources */,
 				7A18EF0A1EE0F35D000AC14C /* SavedMovieCell.swift in Sources */,
 				7AB847201C586A6100EF24D2 /* VideoPlayerController.swift in Sources */,
+				7A3359CE1EE1DA950093FDB0 /* MapVC.swift in Sources */,
 				7A67E96F1ED6880E0000DFCA /* constants.swift in Sources */,
+				7A3359D01EE1EDF70093FDB0 /* Location.swift in Sources */,
 				7A8B5EF51EDEA34C00C18CD4 /* MovieModelLight.swift in Sources */,
 				7ACD7FF41C521E1700DC55A9 /* CollectionCell.swift in Sources */,
 				7A0358AE1EDBEF7200FEF8D9 /* CastModel.swift in Sources */,
@@ -389,6 +402,7 @@
 				7A5EDE351EDC77BA006EA1D1 /* ProtectedConstants.swift in Sources */,
 				7AEBA5D61C51C0A50076A3B1 /* ImageCell.swift in Sources */,
 				7A0358B01EDBF37E00FEF8D9 /* TrailerModel.swift in Sources */,
+				7A3359D31EE273570093FDB0 /* TheaterAnnotation.swift in Sources */,
 				7A70CEA71C59FE8E0082291F /* MovieLightCell.swift in Sources */,
 				7A18EF081EE0F23E000AC14C /* MyMoviesVC.swift in Sources */,
 				7A2416EA1C59BF7500245AE7 /* PersonViewController.swift in Sources */,
@@ -528,8 +542,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = BridgeObjC.h;
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -557,8 +572,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = BridgeObjC.h;
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

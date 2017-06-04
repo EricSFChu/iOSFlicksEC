@@ -21,7 +21,7 @@
                         <viewControllerLayoutGuide type="bottom" id="la1-g5-GQo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48X-DW-fYy">
@@ -44,8 +44,31 @@
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TSV-EP-dSP" customClass="GADBannerView">
+                                <rect key="frame" x="27.5" y="20" width="320" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="4xT-6M-jZX"/>
+                                    <constraint firstAttribute="height" constant="50" id="tU7-4X-xbs"/>
+                                </constraints>
+                            </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="cSM-75-r0H">
+                                <rect key="frame" x="0.0" y="78" width="375" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="peK-oC-6vL"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="In Theaters"/>
+                                    <segment title="Coming Soon"/>
+                                    <segment title="Popular"/>
+                                    <segment title="Top"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControllerDidChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="Yej-gL-7jo"/>
+                                </connections>
+                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="153" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eai-uh-zrn">
-                                <rect key="frame" x="0.0" y="54" width="375" height="549"/>
+                                <rect key="frame" x="0.0" y="114" width="375" height="553"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -124,23 +147,18 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TSV-EP-dSP" customClass="GADBannerView">
-                                <rect key="frame" x="27.5" y="0.0" width="320" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="4xT-6M-jZX"/>
-                                    <constraint firstAttribute="height" constant="50" id="tU7-4X-xbs"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="cSM-75-r0H" firstAttribute="top" secondItem="TSV-EP-dSP" secondAttribute="bottom" constant="8" id="AM2-fc-hZn"/>
                             <constraint firstAttribute="trailing" secondItem="eai-uh-zrn" secondAttribute="trailing" id="Cjz-PA-tYW"/>
+                            <constraint firstItem="eai-uh-zrn" firstAttribute="top" secondItem="cSM-75-r0H" secondAttribute="bottom" constant="8" id="DRd-yc-wqy"/>
+                            <constraint firstItem="cSM-75-r0H" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="EbY-Zr-EdH"/>
                             <constraint firstItem="hJ6-qc-Z06" firstAttribute="trailing" secondItem="eai-uh-zrn" secondAttribute="trailing" id="GdZ-6H-9Gd"/>
                             <constraint firstItem="eai-uh-zrn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="HkO-Yx-FKp"/>
-                            <constraint firstItem="eai-uh-zrn" firstAttribute="top" secondItem="hJ6-qc-Z06" secondAttribute="bottom" constant="4" id="IBg-vY-OCK"/>
                             <constraint firstItem="hJ6-qc-Z06" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="IU2-dy-Byz"/>
+                            <constraint firstAttribute="trailing" secondItem="cSM-75-r0H" secondAttribute="trailing" id="JCn-yz-GJF"/>
                             <constraint firstItem="48X-DW-fYy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="LgX-MY-tO5"/>
                             <constraint firstItem="TSV-EP-dSP" firstAttribute="top" secondItem="6am-ZN-0av" secondAttribute="bottom" id="TZa-lc-j7n"/>
                             <constraint firstItem="hJ6-qc-Z06" firstAttribute="leading" secondItem="eai-uh-zrn" secondAttribute="leading" id="XGK-Da-r3H"/>
@@ -171,6 +189,7 @@
                         <outlet property="errorButton" destination="48X-DW-fYy" id="luf-BT-fAx"/>
                         <outlet property="searchBar" destination="hJ6-qc-Z06" id="rbd-jz-XAv"/>
                         <outlet property="searchButton" destination="lkZ-nR-Bhf" id="Xuq-qN-dqK"/>
+                        <outlet property="segmentedController" destination="cSM-75-r0H" id="mkj-1T-Aj2"/>
                         <outlet property="tableView" destination="eai-uh-zrn" id="AEm-E2-PYk"/>
                         <segue destination="nwu-lz-dLa" kind="show" identifier="Full View" id="mev-pT-xRA"/>
                     </connections>
@@ -193,11 +212,11 @@
                         <viewControllerLayoutGuide type="bottom" id="xBS-Kc-H2X"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="GX6-6r-MUs">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PUt-vP-BIP" customClass="GADBannerView">
-                                <rect key="frame" x="47" y="686" width="320" height="50"/>
+                                <rect key="frame" x="47" y="622" width="320" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="mAm-ms-Y7j"/>
@@ -205,7 +224,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FjW-n0-Qd5">
-                                <rect key="frame" x="0.0" y="64" width="414" height="40"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Movies" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q58-a3-l2y">
                                         <rect key="frame" x="163.5" y="10" width="87" height="20"/>
@@ -222,7 +241,7 @@
                                 </constraints>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XQW-UZ-OWO">
-                                <rect key="frame" x="0.0" y="104" width="414" height="29"/>
+                                <rect key="frame" x="0.0" y="40" width="414" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="gnp-Lr-fN0"/>
                                 </constraints>
@@ -237,8 +256,9 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="310" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nf8-5K-IIW">
-                                <rect key="frame" x="0.0" y="142" width="414" height="534"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="78" width="414" height="534"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SavedMovieCell" rowHeight="310" id="3t4-Wc-mcX" customClass="SavedMovieCell" customModule="ECFlicks" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="310"/>
@@ -320,6 +340,7 @@
                                                 <constraint firstItem="c7q-xd-4RS" firstAttribute="top" secondItem="hM7-ZS-ck5" secondAttribute="bottom" constant="8" id="wpj-yh-YwU"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="backdropView" destination="hM7-ZS-ck5" id="6T2-fE-yFy"/>
                                             <outlet property="likedSegmentedController" destination="asd-BF-99n" id="9Xg-QL-hbK"/>
@@ -360,6 +381,65 @@
             </objects>
             <point key="canvasLocation" x="921.60000000000002" y="1025.4872563718143"/>
         </scene>
+        <!--MapVC-->
+        <scene sceneID="bNM-cW-zXc">
+            <objects>
+                <viewController id="4FK-TV-1FG" customClass="MapVC" customModule="ECFlicks" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dHs-Xg-6qW"/>
+                        <viewControllerLayoutGuide type="bottom" id="gXN-ix-2sf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AlQ-oh-AGp">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6Am-zb-KFg">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hh9-6Y-T9o">
+                                <rect key="frame" x="311" y="543" width="58" height="50"/>
+                                <color key="tintColor" red="0.22638396920000001" green="0.86058688159999996" blue="0.77357661720000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="MapButton"/>
+                                <connections>
+                                    <action selector="mapViewButtonClicked:" destination="4FK-TV-1FG" eventType="touchUpInside" id="gvY-D8-eXB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gXN-ix-2sf" firstAttribute="top" secondItem="hh9-6Y-T9o" secondAttribute="bottom" constant="10" id="2Et-3x-25z"/>
+                            <constraint firstItem="6Am-zb-KFg" firstAttribute="leading" secondItem="AlQ-oh-AGp" secondAttribute="leadingMargin" constant="-16" id="PKC-PU-vuB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6Am-zb-KFg" secondAttribute="trailing" constant="-16" id="R4Y-ns-wbk"/>
+                            <constraint firstItem="6Am-zb-KFg" firstAttribute="top" secondItem="dHs-Xg-6qW" secondAttribute="bottom" id="WJ7-OC-nO4"/>
+                            <constraint firstItem="gXN-ix-2sf" firstAttribute="top" secondItem="6Am-zb-KFg" secondAttribute="bottom" id="Xs0-Kv-DXr"/>
+                            <constraint firstItem="hh9-6Y-T9o" firstAttribute="trailing" secondItem="AlQ-oh-AGp" secondAttribute="trailingMargin" constant="10" id="uDl-7E-zTQ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="SxM-YN-W33">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Fr6-Q6-aso">
+                            <rect key="frame" x="8" y="7" width="359" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Film"/>
+                                <segment title="Food"/>
+                                <segment title="Drink"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentedControldidChange:" destination="4FK-TV-1FG" eventType="valueChanged" id="ZfO-TY-9yC"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapButton" destination="hh9-6Y-T9o" id="gzC-95-GXR"/>
+                        <outlet property="mapView" destination="6Am-zb-KFg" id="sUa-l6-ixf"/>
+                        <outlet property="segmentedController" destination="Fr6-Q6-aso" id="za5-OE-2XX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oxe-ue-q07" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1797.5999999999999" y="1843.6281859070466"/>
+        </scene>
         <!--Movies-->
         <scene sceneID="Hbv-GG-qDb">
             <objects>
@@ -369,11 +449,11 @@
                         <viewControllerLayoutGuide type="bottom" id="5tA-WL-Jje"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KEr-gc-T7c">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" delaysContentTouches="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NCR-rC-Zbp">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1450"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mFR-Wt-8RV">
                                     <size key="itemSize" width="160" height="320"/>
@@ -436,11 +516,11 @@
                                 </connections>
                             </collectionView>
                             <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9wk-eC-SHy">
-                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dev-7R-nCE" customClass="GADBannerView">
-                                <rect key="frame" x="27.5" y="1450" width="320" height="50"/>
+                                <rect key="frame" x="27.5" y="617" width="320" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="Dc0-n1-lxq"/>
@@ -961,7 +1041,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ri2-Nf-bLF" customClass="GADBannerView">
-                                <rect key="frame" x="27" y="74" width="320" height="50"/>
+                                <rect key="frame" x="27" y="30" width="320" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="BFP-6m-dTA"/>
@@ -969,7 +1049,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mcu-02-RQq">
-                                <rect key="frame" x="0.0" y="134" width="375" height="1366"/>
+                                <rect key="frame" x="0.0" y="90" width="375" height="1410"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pr7-9k-IkL">
                                         <rect key="frame" x="8" y="500" width="359" height="200"/>
@@ -1287,7 +1367,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="87X-Wp-FFx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3915.217391304348" y="1794.2934782608697"/>
+            <point key="canvasLocation" x="4853.6000000000004" y="1793.7031484257873"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="43H-A3-ZcP">
@@ -1312,7 +1392,8 @@
             <objects>
                 <navigationController storyboardIdentifier="CoreDataNavControl" automaticallyAdjustsScrollViewInsets="NO" id="6iW-W1-tfe" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GbS-H8-HAE">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="GbS-H8-HAE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1325,12 +1406,32 @@
             </objects>
             <point key="canvasLocation" x="15.942028985507248" y="1025.5434782608697"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="MwG-Vp-BzB">
+            <objects>
+                <navigationController storyboardIdentifier="MapViewNav" automaticallyAdjustsScrollViewInsets="NO" id="2ht-Zc-IcI" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="NFC-ls-t7B">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4FK-TV-1FG" kind="relationship" relationship="rootViewController" id="iUO-ha-NBX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kSE-BU-fJe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="856.79999999999995" y="1843.6281859070466"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Add" width="19" height="19"/>
         <image name="Details" width="21" height="21"/>
         <image name="Image" width="25" height="25"/>
         <image name="Image-1" width="24" height="25"/>
+        <image name="MapButton" width="58" height="50"/>
         <image name="ThumbsDown" width="21" height="23"/>
         <image name="ThumbsUp" width="21" height="23"/>
         <image name="background" width="320" height="60"/>
@@ -1338,9 +1439,9 @@
         <image name="social" width="25" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="59o-eK-K41"/>
-        <segue reference="MUD-ZB-lfz"/>
-        <segue reference="SsS-xX-xg2"/>
+        <segue reference="JPb-mW-Agf"/>
+        <segue reference="Al4-1b-9SZ"/>
+        <segue reference="mev-pT-xRA"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

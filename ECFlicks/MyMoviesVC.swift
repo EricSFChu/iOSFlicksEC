@@ -118,7 +118,7 @@ class MyMoviesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         let dateSort = NSSortDescriptor(key: "created", ascending: false)
         let titleSort = NSSortDescriptor(key: "title", ascending: true)
         let likeSort = NSSortDescriptor(key: "goodBad", ascending: false)
-        let watchSort = NSSortDescriptor(key: "watchedOrNo", ascending: false)
+        let watchSort = NSSortDescriptor(key: "watchedOrNo", ascending: true)
 
         
         if segmentedController.selectedSegmentIndex == 0 {
@@ -162,9 +162,10 @@ class MyMoviesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             navigationBar.setBackgroundImage(UIImage(named:"background"), for: .default)
         }
         
-        self.navigationController?.navigationBar.barTintColor = UIColor.black
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationController?.navigationBar.barTintColor = UIColor.black
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
+        tableView.decelerationRate = UIScrollViewDecelerationRateFast
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -229,8 +230,8 @@ class MyMoviesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     
     func setupBanners() {
     
-        bannerView8.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        //ADMOB8
+        bannerView8.adUnitID = ADMOB8
+        // "ca-app-pub-3940256099942544/2934735716"
         let request = GADRequest()
         bannerView8.rootViewController = self
         bannerView8.load(request)

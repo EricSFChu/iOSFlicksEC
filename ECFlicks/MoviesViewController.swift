@@ -21,6 +21,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var segmentedController: UISegmentedControl!
+
     
     var movies: [NSDictionary]?
     var filteredData: [NSDictionary]!
@@ -69,18 +71,42 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
+    @IBAction func segmentedControllerDidChange(_ sender: UISegmentedControl) {
+        if segmentedController.selectedSegmentIndex == 0 {
+            
+            endPoint = "now_playing"
+            
+        } else if segmentedController.selectedSegmentIndex == 1 {
+            
+            endPoint = "upcoming"
+
+            
+        } else if segmentedController.selectedSegmentIndex == 2 {
+            
+            endPoint = "popular"
+            
+        } else if segmentedController.selectedSegmentIndex == 3 {
+            
+            endPoint = "top_rated"
+ 
+        }
+        
+        pageNumber = 1
+        movies = nil
+        loadFromSource()
+    }
+    
     func configBanners() {
         
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        //ADMOB
-        //
-        //
+        bannerView.adUnitID = ADMOB
+        //"ca-app-pub-3940256099942544/2934735716"
+
         let request = GADRequest()
         bannerView.rootViewController = self
         bannerView.load(request)
         
-        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
-        //GADInterstitial(adUnitID: ADMOB_INTERSTITIAL_1)
+        //interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+        interstitial = GADInterstitial(adUnitID: ADMOB_INTERSTITIAL_1)
         
         let request2 = GADRequest()
         interstitial.load(request2)
@@ -127,6 +153,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func loadFromSource(){
+        
+        if movies == nil {
+            
+            movies = [NSDictionary]()
+            
+        }
         
         loading = true
         let pageNumCheck = pageNumber == 1 ? 1 : pageNumber + 1
@@ -229,9 +261,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let item = Movie(context: context)
         
         
-        if let uri = movie["backdrop_path"] {
+        if let uri = movie["backdrop_path"]{
             
-            item.backdropURI = uri as? String
+            if uri as? NSNull == nil {
+                
+                item.backdropURI = uri as? String
+            }
             
         }
         
@@ -355,8 +390,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func createAndLoadInterstitial() -> GADInterstitial {
-        let interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
-        //let interstitial = GADInterstitial(adUnitID: ADMOB_INTERSTITIAL_1)
+        //let interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+        let interstitial = GADInterstitial(adUnitID: ADMOB_INTERSTITIAL_1)
 
         interstitial.delegate = self
         interstitial.load(GADRequest())
@@ -364,7 +399,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func interstitialDidDismissScreen(_ ad: GADInterstitial) {
-        //interstitial = createAndLoadInterstitial()
+        interstitial = createAndLoadInterstitial()
     }
     
 }
