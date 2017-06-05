@@ -34,7 +34,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
        super.viewWillAppear(animated)
         
         centerMapOnLocation()
-        
+        locationAuthenticationStatus()
     }
     
 
@@ -43,6 +43,13 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         mapView.removeAnnotations(mapView.annotations)
         requestLocations()
         
+    }
+    
+    @IBAction func addMoreVenues(_ sender: UIButton) {
+        requestLocations()
+        let alert = UIAlertController(title: "", message: "Searching for more Venues.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -115,9 +122,8 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
             
         }
         requestLocations()
-        
-        
     }
+ 
     
     func locationAuthenticationStatus() {
         

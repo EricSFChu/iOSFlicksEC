@@ -27,7 +27,6 @@ class MyMoviesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupBanners()
         configView()
         getSavedMovies()
         
@@ -226,16 +225,6 @@ class MyMoviesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         let movie = fetchedResultsController.object(at: indexPath as IndexPath)
         cell.configureCell(movie: movie)
         
-    }
-    
-    func setupBanners() {
-    
-        bannerView8.adUnitID = ADMOB8
-        // "ca-app-pub-3940256099942544/2934735716"
-        let request = GADRequest()
-        bannerView8.rootViewController = self
-        bannerView8.load(request)
-    
     }
     
     func callSegueFromCell(myData dataobject: AnyObject){

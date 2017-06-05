@@ -17,11 +17,9 @@ class PersonViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var segmentedController: UISegmentedControl!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var bannerView6: GADBannerView!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var biographyLabel: UILabel!
-    @IBOutlet weak var bannerView7: GADBannerView!
     @IBOutlet weak var dateOfBirthLabel: UILabel!
     @IBOutlet weak var birthPlaceLabel: UILabel!
     
@@ -50,7 +48,6 @@ class PersonViewController: UIViewController, UITableViewDataSource, UITableView
         
         segmentedController.addTarget(self, action: #selector(segmentChanged), for: .allEvents)
 
-        setUpBanners()
         self.tableView.reloadData()
     }
 
@@ -107,7 +104,7 @@ class PersonViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: profileView.frame.size.height + collectionView.frame.size.height + segmentedController.frame.size.height + tableView.frame.size.height + (self.navigationController?.navigationBar.frame.height)! + profilePicture.frame.size.height + bannerView7.frame.size.height)
+        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: profileView.frame.size.height + collectionView.frame.size.height + segmentedController.frame.size.height + tableView.frame.size.height + (self.navigationController?.navigationBar.frame.height)! + profilePicture.frame.size.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -342,20 +339,6 @@ class PersonViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         
-        
-    }
-    
-    func setUpBanners() {
-        
-        bannerView6.adUnitID = ADMOB6
-        //"ca-app-pub-3940256099942544/2934735716"
-        bannerView6.rootViewController = self
-        bannerView6.load(GADRequest())
-        
-        bannerView7.adUnitID = ADMOB7
-        //"ca-app-pub-3940256099942544/2934735716"
-        bannerView7.rootViewController = self
-        bannerView7.load(GADRequest())
         
     }
     

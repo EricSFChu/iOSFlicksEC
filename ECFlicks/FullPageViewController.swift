@@ -22,15 +22,12 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var transparantView: UIView!
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var bannerView2: GADBannerView!
     @IBOutlet weak var budgetLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var runtimeLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var productionLabel: UILabel!
     @IBOutlet weak var voteAverageLabel: UILabel!
-    @IBOutlet weak var bannerView4: GADBannerView!
-    @IBOutlet weak var bannerView5: GADBannerView!
     @IBOutlet weak var segmentedController: UISegmentedControl!
     
     var movie: NSDictionary?
@@ -43,7 +40,7 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         setUpNavigation()
         
         if segueMovieObj != nil {
@@ -66,7 +63,6 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
         loadTrailers() {}
         loadRecommendations() {}
-        setUpBanners()
         setUpViews()
         loadPage()
 
@@ -74,7 +70,7 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: transparantView.frame.size.height + fullImage.frame.size.height + (self.navigationController?.navigationBar.frame.height)! + imageCollectionView.frame.size.height + tableView.frame.size.height + bannerView2.frame.size.height + bannerView4.frame.size.height + bannerView5.frame.size.height)
+        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: transparantView.frame.size.height + fullImage.frame.size.height + (self.navigationController?.navigationBar.frame.height)! + imageCollectionView.frame.size.height + tableView.frame.size.height)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -375,25 +371,6 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         
     }
     
-    func setUpBanners() {
-        
-        bannerView2.adUnitID = ADMOB3
-        //"ca-app-pub-3940256099942544/2934735716"
-
-        bannerView2.rootViewController = self
-        bannerView2.load(GADRequest())
-        bannerView4.adUnitID = ADMOB4
-        //"ca-app-pub-3940256099942544/2934735716"
-
-        bannerView4.rootViewController = self
-        bannerView4.load(GADRequest())
-        bannerView5.adUnitID = ADMOB5
-        //"ca-app-pub-3940256099942544/2934735716"
-
-        bannerView5.rootViewController = self
-        bannerView5.load(GADRequest())
-    }
-    
     func setUpViews() {
         
         imageCollectionView.delegate = self
@@ -516,9 +493,6 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         item.backdrop = nil
         AD.saveContext()
         
-        let alert = UIAlertController(title: "Alert", message: "Your Movie Has Been Saved.", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

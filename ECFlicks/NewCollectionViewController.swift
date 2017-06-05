@@ -10,18 +10,21 @@ import UIKit
 import MBProgressHUD
 import GoogleMobileAds
 
-class NewCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,
+class NewCollectionViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate,
 UISearchBarDelegate{
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet weak var backToListView: UIBarButtonItem!
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var bannerView3: GADBannerView!
     
-    
+    var pageNumber: Int = 1
+    var maxPageNumber: Int = 0
     var movies: [NSDictionary]?
     var filteredData: [NSDictionary]?
     var endPoint: String!
     var isSearching = false
+    var selectedSegment: Int = 0
+    let threshold: CGFloat = 700
+    var loading = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +34,6 @@ UISearchBarDelegate{
         collectionView.dataSource = self
         searchBar.delegate = self
         searchBar.isHidden = true
-        
-        bannerView3.adUnitID = ADMOB2
-
-        //"ca-app-pub-3940256099942544/2934735716"
-        bannerView3.rootViewController = self
-        bannerView3.load(GADRequest())
         
         self.navigationController?.navigationBar.barTintColor = UIColor.black
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
@@ -49,6 +46,7 @@ UISearchBarDelegate{
             
             self.searchBar.isHidden = false
             self.collectionView.reloadData()
+            print(endPoint)
             
         }else {
             
@@ -63,6 +61,18 @@ UISearchBarDelegate{
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if view.frame.width < 340 {
+            
+            return CGSize(width: view.frame.width/3.1, height: 110)
+            
+        } else {
+            return CGSize(width: 120, height: 180)
+        }
+        
+        
     }
     
     @available(iOS 2.0, *)
@@ -85,6 +95,27 @@ UISearchBarDelegate{
             return 0
         }
         
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if !isSearching {
+            
+            let contentOffset = collectionView.contentOffset.y + view.frame.height
+            let maxOffset = collectionView.contentSize.height
+            
+            if !loading && (maxOffset - contentOffset <= threshold) {
+                
+                self.loading = true
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    self.loadFromSource()
+                    self.loading = false
+                    
+                })
+                
+            }
+        }
     }
     
     @available(iOS 2.0, *)
@@ -134,6 +165,66 @@ UISearchBarDelegate{
         
     }
     
+    func loadFromSource(){
+        
+        if pageNumber != 1 && pageNumber >= maxPageNumber {
+            
+            return
+            
+        }
+        
+        if movies == nil {
+            
+            movies = [NSDictionary]()
+            
+        }
+        
+        loading = true
+        let pageNumCheck = pageNumber == 1 ? 1 : pageNumber + 1
+        pageNumber += 1
+        let endPoint2 = endPoint!
+        let url : NSString = "\(BASE_URL)\(endPoint2)?api_key=\(API_KEY)&page=\(pageNumCheck)" as NSString
+        let urlStr = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let urlStrUrl = URL(string: urlStr!)
+        
+        let request = URLRequest(url: urlStrUrl!)
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        MBProgressHUD.setAnimationDuration(2.0)
+        
+        
+        let task : URLSessionDataTask = session.dataTask(with: request,
+            completionHandler: { (dataOrNil, response, error) in
+                if let data = dataOrNil {
+                    if let responseDictionary = try! JSONSerialization.jsonObject(
+                        with: data, options:[]) as? NSDictionary {
+                                                                    
+                            if let pages = responseDictionary["total_pages"] {
+                                                                        
+                                self.maxPageNumber = pages as! Int
+                                                                        
+                            }
+                                                                    
+                            for movie in (responseDictionary["results"] as? [NSDictionary])! {
+                                if (movie["poster_path"] as? String) != nil {
+                                                                            
+                                    self.movies?.append(movie)
+                                                                            
+                                }
+                                                                        
+                            }
+                            self.collectionView.reloadData()
+                    }
+                                                                
+            }
+                                                            
+            MBProgressHUD.hide(for: self.view, animated: false)
+            self.loading = false
+        });
+        
+        task.resume()
+    }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
         searchBar.text = ""
@@ -159,10 +250,13 @@ UISearchBarDelegate{
             
         }
         
-        if segue.identifier == "Back to list" {
-            
-            let destinationNavigationController = segue.destination as! MoviesViewController
-            destinationNavigationController.endPoint = endPoint
+        if segue.identifier == "ToList" {
+            let destinationVC = segue.destination as! MoviesViewController
+            destinationVC.endPoint = endPoint
+            destinationVC.pageNumber = pageNumber
+            destinationVC.maxPageNumber = maxPageNumber
+            destinationVC.movies = movies
+            destinationVC.selectedSegment = selectedSegment
             
         }
     }

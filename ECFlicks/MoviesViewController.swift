@@ -20,7 +20,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var searchButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var segmentedController: UISegmentedControl!
 
     
@@ -31,25 +30,32 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     var endPoint: String!
     var pageNumber: Int = 1
+    var maxPageNumber: Int = 0
     let threshold: CGFloat = 1400.0
     var loading = false
     var isSearching = false
     var interstitial: GADInterstitial!
+    var selectedSegment: Int = 0
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        segmentedController.selectedSegmentIndex = selectedSegment
         
-        movies = [NSDictionary]()
+        interstitial = createAndLoadInterstitial()
+        if movies == nil {
+            movies = [NSDictionary]()
+
+        }
         filteredData = [NSDictionary]()
         
-        if pageNumber == 1 {
-            loadFromSource()
-        }
-        
         viewConfig()
-        configBanners()
     
         self.tableView.addSubview(self.refreshControl)
+        
+        if pageNumber == 1 && movies?.count == 0 {
+            loadFromSource()
+        }
     
     }
 
@@ -96,22 +102,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         loadFromSource()
     }
     
-    func configBanners() {
-        
-        bannerView.adUnitID = ADMOB
-        //"ca-app-pub-3940256099942544/2934735716"
 
-        let request = GADRequest()
-        bannerView.rootViewController = self
-        bannerView.load(request)
-        
-        //interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
-        interstitial = GADInterstitial(adUnitID: ADMOB_INTERSTITIAL_1)
-        
-        let request2 = GADRequest()
-        interstitial.load(request2)
-        
-    }
     
     override func viewDidAppear(_ animated: Bool) {
         
@@ -137,12 +128,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         if  (searchBar.isHidden) {
         
             searchBar.isHidden = false
-            bannerView.isHidden = true
             
         }else {
             
             searchBar.isHidden = true
-            bannerView.isHidden = false
             searchBar.resignFirstResponder()
         }
     }
@@ -153,6 +142,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func loadFromSource(){
+        
+        if pageNumber != 1 && pageNumber >= maxPageNumber {
+            
+            return
+            
+        }
         
         if movies == nil {
             
@@ -179,6 +174,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 if let data = dataOrNil {
                     if let responseDictionary = try! JSONSerialization.jsonObject(
                         with: data, options:[]) as? NSDictionary {
+                        
+                        if let pages = responseDictionary["total_pages"] {
+                            
+                            self.maxPageNumber = pages as! Int
+                            
+                        }
+                        
                         for movie in (responseDictionary["results"] as? [NSDictionary])! {
                             if (movie["poster_path"] as? String) != nil {
                                 
@@ -287,10 +289,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         item.watchedOrNo = false
         item.backdrop = nil
         AD.saveContext()
-        
-        let alert = UIAlertController(title: "Alert", message: "Your Movie Has Been Saved.", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+
     }
     
     
@@ -382,9 +381,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             
         } else if segue.identifier == "toCollection" {
             
-            let destinationNavigationController = segue.destination as! NewCollectionViewController
-            destinationNavigationController.endPoint = endPoint
-            destinationNavigationController.movies = self.movies
+            let destinationVC = segue.destination as! NewCollectionViewController
+            destinationVC.endPoint = endPoint
+            destinationVC.movies = movies
+            destinationVC.pageNumber = pageNumber
+            destinationVC.maxPageNumber = maxPageNumber
+            destinationVC.selectedSegment = self.segmentedController.selectedSegmentIndex
             
         }
     }
