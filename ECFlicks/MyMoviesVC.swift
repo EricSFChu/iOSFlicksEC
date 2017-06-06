@@ -18,7 +18,6 @@ protocol MyCustomCellDelegator {
 class MyMoviesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, SwipeTableViewCellDelegate, NSFetchedResultsControllerDelegate, MyCustomCellDelegator {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var bannerView8: GADBannerView!
     @IBOutlet weak var segmentedController: UISegmentedControl!
     
     var fetchedResultsController: NSFetchedResultsController<Movie>!
@@ -109,6 +108,13 @@ class MyMoviesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         configureCell(cell: cell, indexPath: indexPath as NSIndexPath)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let movieTitle = fetchedResultsController.object(at: indexPath as IndexPath)
+        performSegue(withIdentifier: "ToReview", sender: movieTitle)
+        
     }
     
     func getSavedMovies() {
@@ -238,6 +244,15 @@ class MyMoviesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             
             let newVC = segue.destination as! FullPageViewController
             newVC.segueMovieObj = sender as! MovieModel
+            
+        }
+        
+        if segue.identifier == "ToReview" {
+            
+            let newVC = segue.destination as! ReviewVC
+            newVC.movie = sender as! Movie
+            
+    
             
         }
         
