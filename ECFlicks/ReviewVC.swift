@@ -39,7 +39,7 @@ class ReviewVC: UIViewController {
 
         AD.saveContext()
 
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
 
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
@@ -48,7 +48,7 @@ class ReviewVC: UIViewController {
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
         
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: {(alert: UIAlertAction!) in
-                        self.dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
         }))
         
         self.present(alert, animated: true, completion: nil)

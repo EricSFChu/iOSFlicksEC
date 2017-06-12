@@ -173,6 +173,22 @@ class MyMoviesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         tableView.decelerationRate = UIScrollViewDecelerationRateFast
         tableView.delegate = self
         tableView.dataSource = self
+        
+        if view.frame.size.width < 376.0 {
+            
+            if let navigationBar = navigationController?.navigationBar {
+                navigationBar.setBackgroundImage(UIImage(named:"background"), for: .default)
+            }
+            
+        }
+        
+        if view.frame.size.width > 620.0 {
+            
+            if let navigationBar = navigationController?.navigationBar {
+                navigationBar.setBackgroundImage(UIImage(named:"WideBanner667"), for: .default)
+            }
+            
+        }
     }
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -226,6 +242,30 @@ class MyMoviesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        if (UIDevice.current.orientation.isLandscape) || (UIDevice.current.orientation.isPortrait)  {
+            
+            if view.frame.size.height  < 376.0 {
+                
+                if let navigationBar = navigationController?.navigationBar {
+                    navigationBar.setBackgroundImage(UIImage(named:"background"), for: .default)
+                }
+                
+            }
+            
+            if view.frame.size.height > 620.0 {
+                
+                if let navigationBar = navigationController?.navigationBar {
+                    navigationBar.setBackgroundImage(UIImage(named:"WideBanner667"), for: .default)
+                }
+                
+            }
+            
+        }
+    }
+    
+    
     func configureCell(cell: SavedMovieCell, indexPath: NSIndexPath) {
         
         let movie = fetchedResultsController.object(at: indexPath as IndexPath)
@@ -257,7 +297,11 @@ class MyMoviesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         }
         
     }
-
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController!) -> UIModalPresentationStyle {
+        // Return no adaptive presentation style, use default presentation behaviour
+        return .overCurrentContext
+    }
 }
 
 

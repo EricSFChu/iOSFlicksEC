@@ -30,6 +30,27 @@ UISearchBarDelegate{
         super.viewDidLoad()
         
         
+               configView()
+    }
+    
+    func configView() {
+        
+        if view.frame.size.width  < 376.0 {
+            
+            if let navigationBar = navigationController?.navigationBar {
+                navigationBar.setBackgroundImage(UIImage(named:"background"), for: .default)
+            }
+            
+        }
+        
+        if view.frame.size.width > 620.0 {
+            
+            if let navigationBar = navigationController?.navigationBar {
+                navigationBar.setBackgroundImage(UIImage(named:"WideBanner667"), for: .default)
+            }
+            
+        }
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         searchBar.delegate = self
@@ -37,9 +58,32 @@ UISearchBarDelegate{
         
         self.navigationController?.navigationBar.barTintColor = UIColor.black
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+
         
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        if (UIDevice.current.orientation.isLandscape) || (UIDevice.current.orientation.isPortrait)  {
+            
+            if view.frame.size.height  < 376.0 {
+                
+                if let navigationBar = navigationController?.navigationBar {
+                    navigationBar.setBackgroundImage(UIImage(named:"background"), for: .default)
+                }
+                
+            }
+            
+            if view.frame.size.height > 620.0 {
+                
+                if let navigationBar = navigationController?.navigationBar {
+                    navigationBar.setBackgroundImage(UIImage(named:"WideBanner667"), for: .default)
+                }
+                
+            }
+            
+        }
+    }
     
     @IBAction func searchButtonCall(_ sender: AnyObject) {
         if  (self.searchBar.isHidden == true) {

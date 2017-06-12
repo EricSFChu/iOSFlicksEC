@@ -42,14 +42,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         segmentedController.selectedSegmentIndex = selectedSegment
         
-        interstitial = createAndLoadInterstitial()
+//        interstitial = createAndLoadInterstitial()
         if movies == nil {
             movies = [NSDictionary]()
 
         }
         filteredData = [NSDictionary]()
         
-        viewConfig()
     
         self.tableView.addSubview(self.refreshControl)
         
@@ -68,14 +67,52 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.delegate = self
         tableView.decelerationRate = UIScrollViewDecelerationRateFast
         
-        if let navigationBar = navigationController?.navigationBar {
-            navigationBar.setBackgroundImage(UIImage(named:"background"), for: .default)
+        print(view.frame.size.height)
+        if view.frame.size.width < 376.0 {
+            
+            if let navigationBar = navigationController?.navigationBar {
+                navigationBar.setBackgroundImage(UIImage(named:"background"), for: .default)
+            }
+            
         }
+        
+        if view.frame.size.width > 620.0 {
+            
+            if let navigationBar = navigationController?.navigationBar {
+                navigationBar.setBackgroundImage(UIImage(named:"WideBanner667"), for: .default)
+            }
+            
+        }
+
         
         self.navigationController?.navigationBar.barTintColor = UIColor.black
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+       
+        if (UIDevice.current.orientation.isLandscape) || (UIDevice.current.orientation.isPortrait)  {
+            
+            if view.frame.size.height  < 376.0 {
+                
+                if let navigationBar = navigationController?.navigationBar {
+                    navigationBar.setBackgroundImage(UIImage(named:"background"), for: .default)
+                }
+                
+            }
+            
+            if view.frame.size.height > 620.0 {
+                
+                if let navigationBar = navigationController?.navigationBar {
+                    navigationBar.setBackgroundImage(UIImage(named:"WideBanner667"), for: .default)
+                }
+                
+            }
+            
+        }
+    }
+    
     
     @IBAction func segmentedControllerDidChange(_ sender: UISegmentedControl) {
         if segmentedController.selectedSegmentIndex == 0 {
@@ -106,6 +143,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidAppear(_ animated: Bool) {
         
+        viewConfig()
+
+        
         if currentReachabilityStatus != .notReachable {
             
             self.errorButton.isHidden = true
@@ -117,11 +157,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             
         }
         
-        if interstitial.isReady {
-            interstitial.present(fromRootViewController: self)
-        } else {
-            print("Ad wasn't ready")
-        }
+//        if interstitial.isReady {
+//            interstitial.present(fromRootViewController: self)
+//        } else {
+//            print("Ad wasn't ready")
+//        }
     }
     
     @IBAction func searchButtonCall(_ sender: UIBarButtonItem) {
@@ -391,18 +431,18 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
-    func createAndLoadInterstitial() -> GADInterstitial {
-        //let interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
-        let interstitial = GADInterstitial(adUnitID: ADMOB_INTERSTITIAL_1)
-
-        interstitial.delegate = self
-        interstitial.load(GADRequest())
-        return interstitial
-    }
+//    func createAndLoadInterstitial() -> GADInterstitial {
+//        //let interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+//        let interstitial = GADInterstitial(adUnitID: ADMOB_INTERSTITIAL_1)
+//
+//        interstitial.delegate = self
+//        interstitial.load(GADRequest())
+//        return interstitial
+//    }
     
-    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
-        interstitial = createAndLoadInterstitial()
-    }
+//    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+//        interstitial = createAndLoadInterstitial()
+//    }
     
 }
 

@@ -121,6 +121,7 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "CastTrailerCell", for: indexPath) as! CastTrailerCell
         if segmentedController.selectedSegmentIndex == 0 {
             
@@ -208,6 +209,26 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         if (popUpImageView != nil && UIDevice.current.orientation.isLandscape) || (popUpImageView != nil && UIDevice.current.orientation.isPortrait)  {
             
             popUpImageView.frame = UIScreen.main.bounds
+            
+        }
+        
+        if (UIDevice.current.orientation.isLandscape) || (UIDevice.current.orientation.isPortrait)  {
+            
+            if view.frame.size.height  < 376.0 {
+                
+                if let navigationBar = navigationController?.navigationBar {
+                    navigationBar.setBackgroundImage(UIImage(named:"background"), for: .default)
+                }
+                
+            }
+            
+            if view.frame.size.height > 620.0 {
+                
+                if let navigationBar = navigationController?.navigationBar {
+                    navigationBar.setBackgroundImage(UIImage(named:"WideBanner667"), for: .default)
+                }
+                
+            }
             
         }
     }
@@ -383,6 +404,22 @@ class FullPageViewController: UIViewController, UICollectionViewDelegate, UIColl
         transparantView.layer.cornerRadius = 5.0
         
         segmentedController.addTarget(self, action: #selector(segmentChanged), for: .allEvents)
+        
+        if view.frame.size.width < 376.0 {
+            
+            if let navigationBar = navigationController?.navigationBar {
+                navigationBar.setBackgroundImage(UIImage(named:"background"), for: .default)
+            }
+            
+        }
+        
+        if view.frame.size.width > 620.0 {
+            
+            if let navigationBar = navigationController?.navigationBar {
+                navigationBar.setBackgroundImage(UIImage(named:"WideBanner667"), for: .default)
+            }
+            
+        }
     }
     
     func segmentChanged() {

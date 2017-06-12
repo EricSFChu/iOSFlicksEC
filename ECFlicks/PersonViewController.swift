@@ -138,6 +138,26 @@ class PersonViewController: UIViewController, UITableViewDataSource, UITableView
             popUpImageView.frame = UIScreen.main.bounds
             
         }
+        
+        if (UIDevice.current.orientation.isLandscape) || (UIDevice.current.orientation.isPortrait)  {
+            
+            if view.frame.size.height  < 376.0 {
+                
+                if let navigationBar = navigationController?.navigationBar {
+                    navigationBar.setBackgroundImage(UIImage(named:"background"), for: .default)
+                }
+                
+            }
+            
+            if view.frame.size.height > 620.0 {
+                
+                if let navigationBar = navigationController?.navigationBar {
+                    navigationBar.setBackgroundImage(UIImage(named:"WideBanner667"), for: .default)
+                }
+                
+            }
+            
+        }
     }
     
     func dismissPopUpImageView(tapper: UITapGestureRecognizer) {
@@ -199,6 +219,22 @@ class PersonViewController: UIViewController, UITableViewDataSource, UITableView
         scrollView.decelerationRate = UIScrollViewDecelerationRateFast
         
         profileView.layer.cornerRadius = 5.0
+        
+        if view.frame.size.width < 376.0 {
+            
+            if let navigationBar = navigationController?.navigationBar {
+                navigationBar.setBackgroundImage(UIImage(named:"background"), for: .default)
+            }
+            
+        }
+        
+        if view.frame.size.width > 620.0 {
+            
+            if let navigationBar = navigationController?.navigationBar {
+                navigationBar.setBackgroundImage(UIImage(named:"WideBanner667"), for: .default)
+            }
+            
+        }
         
     }
     
@@ -341,6 +377,5 @@ class PersonViewController: UIViewController, UITableViewDataSource, UITableView
         
         
     }
-    
     
 }
